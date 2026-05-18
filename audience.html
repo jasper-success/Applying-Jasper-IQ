@@ -7,29 +7,29 @@
   <style>
     @font-face {
       font-family: "Feature Headline";
-      src: url("https://jasper-brand-assets.vercel.app/fonts/FeatureHeadline-Upright-VF_wght_wdth_opsz.ttf") format("truetype");
+      src: url("assets/fonts/FeatureHeadline-Upright-VF_wght_wdth_opsz.ttf") format("truetype");
       font-weight: 100 900;
       font-stretch: 50% 200%;
       font-style: normal;
     }
     @font-face {
       font-family: "ABC ROM";
-      src: url("https://jasper-brand-assets.vercel.app/fonts/ABCROM-Regular.otf") format("opentype");
+      src: url("assets/fonts/ABCROM-Regular.otf") format("opentype");
       font-weight: 400;
     }
     @font-face {
       font-family: "ABC ROM";
-      src: url("https://jasper-brand-assets.vercel.app/fonts/ABCROM-Book.otf") format("opentype");
+      src: url("assets/fonts/ABCROM-Book.otf") format("opentype");
       font-weight: 450;
     }
     @font-face {
       font-family: "ABC ROM";
-      src: url("https://jasper-brand-assets.vercel.app/fonts/ABCROM-Bold.otf") format("opentype");
+      src: url("assets/fonts/ABCROM-Bold.otf") format("opentype");
       font-weight: 700;
     }
     @font-face {
       font-family: "ABC ROM Mono";
-      src: url("https://jasper-brand-assets.vercel.app/fonts/ABCROMMono-Book.otf") format("opentype");
+      src: url("assets/fonts/ABCROMMono-Book.otf") format("opentype");
       font-weight: 450;
     }
 
@@ -56,6 +56,17 @@
       position: relative;
       overflow: hidden;
       min-height: 290px;
+    }
+
+    .header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url("assets/textures/grain-fine.png") repeat;
+      mix-blend-mode: overlay;
+      opacity: 0.18;
+      pointer-events: none;
+      z-index: 3;
     }
 
     .header-top {
@@ -110,10 +121,29 @@
 
     /* ── INTRO ── */
     .intro {
-      padding: 56px 56px 60px;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 0;
       position: relative;
       overflow: hidden;
       background: #FFFFFF;
+    }
+
+    .intro-text {
+      padding: 56px 48px 60px 56px;
+      position: relative;
+    }
+
+    .intro-photo {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .intro-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .section-eyebrow {
@@ -141,15 +171,6 @@
       font-weight: 450;
       color: #262627;
       max-width: 540px;
-    }
-
-    /* green scrap shape — bleeding off bottom-right */
-    .scrap-wrap {
-      position: absolute;
-      right: -55px;
-      bottom: -30px;
-      width: 280px;
-      z-index: 1;
     }
 
     /* ── DOT DIVIDER ── */
@@ -455,15 +476,13 @@
 
   <!-- ── INTRO ── -->
   <div class="intro">
-    <div class="section-eyebrow">What it is</div>
-    <div class="intro-headline">Content that resonates<br>starts with knowing your reader.</div>
-    <p class="intro-body">Audience is a Jasper IQ pillar that lets you define exactly who your content is for. Create detailed profiles — roles, goals, pain points, motivations — and Jasper will tailor the language, framing, and messaging of every output to connect with that specific person. Pair it with Brand Voice and your content is both on-brand and on-target.</p>
-
-    <!-- scrap-small recolored to green, bleeding off bottom-right -->
-    <div class="scrap-wrap">
-      <svg width="711" height="539" viewBox="0 0 711 539" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path opacity="0.8" d="M710.062 296.498L94.2813 470.371L433.343 63.931L710.062 296.498Z" fill="#207A00"/>
-      </svg>
+    <div class="intro-text">
+      <div class="section-eyebrow">What it is</div>
+      <div class="intro-headline">Content that resonates<br>starts with knowing your reader.</div>
+      <p class="intro-body">Audience is a Jasper IQ pillar that lets you define exactly who your content is for. Create detailed profiles — roles, goals, pain points, motivations — and Jasper will tailor the language, framing, and messaging of every output to connect with that specific person. Pair it with Brand Voice and your content is both on-brand and on-target.</p>
+    </div>
+    <div class="intro-photo">
+      <img src="assets/photos/photo-pair-thinking.jpg" alt="Two colleagues thinking through a strategy together">
     </div>
   </div>
 
