@@ -115,10 +115,89 @@
       z-index: 0;
     }
 
+    /* ── FEATURED / START HERE ── */
+    .featured-section {
+      background: #FFFDE7;
+      padding: 48px 64px;
+      border-top: 4px solid #FFF133;
+    }
+
+    .featured-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .featured-card {
+      background: #00063D;
+      display: flex;
+      align-items: stretch;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.15s;
+      overflow: hidden;
+    }
+
+    .featured-card:hover { transform: translateY(-2px); }
+
+    .featured-icon-panel {
+      background: #FFF133;
+      width: 160px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .featured-body {
+      padding: 36px 40px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .featured-eyebrow {
+      font-family: "ABC ROM Mono", monospace;
+      font-weight: 450;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #FFF133;
+    }
+
+    .featured-title {
+      font-family: "Feature Headline", sans-serif;
+      font-weight: 400;
+      font-size: 42px;
+      line-height: 0.96;
+      letter-spacing: -1.5px;
+      color: #FFFFFF;
+    }
+
+    .featured-desc {
+      font-size: 14px;
+      font-weight: 450;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.65);
+      max-width: 520px;
+    }
+
+    .featured-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: "ABC ROM", sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      color: #FFF133;
+      margin-top: 4px;
+    }
+
     /* ── GRID ── */
     .grid-section {
       background: #F9F9F9;
-      padding: 64px;
+      padding: 48px 64px 64px;
     }
 
     .grid-inner {
@@ -291,6 +370,33 @@
 
       <div class="header-headline">Jasper <span>IQ</span></div>
       <p class="header-sub">Everything your team needs to understand, set up, and get the most out of the five pillars that make Jasper smarter.</p>
+    </div>
+  </div>
+
+  <!-- ── START HERE / WORKSPACE DEFAULTS ── -->
+  <div class="featured-section">
+    <div class="featured-inner">
+      <a class="featured-card" href="workspace-defaults.html">
+        <div class="featured-icon-panel">
+          <svg width="72" height="72" viewBox="0 0 100 100" fill="none">
+            <line x1="15" y1="28" x2="85" y2="28" stroke="#00063D" stroke-width="6" stroke-linecap="round"/>
+            <circle cx="62" cy="28" r="9" fill="#FFF133" stroke="#00063D" stroke-width="5"/>
+            <line x1="15" y1="50" x2="85" y2="50" stroke="#00063D" stroke-width="6" stroke-linecap="round"/>
+            <circle cx="38" cy="50" r="9" fill="#FFF133" stroke="#00063D" stroke-width="5"/>
+            <line x1="15" y1="72" x2="85" y2="72" stroke="#00063D" stroke-width="6" stroke-linecap="round"/>
+            <circle cx="55" cy="72" r="9" fill="#FFF133" stroke="#00063D" stroke-width="5"/>
+          </svg>
+        </div>
+        <div class="featured-body">
+          <div class="featured-eyebrow">Start here</div>
+          <div class="featured-title">Set Your Workspace Defaults</div>
+          <p class="featured-desc">Before activating the five pillars, configure your workspace-level defaults. These foundational settings shape how Jasper IQ behaves across every project and campaign your team runs.</p>
+          <div class="featured-cta">
+            View one-sheeter
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#FFF133" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+      </a>
     </div>
   </div>
 
