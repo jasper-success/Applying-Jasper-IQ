@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jasper IQ — Resource Hub</title>
+  <title>Agent Library — Jasper Agents</title>
   <style>
     @font-face {
       font-family: "Feature Headline";
       src: url("assets/fonts/FeatureHeadline-Upright-VF_wght_wdth_opsz.ttf") format("truetype");
       font-weight: 100 900;
       font-stretch: 50% 200%;
-      font-style: normal;
     }
     @font-face {
       font-family: "ABC ROM";
@@ -36,11 +35,10 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: #00063D;
+      background: #FFFFFF;
       font-family: "ABC ROM", sans-serif;
       font-weight: 400;
       color: #262627;
-      min-height: 100vh;
     }
 
     /* ── HEADER ── */
@@ -93,18 +91,17 @@
       color: #FFFFFF;
     }
 
-    .header-headline span { color: #FFF133; }
+    .header-headline span { color: #FA4028; }
 
     .header-sub {
       font-size: 16px;
       font-weight: 450;
       line-height: 1.5;
       color: rgba(255,255,255,0.65);
-      max-width: 500px;
+      max-width: 520px;
       margin-top: 22px;
     }
 
-    /* tape — electric yellow, bleeding off bottom-right corner */
     .header-tape {
       position: absolute;
       right: -20px;
@@ -115,164 +112,79 @@
       z-index: 0;
     }
 
-    /* ── HUB NAV ── */
-    .hub-nav {
-      background: #00063D;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 16px rgba(0,0,6,0.4);
+    /* ── INTRO ── */
+    .intro-section {
+      background: #FFFFFF;
+      padding: 64px;
     }
 
-    .hub-nav-inner {
+    .intro-inner {
       max-width: 960px;
       margin: 0 auto;
-      padding: 0 64px;
-      display: flex;
-      align-items: center;
-      gap: 0;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 48px;
+      align-items: start;
     }
 
-    .hub-nav-label {
-      font-family: "ABC ROM Mono", monospace;
-      font-weight: 450;
-      font-size: 10px;
-      color: rgba(255,255,255,0.25);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-right: 20px;
-    }
-
-    .nav-link {
-      font-family: "ABC ROM", sans-serif;
-      font-weight: 700;
-      font-size: 12px;
-      color: rgba(255,255,255,0.45);
-      text-decoration: none;
-      padding: 14px 18px 12px;
-      border-bottom: 2px solid transparent;
-      transition: color 0.15s, border-color 0.15s;
-      display: inline-block;
-    }
-
-    .nav-link:hover { color: rgba(255,255,255,0.8); }
-    .nav-link.active { color: #fff; }
-    .nav-link[data-section="jasper-iq"].active { border-bottom-color: #FFF133; }
-    .nav-link[data-section="agents"].active { border-bottom-color: #FA4028; }
-
-    /* ── SECTION DIVIDER ── */
-    .section-divider {
-      background: #F9F9F9;
-      padding: 44px 64px 0;
-    }
-
-    .section-divider-inner {
-      max-width: 960px;
-      margin: 0 auto;
-      border-top: 4px solid var(--accent);
-      padding-top: 22px;
-    }
-
-    .section-name {
+    .intro-label {
       font-family: "ABC ROM Mono", monospace;
       font-weight: 450;
       font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
+      color: #FA4028;
+      margin-bottom: 16px;
     }
 
-    /* ── FEATURED / START HERE ── */
-    .featured-section {
-      background: #FFFDE7;
-      padding: 48px 64px;
+    .intro-headline {
+      font-family: "Feature Headline", sans-serif;
+      font-weight: 400;
+      font-size: 44px;
+      line-height: 0.96;
+      letter-spacing: -1.5px;
+      color: #00063D;
+      margin-bottom: 20px;
     }
 
-    .featured-inner {
-      max-width: 960px;
-      margin: 0 auto;
+    .intro-body {
+      font-size: 15px;
+      font-weight: 450;
+      line-height: 1.6;
+      color: #5E5D5F;
     }
 
-    .featured-card {
-      background: #00063D;
+    .intro-body p + p { margin-top: 14px; }
+
+    .intro-photo {
+      background: #FA4028;
+      height: 360px;
       display: flex;
-      align-items: stretch;
-      text-decoration: none;
-      color: inherit;
-      transition: transform 0.15s;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── DOT DIVIDER ── */
+    .dot-divider {
+      padding: 0 64px;
       overflow: hidden;
     }
 
-    .featured-card:hover { transform: translateY(-2px); }
-
-    .featured-icon-panel {
-      background: #FFF133;
-      width: 160px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .featured-body {
-      padding: 36px 40px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 12px;
-    }
-
-    .featured-eyebrow {
-      font-family: "ABC ROM Mono", monospace;
-      font-weight: 450;
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #FFF133;
-    }
-
-    .featured-title {
-      font-family: "Feature Headline", sans-serif;
-      font-weight: 400;
-      font-size: 42px;
-      line-height: 0.96;
-      letter-spacing: -1.5px;
-      color: #FFFFFF;
-    }
-
-    .featured-desc {
-      font-size: 14px;
-      font-weight: 450;
-      line-height: 1.55;
-      color: rgba(255,255,255,0.65);
-      max-width: 520px;
-    }
-
-    .featured-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: "ABC ROM", sans-serif;
-      font-weight: 700;
-      font-size: 12px;
-      color: #FFF133;
-      margin-top: 4px;
-    }
-
-    /* ── GRID ── */
-    .grid-section {
-      background: #F9F9F9;
-      padding: 48px 64px 64px;
-    }
-
-    .grid-inner {
+    .dot-divider-inner {
       max-width: 960px;
       margin: 0 auto;
     }
 
-    .grid-eyebrow {
+    /* ── FEATURES ── */
+    .features-section {
+      background: #F9F9F9;
+      padding: 64px;
+    }
+
+    .features-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .section-eyebrow {
       font-family: "ABC ROM Mono", monospace;
       font-weight: 450;
       font-size: 12px;
@@ -280,104 +192,307 @@
       margin-bottom: 32px;
     }
 
-    .pillar-grid {
+    .features-grid {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      gap: 20px;
+      gap: 24px;
     }
 
-    /* ── PILLAR CARD ── */
-    .pillar-card {
+    .feature-box {
       background: #FFFFFF;
-      display: flex;
-      flex-direction: column;
-      text-decoration: none;
-      color: inherit;
-      transition: transform 0.15s;
+      padding: 28px;
     }
 
-    .pillar-card:hover { transform: translateY(-3px); }
-
-    .pillar-card.disabled {
-      opacity: 0.5;
-      pointer-events: none;
-    }
-
-    .card-photo {
-      height: 180px;
-      overflow: hidden;
-    }
-
-    .card-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .card-photo-placeholder {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .card-accent { height: 4px; width: 100%; }
-
-    .card-body {
-      padding: 28px 28px 32px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .card-num {
+    .feature-num {
       font-family: "Feature Headline", sans-serif;
       font-weight: 400;
-      font-size: 13px;
-      letter-spacing: 0.08em;
+      font-size: 52px;
+      line-height: 1;
+      color: #FA4028;
+      margin-bottom: 12px;
+    }
+
+    .feature-title {
+      font-family: "Feature Headline", sans-serif;
+      font-weight: 400;
+      font-size: 22px;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+      color: #00063D;
       margin-bottom: 10px;
     }
 
-    .card-title {
+    .feature-body {
+      font-size: 13px;
+      font-weight: 450;
+      line-height: 1.55;
+      color: #5E5D5F;
+    }
+
+    /* ── BROWSE CRITERIA ── */
+    .criteria-section {
+      background: #FFFFFF;
+      padding: 64px;
+    }
+
+    .criteria-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .criteria-headline {
       font-family: "Feature Headline", sans-serif;
       font-weight: 400;
-      font-size: 36px;
+      font-size: 40px;
       line-height: 0.96;
       letter-spacing: -1px;
       color: #00063D;
+      margin-bottom: 40px;
+    }
+
+    .criteria-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    .criteria-card {
+      background: #F9F9F9;
+      padding: 24px;
+    }
+
+    .criteria-card-label {
+      font-family: "ABC ROM", sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      color: #00063D;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #FA4028;
+    }
+
+    .criteria-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .criteria-list li {
+      font-size: 12px;
+      font-weight: 450;
+      line-height: 1.4;
+      color: #5E5D5F;
+    }
+
+    /* ── STEPS ── */
+    .steps-section {
+      background: #F9F9F9;
+      padding: 64px;
+    }
+
+    .steps-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .step {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      width: 40px;
+      height: 40px;
+      background: #FA4028;
+      color: #FFFFFF;
+      font-family: "Feature Headline", sans-serif;
+      font-size: 20px;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-title {
+      font-family: "ABC ROM", sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: #00063D;
+      margin-bottom: 6px;
+    }
+
+    .step-body {
+      font-size: 14px;
+      font-weight: 450;
+      line-height: 1.55;
+      color: #5E5D5F;
+    }
+
+    /* ── BUSINESS FEATURES ── */
+    .biz-section {
+      background: #00063D;
+      padding: 56px 64px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .biz-section::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url("assets/textures/grain-fine.png") repeat;
+      mix-blend-mode: overlay;
+      opacity: 0.18;
+      pointer-events: none;
+    }
+
+    .biz-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .biz-eyebrow {
+      font-family: "ABC ROM Mono", monospace;
+      font-weight: 450;
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 32px;
+    }
+
+    .biz-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .biz-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 32px;
+    }
+
+    .biz-card-bar {
+      height: 3px;
+      width: 32px;
+      background: #FA4028;
+      margin-bottom: 18px;
+    }
+
+    .biz-card-title {
+      font-family: "Feature Headline", sans-serif;
+      font-weight: 400;
+      font-size: 28px;
+      line-height: 1.0;
+      letter-spacing: -0.5px;
+      color: #FFFFFF;
+      margin-bottom: 12px;
+    }
+
+    .biz-card-body {
+      font-size: 13px;
+      font-weight: 450;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.6);
       margin-bottom: 14px;
     }
 
-    .card-desc {
-      font-size: 13px;
-      line-height: 1.55;
-      color: #5E5D5F;
+    .biz-badge {
+      display: inline-block;
+      font-family: "ABC ROM Mono", monospace;
+      font-size: 10px;
       font-weight: 450;
-      flex: 1;
-      margin-bottom: 24px;
+      color: #FA4028;
+      border: 1px solid rgba(250,64,40,0.4);
+      padding: 3px 8px;
     }
 
-    .card-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: "ABC ROM", sans-serif;
-      font-weight: 700;
-      font-size: 12px;
+    /* ── PRO TIP ── */
+    .pro-tip-section {
+      background: #FFFFFF;
+      padding: 56px 64px;
+    }
+
+    .pro-tip-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .pro-tip-card {
+      background: #FA4028;
+      padding: 32px 36px;
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .pro-tip-label {
+      font-family: "ABC ROM Mono", monospace;
+      font-weight: 450;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #FA4028;
+      background: #00063D;
+      padding: 5px 10px;
+      white-space: nowrap;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .pro-tip-text {
+      font-size: 15px;
+      font-weight: 450;
+      line-height: 1.55;
       color: #00063D;
     }
 
-    .card-coming-soon {
-      display: inline-block;
-      font-family: "ABC ROM Mono", monospace;
-      font-size: 11px;
-      font-weight: 450;
-      color: #9B9B9B;
-      background: #F2F2F3;
-      padding: 4px 10px;
-      margin-top: auto;
+    /* ── RESOURCES ── */
+    .resources-section {
+      background: #F9F9F9;
+      padding: 56px 64px;
+    }
+
+    .resources-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .resources-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    .resource-link {
+      background: #FFFFFF;
+      padding: 20px 24px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-left: 4px solid #FA4028;
+      transition: transform 0.15s;
+    }
+
+    .resource-link:hover { transform: translateX(3px); }
+
+    .resource-link-text {
+      font-size: 13px;
+      font-weight: 700;
+      color: #00063D;
     }
 
     /* ── FOOTER ── */
@@ -407,11 +522,11 @@
   <div class="header">
 
     <div class="header-tape">
-      <svg width="559" height="200" viewBox="0 0 559 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg width="559" height="200" viewBox="0 0 559 200" fill="none">
         <rect width="559" height="200" fill="#00063D"/>
-        <rect x="10" y="10" width="539" height="36" fill="#FFF133"/>
-        <rect x="10" y="82" width="539" height="36" fill="#FFF133"/>
-        <rect x="10" y="154" width="539" height="36" fill="#FFF133"/>
+        <rect x="10" y="10" width="539" height="36" fill="#FA4028"/>
+        <rect x="10" y="82" width="539" height="36" fill="#FA4028"/>
+        <rect x="10" y="154" width="539" height="36" fill="#FA4028"/>
       </svg>
     </div>
 
@@ -432,243 +547,242 @@
             </defs>
           </svg>
         </div>
-        <div class="header-eyebrow">Resource hub</div>
+        <div class="header-eyebrow">Agents</div>
       </div>
 
-      <div class="header-headline">Jasper <span>IQ</span></div>
-      <p class="header-sub">Everything your team needs to understand, set up, and get the most out of the five pillars that make Jasper smarter.</p>
+      <div class="header-headline">Agent <span>Library</span></div>
+      <p class="header-sub">Pre-built AI applications designed by Jasper's marketing team for the most common content workflows — filter by function, type, stage, or process and get to work.</p>
     </div>
   </div>
 
-  <!-- ── HUB NAV ── -->
-  <nav class="hub-nav">
-    <div class="hub-nav-inner">
-      <span class="hub-nav-label">Topics</span>
-      <a class="nav-link active" href="#jasper-iq" data-section="jasper-iq">Jasper IQ</a>
-      <a class="nav-link" href="#agents" data-section="agents">Agents</a>
-    </div>
-  </nav>
-
-  <!-- ── JASPER IQ SECTION ── -->
-  <div class="section-divider" id="jasper-iq" style="--accent: #FFF133;">
-    <div class="section-divider-inner">
-      <span class="section-name">Jasper IQ</span>
-    </div>
-  </div>
-
-  <!-- ── START HERE / WORKSPACE DEFAULTS ── -->
-  <div class="featured-section">
-    <div class="featured-inner">
-      <a class="featured-card" href="workspace-defaults.html">
-        <div class="featured-icon-panel">
-          <svg width="72" height="72" viewBox="0 0 100 100" fill="none">
-            <line x1="15" y1="28" x2="85" y2="28" stroke="#00063D" stroke-width="6" stroke-linecap="round"/>
-            <circle cx="62" cy="28" r="9" fill="#FFF133" stroke="#00063D" stroke-width="5"/>
-            <line x1="15" y1="50" x2="85" y2="50" stroke="#00063D" stroke-width="6" stroke-linecap="round"/>
-            <circle cx="38" cy="50" r="9" fill="#FFF133" stroke="#00063D" stroke-width="5"/>
-            <line x1="15" y1="72" x2="85" y2="72" stroke="#00063D" stroke-width="6" stroke-linecap="round"/>
-            <circle cx="55" cy="72" r="9" fill="#FFF133" stroke="#00063D" stroke-width="5"/>
-          </svg>
+  <!-- ── INTRO ── -->
+  <div class="intro-section">
+    <div class="intro-inner">
+      <div class="intro-text">
+        <div class="intro-label">What is it?</div>
+        <div class="intro-headline">Your marketing team's AI toolkit, ready to deploy</div>
+        <div class="intro-body">
+          <p>Agents are purpose-built AI applications built by Jasper's in-house marketing team to handle structured marketing tasks. Rather than prompting from scratch every time, you pick an agent designed for your use case — brief it with your inputs, run it, and get consistent, structured output.</p>
+          <p>The Agent Library is where all of these live. Browse across nine marketing functions, eleven content types, four funnel stages, and three content processes. Whatever your team is working on, there's likely an agent already built for it.</p>
         </div>
-        <div class="featured-body">
-          <div class="featured-eyebrow">Start here</div>
-          <div class="featured-title">Set Your Workspace Defaults</div>
-          <p class="featured-desc">Before activating the five pillars, configure your workspace-level defaults. These foundational settings shape how Jasper IQ behaves across every project and campaign your team runs.</p>
-          <div class="featured-cta">
-            View one-sheeter
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#FFF133" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-        </div>
-      </a>
+      </div>
+      <div class="intro-photo">
+        <svg width="96" height="96" viewBox="0 0 100 100" fill="none">
+          <rect x="18" y="22" width="42" height="54" rx="3" fill="white" opacity="0.25"/>
+          <rect x="24" y="16" width="42" height="54" rx="3" fill="white" opacity="0.5"/>
+          <rect x="30" y="10" width="42" height="54" rx="3" fill="white"/>
+          <line x1="42" y1="30" x2="60" y2="30" stroke="#FA4028" stroke-width="3" stroke-linecap="round"/>
+          <line x1="42" y1="39" x2="60" y2="39" stroke="#FA4028" stroke-width="3" stroke-linecap="round"/>
+          <line x1="42" y1="48" x2="54" y2="48" stroke="#FA4028" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="74" cy="74" r="16" fill="white"/>
+          <line x1="74" y1="66" x2="74" y2="82" stroke="#FA4028" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="66" y1="74" x2="82" y2="74" stroke="#FA4028" stroke-width="3.5" stroke-linecap="round"/>
+        </svg>
+      </div>
     </div>
   </div>
 
-  <!-- ── PILLAR GRID ── -->
-  <div class="grid-section">
-    <div class="grid-inner">
-      <div class="grid-eyebrow">The five pillars</div>
-      <div class="pillar-grid">
+  <!-- ── DOT DIVIDER ── -->
+  <div class="dot-divider">
+    <div class="dot-divider-inner">
+      <svg width="100%" height="28" viewBox="0 0 960 28" preserveAspectRatio="xMidYMid meet" fill="none">
+        <g>
+          <rect x="0" y="4" width="20" height="20" fill="#FA4028"/>
+          <circle cx="10" cy="14" r="6" fill="#00063D"/>
+          <rect x="28" y="4" width="20" height="20" fill="#FA4028"/>
+          <circle cx="38" cy="14" r="6" fill="#00063D"/>
+          <rect x="56" y="4" width="20" height="20" fill="#FA4028"/>
+          <circle cx="66" cy="14" r="6" fill="#00063D"/>
+          <rect x="84" y="4" width="20" height="20" fill="#FA4028"/>
+          <circle cx="94" cy="14" r="6" fill="#00063D"/>
+          <rect x="112" y="4" width="20" height="20" fill="#FA4028"/>
+          <circle cx="122" cy="14" r="6" fill="#00063D"/>
+          <rect x="140" y="4" width="20" height="20" fill="#FA4028"/>
+          <circle cx="150" cy="14" r="6" fill="#00063D"/>
+          <rect x="168" y="4" width="20" height="20" fill="#FA4028"/>
+          <circle cx="178" cy="14" r="6" fill="#00063D"/>
+          <rect x="196" y="4" width="20" height="20" fill="#FA4028"/>
+          <circle cx="206" cy="14" r="6" fill="#00063D"/>
+        </g>
+      </svg>
+    </div>
+  </div>
 
-        <!-- Brand Voice -->
-        <a class="pillar-card" href="brand-voice.html">
-          <div class="card-photo" style="background:#FA4028;display:flex;align-items:center;justify-content:center;">
-            <svg width="64" height="64" viewBox="0 0 110 100" fill="none"><rect x="10" y="40" width="26" height="20" rx="4" fill="white"/><path d="M36 34 L80 14 L80 86 L36 66 Z" fill="white"/><path d="M86 28 C96 38 96 62 86 72" stroke="white" stroke-width="6" stroke-linecap="round" fill="none"/><rect x="18" y="60" width="8" height="18" rx="4" fill="white"/></svg>
-          </div>
-          <div class="card-accent" style="background:#FA4028;"></div>
-          <div class="card-body">
-            <div class="card-num" style="color:#FA4028;">01</div>
-            <div class="card-title">Brand Voice</div>
-            <p class="card-desc">Define how Jasper writes for your brand. Train your tone, style, and personality once — then apply it consistently across every output.</p>
-            <div class="card-cta">
-              View one-sheeter
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#00063D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-          </div>
-        </a>
+  <!-- ── FEATURES ── -->
+  <div class="features-section">
+    <div class="features-inner">
+      <div class="section-eyebrow">Why it matters</div>
+      <div class="features-grid">
 
-        <!-- Audience -->
-        <a class="pillar-card" href="audience.html">
-          <div class="card-photo" style="background:#207A00;display:flex;align-items:center;justify-content:center;">
-            <svg width="64" height="64" viewBox="0 0 100 100" fill="none"><circle cx="26" cy="30" r="11" fill="white" opacity="0.65"/><path d="M6 84 C6 64 46 64 46 84 Z" fill="white" opacity="0.65"/><circle cx="74" cy="30" r="11" fill="white" opacity="0.65"/><path d="M54 84 C54 64 94 64 94 84 Z" fill="white" opacity="0.65"/><circle cx="50" cy="26" r="13" fill="white"/><path d="M26 86 C26 65 74 65 74 86 Z" fill="white"/></svg>
-          </div>
-          <div class="card-accent" style="background:#207A00;"></div>
-          <div class="card-body">
-            <div class="card-num" style="color:#207A00;">02</div>
-            <div class="card-title">Audience</div>
-            <p class="card-desc">Tell Jasper who you're writing for. Create detailed audience profiles so every output speaks directly to the right person.</p>
-            <div class="card-cta">
-              View one-sheeter
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#00063D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-          </div>
-        </a>
+        <div class="feature-box">
+          <div class="feature-num">01</div>
+          <div class="feature-title">Built by marketers</div>
+          <p class="feature-body">Every agent in the library was designed by Jasper's in-house marketing team around real, recurring marketing tasks — not generic AI prompts.</p>
+        </div>
 
-        <!-- Knowledge Base -->
-        <a class="pillar-card" href="knowledge-base.html">
-          <div class="card-photo" style="background:#0011A7;display:flex;align-items:center;justify-content:center;">
-            <svg width="64" height="64" viewBox="0 0 100 100" fill="none"><path d="M50 24 L13 33 L13 76 L50 68 Z" fill="white"/><path d="M50 24 L87 33 L87 76 L50 68 Z" fill="white"/><path d="M13 76 Q50 85 87 76" stroke="white" stroke-width="4" fill="none" stroke-linecap="round"/><line x1="21" y1="43" x2="43" y2="39" stroke="#0011A7" stroke-width="2.5" stroke-linecap="round" opacity="0.4"/><line x1="21" y1="51" x2="43" y2="47" stroke="#0011A7" stroke-width="2.5" stroke-linecap="round" opacity="0.4"/><line x1="57" y1="39" x2="79" y2="43" stroke="#0011A7" stroke-width="2.5" stroke-linecap="round" opacity="0.4"/><line x1="57" y1="47" x2="79" y2="51" stroke="#0011A7" stroke-width="2.5" stroke-linecap="round" opacity="0.4"/></svg>
-          </div>
-          <div class="card-accent" style="background:#0011A7;"></div>
-          <div class="card-body">
-            <div class="card-num" style="color:#0011A7;">03</div>
-            <div class="card-title">Knowledge Base</div>
-            <p class="card-desc">Give Jasper your company's facts, products, and messaging so every output stays accurate and aligned with what your business actually does.</p>
-            <div class="card-cta">
-              View one-sheeter
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#00063D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-          </div>
-        </a>
+        <div class="feature-box">
+          <div class="feature-num">02</div>
+          <div class="feature-title">Filter to find fast</div>
+          <p class="feature-body">Browse by marketing function, content type, funnel stage, or content process. Four ways to navigate means you find the right agent in seconds, not minutes.</p>
+        </div>
 
-        <!-- Visual Guideline -->
-        <a class="pillar-card" href="visual-guidelines.html">
-          <div class="card-photo" style="background:#FF66CC;display:flex;align-items:center;justify-content:center;">
-            <svg width="64" height="64" viewBox="0 0 100 100" fill="none"><path d="M6 50 C20 24 80 24 94 50 C80 76 20 76 6 50 Z" fill="white"/><circle cx="50" cy="50" r="18" fill="#FF66CC"/><circle cx="50" cy="50" r="9" fill="white"/><circle cx="56" cy="44" r="4" fill="#FF66CC"/></svg>
-          </div>
-          <div class="card-accent" style="background:#FF66CC;"></div>
-          <div class="card-body">
-            <div class="card-num" style="color:#FF66CC;">04</div>
-            <div class="card-title">Visual Guidelines</div>
-            <p class="card-desc">Upload your brand's visual standards so Jasper's image generation and creative outputs stay true to your look and feel.</p>
-            <div class="card-cta">Explore <span>→</span></div>
-          </div>
-        </a>
-
-        <!-- Style Guide -->
-        <a class="pillar-card" href="style-guide.html">
-          <div class="card-photo" style="background:#391E7E;display:flex;align-items:center;justify-content:center;">
-            <svg width="64" height="64" viewBox="0 0 100 100" fill="none"><g transform="rotate(-42 50 50)"><rect x="43" y="14" width="14" height="10" rx="2" fill="white" opacity="0.7"/><rect x="44" y="24" width="12" height="4" fill="white" opacity="0.55"/><rect x="43" y="28" width="14" height="42" fill="white"/><path d="M43 70 L57 70 L50 84 Z" fill="white" opacity="0.85"/></g><line x1="20" y1="90" x2="80" y2="90" stroke="white" stroke-width="4" stroke-linecap="round" opacity="0.5"/></svg>
-          </div>
-          <div class="card-accent" style="background:#391E7E;"></div>
-          <div class="card-body">
-            <div class="card-num" style="color:#391E7E;">05</div>
-            <div class="card-title">Style Guide</div>
-            <p class="card-desc">Set your grammar rules, preferred terminology, and writing conventions so every generation follows your editorial standards automatically.</p>
-            <div class="card-cta">Explore <span>→</span></div>
-          </div>
-        </a>
+        <div class="feature-box">
+          <div class="feature-num">03</div>
+          <div class="feature-title">Consistent output</div>
+          <p class="feature-body">Every agent runs the same way every time — same structure, same quality. Combined with Jasper IQ, it uses your brand voice, audience, and knowledge automatically.</p>
+        </div>
 
       </div>
     </div>
   </div>
 
-  <!-- ── AGENTS SECTION ── -->
-  <div class="section-divider" id="agents" style="--accent: #FA4028;">
-    <div class="section-divider-inner">
-      <span class="section-name">Agents</span>
+  <!-- ── BROWSE CRITERIA ── -->
+  <div class="criteria-section">
+    <div class="criteria-inner">
+      <div class="section-eyebrow">Browse by</div>
+      <div class="criteria-headline">Four ways to find the right agent</div>
+      <div class="criteria-grid">
+
+        <div class="criteria-card">
+          <div class="criteria-card-label">Marketing function</div>
+          <ul class="criteria-list">
+            <li>Product Marketing</li>
+            <li>Social Media Marketing</li>
+            <li>Performance Marketing</li>
+            <li>Brand Marketing</li>
+            <li>Content Marketing</li>
+            <li>Field Marketing</li>
+            <li>Lifecycle Marketing</li>
+            <li>Partner Marketing</li>
+            <li>PR &amp; Comms</li>
+          </ul>
+        </div>
+
+        <div class="criteria-card">
+          <div class="criteria-card-label">Content type</div>
+          <ul class="criteria-list">
+            <li>Blog &amp; Long-form</li>
+            <li>Email &amp; Notifications</li>
+            <li>Product &amp; Enablement</li>
+            <li>Remix Content</li>
+            <li>Social Media</li>
+            <li>Strategy &amp; Planning</li>
+            <li>Website</li>
+            <li>Advertising</li>
+            <li>Audio &amp; Video</li>
+            <li>Image</li>
+            <li>PR</li>
+          </ul>
+        </div>
+
+        <div class="criteria-card">
+          <div class="criteria-card-label">Funnel stage</div>
+          <ul class="criteria-list">
+            <li>Awareness</li>
+            <li>Consideration</li>
+            <li>Conversion</li>
+            <li>Retention</li>
+          </ul>
+        </div>
+
+        <div class="criteria-card">
+          <div class="criteria-card-label">Content process</div>
+          <ul class="criteria-list">
+            <li>Planning Content</li>
+            <li>Creating Content</li>
+            <li>Transforming Content</li>
+          </ul>
+        </div>
+
+      </div>
     </div>
   </div>
 
-  <div class="grid-section" style="padding-top: 32px;">
-    <div class="grid-inner">
-      <div class="grid-eyebrow">The four sections</div>
-      <div class="pillar-grid">
+  <!-- ── STEPS ── -->
+  <div class="steps-section">
+    <div class="steps-inner">
+      <div class="section-eyebrow">Getting started</div>
+      <div class="steps-list">
 
-        <!-- Agent Library -->
-        <a class="pillar-card" href="agent-library.html">
-          <div class="card-photo" style="background:#FA4028;display:flex;align-items:center;justify-content:center;">
-            <svg width="64" height="64" viewBox="0 0 100 100" fill="none">
-              <rect x="18" y="22" width="42" height="54" rx="3" fill="white" opacity="0.25"/>
-              <rect x="24" y="16" width="42" height="54" rx="3" fill="white" opacity="0.5"/>
-              <rect x="30" y="10" width="42" height="54" rx="3" fill="white"/>
-              <line x1="42" y1="30" x2="60" y2="30" stroke="#FA4028" stroke-width="3" stroke-linecap="round"/>
-              <line x1="42" y1="39" x2="60" y2="39" stroke="#FA4028" stroke-width="3" stroke-linecap="round"/>
-              <line x1="42" y1="48" x2="54" y2="48" stroke="#FA4028" stroke-width="3" stroke-linecap="round"/>
-            </svg>
+        <div class="step">
+          <div class="step-num">1</div>
+          <div>
+            <div class="step-title">Navigate to the Agent Library</div>
+            <p class="step-body">Find it in the left nav of your Jasper dashboard. All pre-built agents live here, organized and ready to browse.</p>
           </div>
-          <div class="card-accent" style="background:#FA4028;"></div>
-          <div class="card-body">
-            <div class="card-num" style="color:#FA4028;">01</div>
-            <div class="card-title">Agent Library</div>
-            <p class="card-desc">Browse and deploy pre-built agents for the most common marketing use cases — ready to run out of the box.</p>
-            <div class="card-cta">View one-sheeter <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#00063D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">2</div>
+          <div>
+            <div class="step-title">Filter to find your agent</div>
+            <p class="step-body">Use any combination of marketing function, content type, funnel stage, or content process to narrow down to the right agent for your task.</p>
           </div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">3</div>
+          <div>
+            <div class="step-title">Run it — or save it for next time</div>
+            <p class="step-body">Open the agent, fill in your inputs, and click Run. On Business plans, you can also save the agent with your inputs pre-filled so it's ready to go next time. Favorite agents you use regularly for one-click access.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── BUSINESS FEATURES ── -->
+  <div class="biz-section">
+    <div class="biz-inner">
+      <div class="biz-eyebrow">Business plan features</div>
+      <div class="biz-grid">
+
+        <div class="biz-card">
+          <div class="biz-card-bar"></div>
+          <div class="biz-card-title">Custom Agents</div>
+          <p class="biz-card-body">Build and deploy your own agents for workflows unique to your team. Combine AI with your brand's specific processes, inputs, and outputs — no code required.</p>
+          <div class="biz-badge">Business only</div>
+        </div>
+
+        <div class="biz-card">
+          <div class="biz-card-bar"></div>
+          <div class="biz-card-title">Saved Agents</div>
+          <p class="biz-card-body">Save any agent with your inputs pre-filled so your team doesn't have to set it up from scratch every time. Streamlines recurring workflows and reduces setup time to zero.</p>
+          <div class="biz-badge">Business only</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PRO TIP ── -->
+  <div class="pro-tip-section">
+    <div class="pro-tip-inner">
+      <div class="pro-tip-card">
+        <div class="pro-tip-label">Pro tip</div>
+        <p class="pro-tip-text">Favorite the agents you use most by clicking "Add to Favorites" in the top right of any agent description, or clicking the star while running an agent. Your favorites appear at the top of the library — one click to get back to your most-used workflows.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── RESOURCES ── -->
+  <div class="resources-section">
+    <div class="resources-inner">
+      <div class="section-eyebrow">More resources</div>
+      <div class="resources-grid">
+        <a class="resource-link" href="hub.html">
+          <span class="resource-link-text">← Back to Resource Hub</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#FA4028" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-
-        <!-- Research Agent -->
-        <a class="pillar-card disabled" href="#">
-          <div class="card-photo" style="background:#FA4028;display:flex;align-items:center;justify-content:center;">
-            <svg width="64" height="64" viewBox="0 0 100 100" fill="none">
-              <circle cx="44" cy="44" r="22" stroke="white" stroke-width="6" fill="none"/>
-              <line x1="60" y1="60" x2="80" y2="80" stroke="white" stroke-width="7" stroke-linecap="round"/>
-              <line x1="36" y1="44" x2="52" y2="44" stroke="white" stroke-width="3.5" stroke-linecap="round" opacity="0.6"/>
-              <line x1="44" y1="36" x2="44" y2="52" stroke="white" stroke-width="3.5" stroke-linecap="round" opacity="0.6"/>
-            </svg>
-          </div>
-          <div class="card-accent" style="background:#FA4028;"></div>
-          <div class="card-body">
-            <div class="card-num" style="color:#FA4028;">02</div>
-            <div class="card-title">Research Agent</div>
-            <p class="card-desc">Automate research tasks — gather, summarize, and synthesize information from multiple sources in one workflow.</p>
-            <div class="card-coming-soon">Coming soon</div>
-          </div>
+        <a class="resource-link" href="#">
+          <span class="resource-link-text">Research Agent</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#FA4028" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-
-        <!-- Agent Snapshots -->
-        <a class="pillar-card disabled" href="#">
-          <div class="card-photo" style="background:#FA4028;display:flex;align-items:center;justify-content:center;">
-            <svg width="64" height="64" viewBox="0 0 100 100" fill="none">
-              <rect x="14" y="30" width="72" height="48" rx="4" fill="white"/>
-              <rect x="14" y="30" width="72" height="16" rx="4" fill="white" opacity="0.45"/>
-              <circle cx="50" cy="18" r="8" fill="white"/>
-              <rect x="46" y="26" width="8" height="6" fill="white"/>
-              <rect x="22" y="54" width="20" height="3" rx="1.5" fill="#FA4028" opacity="0.5"/>
-              <rect x="22" y="61" width="32" height="3" rx="1.5" fill="#FA4028" opacity="0.5"/>
-              <rect x="22" y="68" width="24" height="3" rx="1.5" fill="#FA4028" opacity="0.5"/>
-            </svg>
-          </div>
-          <div class="card-accent" style="background:#FA4028;"></div>
-          <div class="card-body">
-            <div class="card-num" style="color:#FA4028;">03</div>
-            <div class="card-title">Agent Snapshots</div>
-            <p class="card-desc">Get a quick view of how your agents are configured, what they're doing, and how to optimize their performance.</p>
-            <div class="card-coming-soon">Coming soon</div>
-          </div>
+        <a class="resource-link" href="#">
+          <span class="resource-link-text">Jasper Studio</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#FA4028" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-
-        <!-- Jasper Studio -->
-        <a class="pillar-card disabled" href="#">
-          <div class="card-photo" style="background:#FA4028;display:flex;align-items:center;justify-content:center;">
-            <svg width="64" height="64" viewBox="0 0 100 100" fill="none">
-              <rect x="12" y="22" width="76" height="56" rx="5" fill="white" opacity="0.15"/>
-              <rect x="12" y="22" width="76" height="18" rx="5" fill="white" opacity="0.6"/>
-              <circle cx="26" cy="31" r="4" fill="#FA4028"/>
-              <circle cx="38" cy="31" r="4" fill="#FA4028" opacity="0.5"/>
-              <circle cx="50" cy="31" r="4" fill="#FA4028" opacity="0.25"/>
-              <rect x="20" y="50" width="24" height="20" rx="3" fill="white"/>
-              <rect x="52" y="50" width="28" height="8" rx="2" fill="white" opacity="0.5"/>
-              <rect x="52" y="62" width="20" height="8" rx="2" fill="white" opacity="0.5"/>
-            </svg>
-          </div>
-          <div class="card-accent" style="background:#FA4028;"></div>
-          <div class="card-body">
-            <div class="card-num" style="color:#FA4028;">04</div>
-            <div class="card-title">Jasper Studio</div>
-            <p class="card-desc">Build, test, and customize your own agents in Jasper's visual workflow builder — no code required.</p>
-            <div class="card-coming-soon">Coming soon</div>
-          </div>
-        </a>
-
       </div>
     </div>
   </div>
@@ -689,27 +803,9 @@
           <clipPath id="wm2"><rect width="480.651" height="174.782" fill="white"/></clipPath>
         </defs>
       </svg>
-      <span class="footer-note">Jasper IQ — Resource Hub</span>
+      <span class="footer-note">Agents — Agent Library</span>
     </div>
   </div>
 
-  <script>
-    const sectionIds = ['jasper-iq', 'agents'];
-    const navLinks = document.querySelectorAll('.nav-link');
-
-    function updateNav() {
-      let current = sectionIds[0];
-      sectionIds.forEach(id => {
-        const el = document.getElementById(id);
-        if (el && window.scrollY + 80 >= el.offsetTop) current = id;
-      });
-      navLinks.forEach(link => {
-        link.classList.toggle('active', link.dataset.section === current);
-      });
-    }
-
-    window.addEventListener('scroll', updateNav, { passive: true });
-    updateNav();
-  </script>
 </body>
 </html>
