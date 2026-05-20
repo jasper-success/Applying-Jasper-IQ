@@ -203,6 +203,52 @@
       color: #00063D;
     }
 
+    /* ── SEARCH ── */
+    .search-wrap {
+      position: relative;
+    }
+
+    .search-input {
+      font-family: "ABC ROM Mono", monospace;
+      font-weight: 450;
+      font-size: 12px;
+      color: rgba(255,255,255,0.8);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 8px 36px 8px 14px;
+      width: 220px;
+      outline: none;
+      transition: border-color 0.15s, background 0.15s, width 0.2s;
+    }
+    .search-input::placeholder { color: rgba(255,255,255,0.35); }
+    .search-input:focus {
+      border-color: rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.12);
+      width: 260px;
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 11px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
+    /* ── NO RESULTS ── */
+    .no-results {
+      display: none;
+      grid-column: 1 / -1;
+      padding: 48px 0;
+      text-align: center;
+      font-family: "ABC ROM Mono", monospace;
+      font-size: 13px;
+      color: #9B9B9B;
+    }
+
+    .topic-tile.hidden { display: none; }
+
     /* ── FOOTER ── */
     .footer {
       background: #00063D;
@@ -255,7 +301,13 @@
             </defs>
           </svg>
         </div>
-        <div class="header-eyebrow">jasper.ai</div>
+        <div class="search-wrap">
+          <input class="search-input" id="hubSearch" type="search" placeholder="Search resources…" autocomplete="off" spellcheck="false">
+          <svg class="search-icon" width="15" height="15" viewBox="0 0 16 16" fill="none">
+            <circle cx="6.5" cy="6.5" r="4.5" stroke="white" stroke-width="1.5"/>
+            <path d="M10 10 L14 14" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
       </div>
 
       <div class="header-headline"><span>Jasper</span><br>Resource Hub</div>
@@ -270,7 +322,9 @@
       <div class="topic-grid">
 
         <!-- Jasper IQ -->
-        <a class="topic-tile" href="jasper-iq.html">
+        <a class="topic-tile" href="jasper-iq.html"
+           data-keywords="jasper iq brand voice audience knowledge base visual guidelines style guide workspace defaults pillars training brand intelligence"
+        >
           <div class="tile-panel" style="background: #FFF133;">
             <svg width="88" height="88" viewBox="0 0 100 100" fill="none">
               <rect x="6" y="58" width="12" height="32" rx="2" fill="#00063D"/>
@@ -298,7 +352,9 @@
         </a>
 
         <!-- Agents -->
-        <a class="topic-tile" href="agents.html">
+        <a class="topic-tile" href="agents.html"
+           data-keywords="agents agent library research agent agent snapshots jasper studio automation workflows marketing applications"
+        >
           <div class="tile-panel" style="background: #FA4028;">
             <svg width="88" height="88" viewBox="0 0 100 100" fill="none">
               <path d="M56 8 L30 50 L48 50 L44 92 L74 46 L56 46 Z" fill="white"/>
@@ -316,6 +372,7 @@
           </div>
         </a>
 
+        <div class="no-results" id="noResults">No resources match "<span id="noResultsTerm"></span>"</div>
       </div>
     </div>
   </div>
@@ -340,5 +397,38 @@
     </div>
   </div>
 
+  <script>
+    const input = document.getElementById('hubSearch');
+    const tiles = document.querySelectorAll('.topic-tile');
+    const noResults = document.getElementById('noResults');
+    const noResultsTerm = document.getElementById('noResultsTerm');
+
+    input.addEventListener('input', () => {
+      const q = input.value.trim().toLowerCase();
+      let visible = 0;
+
+      tiles.forEach(tile => {
+        const text = (
+          tile.dataset.keywords + ' ' +
+          tile.querySelector('.tile-title').textContent + ' ' +
+          tile.querySelector('.tile-desc').textContent
+        ).toLowerCase();
+
+        if (!q || text.includes(q)) {
+          tile.classList.remove('hidden');
+          visible++;
+        } else {
+          tile.classList.add('hidden');
+        }
+      });
+
+      if (q && visible === 0) {
+        noResultsTerm.textContent = input.value.trim();
+        noResults.style.display = 'block';
+      } else {
+        noResults.style.display = 'none';
+      }
+    });
+  </script>
 </body>
 </html>
