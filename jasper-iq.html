@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jasper Resource Hub</title>
+  <title>Jasper IQ — Jasper Resource Hub</title>
   <style>
     @font-face {
       font-family: "Feature Headline";
@@ -83,6 +83,20 @@
       color: rgba(255,255,255,0.35);
     }
 
+    .breadcrumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: "ABC ROM Mono", monospace;
+      font-weight: 450;
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      margin-bottom: 28px;
+      transition: color 0.15s;
+    }
+    .breadcrumb:hover { color: #FFF133; }
+
     .header-headline {
       font-family: "Feature Headline", sans-serif;
       font-weight: 400;
@@ -113,33 +127,104 @@
       z-index: 0;
     }
 
-    /* ── TOPICS ── */
-    .topics-section {
+    /* ── RESOURCES ── */
+    .resources-section {
       background: #F9F9F9;
       padding: 64px;
     }
 
-    .topics-inner {
+    .resources-inner {
       max-width: 960px;
       margin: 0 auto;
     }
 
-    .topics-eyebrow {
+    /* ── FEATURED CARD (Workspace Defaults) ── */
+    .featured-card {
+      display: flex;
+      text-decoration: none;
+      color: inherit;
+      background: #FFFFFF;
+      margin-bottom: 24px;
+      transition: transform 0.18s;
+    }
+    .featured-card:hover { transform: translateY(-4px); }
+
+    .featured-panel {
+      width: 280px;
+      flex-shrink: 0;
+      background: #FFF133;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .featured-body {
+      padding: 40px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .featured-tag {
+      font-family: "ABC ROM Mono", monospace;
+      font-weight: 450;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: #FFF133;
+      background: #00063D;
+      display: inline-block;
+      padding: 4px 10px;
+      margin-bottom: 16px;
+      align-self: flex-start;
+    }
+
+    .featured-title {
+      font-family: "Feature Headline", sans-serif;
+      font-weight: 400;
+      font-size: 52px;
+      line-height: 0.96;
+      letter-spacing: -1.5px;
+      color: #00063D;
+      margin-bottom: 14px;
+    }
+
+    .featured-desc {
+      font-size: 14px;
+      font-weight: 450;
+      line-height: 1.6;
+      color: #5E5D5F;
+      max-width: 440px;
+      margin-bottom: 24px;
+    }
+
+    .featured-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: "ABC ROM", sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      color: #00063D;
+    }
+
+    /* ── SECTION EYEBROW ── */
+    .section-eyebrow {
       font-family: "ABC ROM Mono", monospace;
       font-weight: 450;
       font-size: 12px;
       color: #9B9B9B;
-      margin-bottom: 32px;
+      margin-bottom: 24px;
     }
 
-    .topic-grid {
+    /* ── PILLAR GRID ── */
+    .pillar-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
     }
 
-    /* ── TOPIC TILE ── */
-    .topic-tile {
+    .pillar-card {
       background: #FFFFFF;
       display: flex;
       flex-direction: column;
@@ -147,59 +232,52 @@
       color: inherit;
       transition: transform 0.18s;
     }
+    .pillar-card:hover { transform: translateY(-4px); }
 
-    .topic-tile:hover { transform: translateY(-4px); }
-
-    .tile-panel {
-      height: 220px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .pillar-band {
+      height: 8px;
+      width: 100%;
     }
 
-    .tile-accent { height: 4px; width: 100%; }
-
-    .tile-body {
-      padding: 32px;
+    .pillar-body {
+      padding: 28px;
       flex: 1;
       display: flex;
       flex-direction: column;
     }
 
-    .tile-count {
-      font-family: "ABC ROM Mono", monospace;
-      font-weight: 450;
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      margin-bottom: 12px;
+    .pillar-icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 18px;
     }
 
-    .tile-title {
+    .pillar-title {
       font-family: "Feature Headline", sans-serif;
       font-weight: 400;
-      font-size: 48px;
+      font-size: 32px;
       line-height: 0.96;
-      letter-spacing: -1.5px;
+      letter-spacing: -0.8px;
       color: #00063D;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
     }
 
-    .tile-desc {
-      font-size: 14px;
+    .pillar-desc {
+      font-size: 13px;
       font-weight: 450;
       line-height: 1.6;
       color: #5E5D5F;
       flex: 1;
-      margin-bottom: 28px;
+      margin-bottom: 20px;
     }
 
-    .tile-cta {
+    .pillar-cta {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       font-family: "ABC ROM", sans-serif;
       font-weight: 700;
-      font-size: 12px;
+      font-size: 11px;
       color: #00063D;
     }
 
@@ -258,60 +336,131 @@
         <div class="header-eyebrow">jasper.ai</div>
       </div>
 
-      <div class="header-headline"><span>Jasper</span><br>Resource Hub</div>
-      <p class="header-sub">Your team's destination for Jasper resources, guides, and one-sheeters — organized by topic and always up to date.</p>
+      <a class="breadcrumb" href="hub.html">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Jasper Resource Hub
+      </a>
+
+      <div class="header-headline"><span>Jasper</span> IQ</div>
+      <p class="header-sub">Train Jasper on your brand with five intelligent pillars — Brand Voice, Audience, Knowledge Base, Visual Guidelines, and Style Guide — plus Workspace Defaults to set the stage.</p>
     </div>
   </div>
 
-  <!-- ── TOPICS ── -->
-  <div class="topics-section">
-    <div class="topics-inner">
-      <div class="topics-eyebrow">Browse by topic</div>
-      <div class="topic-grid">
+  <!-- ── RESOURCES ── -->
+  <div class="resources-section">
+    <div class="resources-inner">
 
-        <!-- Jasper IQ -->
-        <a class="topic-tile" href="jasper-iq.html">
-          <div class="tile-panel" style="background: #FFF133;">
-            <svg width="88" height="88" viewBox="0 0 100 100" fill="none">
-              <rect x="6" y="58" width="12" height="32" rx="2" fill="#00063D"/>
-              <rect x="24" y="42" width="12" height="48" rx="2" fill="#00063D"/>
-              <rect x="42" y="26" width="12" height="64" rx="2" fill="#00063D"/>
-              <rect x="60" y="36" width="12" height="54" rx="2" fill="#00063D"/>
-              <rect x="78" y="50" width="12" height="40" rx="2" fill="#00063D"/>
-              <circle cx="12" cy="52" r="7" fill="#FFF133" stroke="#00063D" stroke-width="4"/>
-              <circle cx="30" cy="36" r="7" fill="#FFF133" stroke="#00063D" stroke-width="4"/>
-              <circle cx="48" cy="20" r="7" fill="#FFF133" stroke="#00063D" stroke-width="4"/>
-              <circle cx="66" cy="30" r="7" fill="#FFF133" stroke="#00063D" stroke-width="4"/>
-              <circle cx="84" cy="44" r="7" fill="#FFF133" stroke="#00063D" stroke-width="4"/>
-            </svg>
+      <!-- Featured: Workspace Defaults -->
+      <a class="featured-card" href="workspace-defaults.html">
+        <div class="featured-panel">
+          <svg width="80" height="80" viewBox="0 0 100 100" fill="none">
+            <rect x="20" y="20" width="60" height="60" rx="4" fill="#00063D"/>
+            <rect x="30" y="35" width="40" height="4" rx="2" fill="#FFF133"/>
+            <rect x="30" y="46" width="28" height="4" rx="2" fill="#FFF133"/>
+            <rect x="30" y="57" width="34" height="4" rx="2" fill="#FFF133"/>
+            <circle cx="74" cy="26" r="10" fill="#FFF133"/>
+            <path d="M69 26 L73 30 L80 22" stroke="#00063D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="featured-body">
+          <div class="featured-tag">START HERE</div>
+          <div class="featured-title">Workspace<br>Defaults</div>
+          <p class="featured-desc">Before training Jasper on your brand, set the foundation. Workspace Defaults establish the core language, tone, and output settings that shape every Jasper interaction for your team.</p>
+          <div class="featured-cta">
+            Open guide
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#00063D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
-          <div class="tile-accent" style="background: #FFF133;"></div>
-          <div class="tile-body">
-            <div class="tile-count" style="color: #00063D;">6 resources</div>
-            <div class="tile-title">Jasper IQ</div>
-            <p class="tile-desc">Train Jasper on your brand — Brand Voice, Audience, Knowledge Base, Visual Guidelines, Style Guide, and Workspace Defaults. The five pillars that make every output smarter.</p>
-            <div class="tile-cta">
-              Explore resources
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#00063D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </a>
+
+      <!-- The 5 Pillars -->
+      <div class="section-eyebrow" style="margin-top: 8px;">The 5 pillars</div>
+      <div class="pillar-grid">
+
+        <!-- Brand Voice -->
+        <a class="pillar-card" href="brand-voice.html">
+          <div class="pillar-band" style="background: #FA4028;"></div>
+          <div class="pillar-body">
+            <svg class="pillar-icon" viewBox="0 0 40 40" fill="none">
+              <circle cx="20" cy="20" r="14" stroke="#FA4028" stroke-width="2.5"/>
+              <path d="M14 20 Q17 14 20 20 Q23 26 26 20" stroke="#FA4028" stroke-width="2" stroke-linecap="round" fill="none"/>
+              <circle cx="20" cy="20" r="3" fill="#FA4028"/>
+            </svg>
+            <div class="pillar-title">Brand Voice</div>
+            <p class="pillar-desc">Define how your brand sounds across every piece of content — from personality traits to dos and don'ts your team can rely on.</p>
+            <div class="pillar-cta" style="color: #FA4028;">
+              Open guide
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#FA4028" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
           </div>
         </a>
 
-        <!-- Agents -->
-        <a class="topic-tile" href="agents.html">
-          <div class="tile-panel" style="background: #FA4028;">
-            <svg width="88" height="88" viewBox="0 0 100 100" fill="none">
-              <path d="M56 8 L30 50 L48 50 L44 92 L74 46 L56 46 Z" fill="white"/>
+        <!-- Audience -->
+        <a class="pillar-card" href="audience.html">
+          <div class="pillar-band" style="background: #207A00;"></div>
+          <div class="pillar-body">
+            <svg class="pillar-icon" viewBox="0 0 40 40" fill="none">
+              <circle cx="14" cy="14" r="5" stroke="#207A00" stroke-width="2.5"/>
+              <circle cx="26" cy="14" r="5" stroke="#207A00" stroke-width="2.5"/>
+              <path d="M8 32 C8 26 20 24 20 24 C20 24 32 26 32 32" stroke="#207A00" stroke-width="2.5" stroke-linecap="round" fill="none"/>
             </svg>
+            <div class="pillar-title">Audience</div>
+            <p class="pillar-desc">Tell Jasper exactly who you're writing for — segments, pain points, and what matters to each persona — so content always lands with the right people.</p>
+            <div class="pillar-cta" style="color: #207A00;">
+              Open guide
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#207A00" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
           </div>
-          <div class="tile-accent" style="background: #FA4028;"></div>
-          <div class="tile-body">
-            <div class="tile-count" style="color: #FA4028;">4 resources</div>
-            <div class="tile-title">Agents</div>
-            <p class="tile-desc">Purpose-built AI applications for marketing workflows — Agent Library, Research Agent, Agent Snapshots, and Jasper Studio. Built by Jasper's team, ready to deploy.</p>
-            <div class="tile-cta">
-              Explore resources
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#00063D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+
+        <!-- Knowledge Base -->
+        <a class="pillar-card" href="knowledge-base.html">
+          <div class="pillar-band" style="background: #0011A7;"></div>
+          <div class="pillar-body">
+            <svg class="pillar-icon" viewBox="0 0 40 40" fill="none">
+              <rect x="8" y="10" width="24" height="22" rx="2" stroke="#0011A7" stroke-width="2.5"/>
+              <path d="M13 17 h14 M13 22 h10 M13 27 h12" stroke="#0011A7" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <div class="pillar-title">Knowledge Base</div>
+            <p class="pillar-desc">Upload your key documents — messaging guides, product info, case studies — so Jasper draws from your source of truth in every draft.</p>
+            <div class="pillar-cta" style="color: #0011A7;">
+              Open guide
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#0011A7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- Visual Guidelines -->
+        <a class="pillar-card" href="visual-guidelines.html">
+          <div class="pillar-band" style="background: #FF66CC;"></div>
+          <div class="pillar-body">
+            <svg class="pillar-icon" viewBox="0 0 40 40" fill="none">
+              <rect x="8" y="8" width="24" height="24" rx="2" stroke="#FF66CC" stroke-width="2.5"/>
+              <circle cx="15" cy="15" r="3" fill="#FF66CC"/>
+              <path d="M8 26 L15 19 L22 24 L28 16 L32 20" stroke="#FF66CC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+            <div class="pillar-title">Visual Guidelines</div>
+            <p class="pillar-desc">Align Jasper's image prompts with your visual identity — color palettes, photography style, illustration direction, and what to avoid.</p>
+            <div class="pillar-cta" style="color: #FF66CC;">
+              Open guide
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#FF66CC" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- Style Guide -->
+        <a class="pillar-card" href="style-guide.html">
+          <div class="pillar-band" style="background: #391E7E;"></div>
+          <div class="pillar-body">
+            <svg class="pillar-icon" viewBox="0 0 40 40" fill="none">
+              <path d="M12 30 L20 10 L28 30" stroke="#391E7E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <path d="M15 24 h10" stroke="#391E7E" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <div class="pillar-title">Style Guide</div>
+            <p class="pillar-desc">Set the writing rules — grammar preferences, formatting standards, punctuation, and editorial conventions — for consistent output every time.</p>
+            <div class="pillar-cta" style="color: #391E7E;">
+              Open guide
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#391E7E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
           </div>
         </a>
@@ -336,7 +485,7 @@
           <clipPath id="wm2"><rect width="480.651" height="174.782" fill="white"/></clipPath>
         </defs>
       </svg>
-      <span class="footer-note">Jasper Resource Hub</span>
+      <span class="footer-note">Jasper IQ — Jasper Resource Hub</span>
     </div>
   </div>
 

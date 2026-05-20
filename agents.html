@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jasper Resource Hub</title>
+  <title>Agents — Jasper Resource Hub</title>
   <style>
     @font-face {
       font-family: "Feature Headline";
@@ -83,6 +83,20 @@
       color: rgba(255,255,255,0.35);
     }
 
+    .breadcrumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: "ABC ROM Mono", monospace;
+      font-weight: 450;
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      margin-bottom: 28px;
+      transition: color 0.15s;
+    }
+    .breadcrumb:hover { color: #FA4028; }
+
     .header-headline {
       font-family: "Feature Headline", sans-serif;
       font-weight: 400;
@@ -92,7 +106,7 @@
       color: #FFFFFF;
     }
 
-    .header-headline span { color: #FFF133; }
+    .header-headline span { color: #FA4028; }
 
     .header-sub {
       font-size: 16px;
@@ -113,33 +127,33 @@
       z-index: 0;
     }
 
-    /* ── TOPICS ── */
-    .topics-section {
+    /* ── RESOURCES ── */
+    .resources-section {
       background: #F9F9F9;
       padding: 64px;
     }
 
-    .topics-inner {
+    .resources-inner {
       max-width: 960px;
       margin: 0 auto;
     }
 
-    .topics-eyebrow {
+    .section-eyebrow {
       font-family: "ABC ROM Mono", monospace;
       font-weight: 450;
       font-size: 12px;
       color: #9B9B9B;
-      margin-bottom: 32px;
+      margin-bottom: 24px;
     }
 
-    .topic-grid {
+    /* ── AGENT GRID ── */
+    .agent-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 24px;
+      gap: 20px;
     }
 
-    /* ── TOPIC TILE ── */
-    .topic-tile {
+    .agent-card {
       background: #FFFFFF;
       display: flex;
       flex-direction: column;
@@ -147,60 +161,81 @@
       color: inherit;
       transition: transform 0.18s;
     }
+    .agent-card:hover { transform: translateY(-4px); }
+    .agent-card.disabled {
+      opacity: 0.55;
+      pointer-events: none;
+    }
 
-    .topic-tile:hover { transform: translateY(-4px); }
-
-    .tile-panel {
-      height: 220px;
+    .agent-panel {
+      height: 180px;
+      background: #FA4028;
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
     }
 
-    .tile-accent { height: 4px; width: 100%; }
+    .agent-panel-disabled {
+      background: #E8E8E8;
+    }
 
-    .tile-body {
-      padding: 32px;
+    .coming-soon-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      font-family: "ABC ROM Mono", monospace;
+      font-weight: 450;
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      color: #9B9B9B;
+      background: #FFFFFF;
+      padding: 4px 10px;
+    }
+
+    .agent-band {
+      height: 4px;
+      width: 100%;
+      background: #FA4028;
+    }
+    .agent-band-disabled {
+      background: #D0D0D0;
+    }
+
+    .agent-body {
+      padding: 28px;
       flex: 1;
       display: flex;
       flex-direction: column;
     }
 
-    .tile-count {
-      font-family: "ABC ROM Mono", monospace;
-      font-weight: 450;
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      margin-bottom: 12px;
-    }
-
-    .tile-title {
+    .agent-title {
       font-family: "Feature Headline", sans-serif;
       font-weight: 400;
-      font-size: 48px;
+      font-size: 36px;
       line-height: 0.96;
-      letter-spacing: -1.5px;
+      letter-spacing: -1px;
       color: #00063D;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
     }
 
-    .tile-desc {
-      font-size: 14px;
+    .agent-desc {
+      font-size: 13px;
       font-weight: 450;
       line-height: 1.6;
       color: #5E5D5F;
       flex: 1;
-      margin-bottom: 28px;
+      margin-bottom: 20px;
     }
 
-    .tile-cta {
+    .agent-cta {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       font-family: "ABC ROM", sans-serif;
       font-weight: 700;
-      font-size: 12px;
-      color: #00063D;
+      font-size: 11px;
+      color: #FA4028;
     }
 
     /* ── FOOTER ── */
@@ -232,9 +267,9 @@
     <div class="header-tape">
       <svg width="559" height="200" viewBox="0 0 559 200" fill="none">
         <rect width="559" height="200" fill="#00063D"/>
-        <rect x="10" y="10" width="539" height="36" fill="#FFF133"/>
-        <rect x="10" y="82" width="539" height="36" fill="#FFF133"/>
-        <rect x="10" y="154" width="539" height="36" fill="#FFF133"/>
+        <rect x="10" y="10" width="539" height="36" fill="#FA4028"/>
+        <rect x="10" y="82" width="539" height="36" fill="#FA4028"/>
+        <rect x="10" y="154" width="539" height="36" fill="#FA4028"/>
       </svg>
     </div>
 
@@ -258,63 +293,101 @@
         <div class="header-eyebrow">jasper.ai</div>
       </div>
 
-      <div class="header-headline"><span>Jasper</span><br>Resource Hub</div>
-      <p class="header-sub">Your team's destination for Jasper resources, guides, and one-sheeters — organized by topic and always up to date.</p>
+      <a class="breadcrumb" href="hub.html">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Jasper Resource Hub
+      </a>
+
+      <div class="header-headline"><span>Agents</span></div>
+      <p class="header-sub">Purpose-built AI applications designed by Jasper's marketing team — browse the library, run a research agent, review snapshots, and build in Jasper Studio.</p>
     </div>
   </div>
 
-  <!-- ── TOPICS ── -->
-  <div class="topics-section">
-    <div class="topics-inner">
-      <div class="topics-eyebrow">Browse by topic</div>
-      <div class="topic-grid">
+  <!-- ── RESOURCES ── -->
+  <div class="resources-section">
+    <div class="resources-inner">
 
-        <!-- Jasper IQ -->
-        <a class="topic-tile" href="jasper-iq.html">
-          <div class="tile-panel" style="background: #FFF133;">
-            <svg width="88" height="88" viewBox="0 0 100 100" fill="none">
-              <rect x="6" y="58" width="12" height="32" rx="2" fill="#00063D"/>
-              <rect x="24" y="42" width="12" height="48" rx="2" fill="#00063D"/>
-              <rect x="42" y="26" width="12" height="64" rx="2" fill="#00063D"/>
-              <rect x="60" y="36" width="12" height="54" rx="2" fill="#00063D"/>
-              <rect x="78" y="50" width="12" height="40" rx="2" fill="#00063D"/>
-              <circle cx="12" cy="52" r="7" fill="#FFF133" stroke="#00063D" stroke-width="4"/>
-              <circle cx="30" cy="36" r="7" fill="#FFF133" stroke="#00063D" stroke-width="4"/>
-              <circle cx="48" cy="20" r="7" fill="#FFF133" stroke="#00063D" stroke-width="4"/>
-              <circle cx="66" cy="30" r="7" fill="#FFF133" stroke="#00063D" stroke-width="4"/>
-              <circle cx="84" cy="44" r="7" fill="#FFF133" stroke="#00063D" stroke-width="4"/>
+      <div class="section-eyebrow">4 resources</div>
+      <div class="agent-grid">
+
+        <!-- Agent Library — LIVE -->
+        <a class="agent-card" href="agent-library.html">
+          <div class="agent-panel">
+            <svg width="72" height="72" viewBox="0 0 100 100" fill="none">
+              <rect x="18" y="22" width="42" height="54" rx="3" fill="white" opacity="0.25"/>
+              <rect x="24" y="16" width="42" height="54" rx="3" fill="white" opacity="0.5"/>
+              <rect x="30" y="10" width="42" height="54" rx="3" fill="white"/>
+              <line x1="42" y1="30" x2="60" y2="30" stroke="#FA4028" stroke-width="3" stroke-linecap="round"/>
+              <line x1="42" y1="39" x2="60" y2="39" stroke="#FA4028" stroke-width="3" stroke-linecap="round"/>
+              <line x1="42" y1="48" x2="54" y2="48" stroke="#FA4028" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="74" cy="74" r="16" fill="white"/>
+              <line x1="74" y1="66" x2="74" y2="82" stroke="#FA4028" stroke-width="3.5" stroke-linecap="round"/>
+              <line x1="66" y1="74" x2="82" y2="74" stroke="#FA4028" stroke-width="3.5" stroke-linecap="round"/>
             </svg>
           </div>
-          <div class="tile-accent" style="background: #FFF133;"></div>
-          <div class="tile-body">
-            <div class="tile-count" style="color: #00063D;">6 resources</div>
-            <div class="tile-title">Jasper IQ</div>
-            <p class="tile-desc">Train Jasper on your brand — Brand Voice, Audience, Knowledge Base, Visual Guidelines, Style Guide, and Workspace Defaults. The five pillars that make every output smarter.</p>
-            <div class="tile-cta">
-              Explore resources
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#00063D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <div class="agent-band"></div>
+          <div class="agent-body">
+            <div class="agent-title">Agent Library</div>
+            <p class="agent-desc">Browse 100+ pre-built AI agents organized by marketing function, content type, funnel stage, and content process. Find your use case and get to work.</p>
+            <div class="agent-cta">
+              Open guide
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#FA4028" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
           </div>
         </a>
 
-        <!-- Agents -->
-        <a class="topic-tile" href="agents.html">
-          <div class="tile-panel" style="background: #FA4028;">
-            <svg width="88" height="88" viewBox="0 0 100 100" fill="none">
-              <path d="M56 8 L30 50 L48 50 L44 92 L74 46 L56 46 Z" fill="white"/>
+        <!-- Research Agent — COMING SOON -->
+        <div class="agent-card disabled">
+          <div class="agent-panel agent-panel-disabled">
+            <div class="coming-soon-badge">Coming soon</div>
+            <svg width="72" height="72" viewBox="0 0 100 100" fill="none">
+              <circle cx="44" cy="44" r="24" stroke="#C0C0C0" stroke-width="4"/>
+              <line x1="62" y1="62" x2="80" y2="80" stroke="#C0C0C0" stroke-width="4" stroke-linecap="round"/>
+              <line x1="38" y1="36" x2="38" y2="52" stroke="#C0C0C0" stroke-width="3" stroke-linecap="round"/>
+              <line x1="30" y1="44" x2="46" y2="44" stroke="#C0C0C0" stroke-width="3" stroke-linecap="round"/>
             </svg>
           </div>
-          <div class="tile-accent" style="background: #FA4028;"></div>
-          <div class="tile-body">
-            <div class="tile-count" style="color: #FA4028;">4 resources</div>
-            <div class="tile-title">Agents</div>
-            <p class="tile-desc">Purpose-built AI applications for marketing workflows — Agent Library, Research Agent, Agent Snapshots, and Jasper Studio. Built by Jasper's team, ready to deploy.</p>
-            <div class="tile-cta">
-              Explore resources
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#00063D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
+          <div class="agent-band agent-band-disabled"></div>
+          <div class="agent-body">
+            <div class="agent-title">Research Agent</div>
+            <p class="agent-desc">Automate competitive and market research with a purpose-built agent that synthesizes sources, extracts insights, and delivers structured briefs.</p>
           </div>
-        </a>
+        </div>
+
+        <!-- Agent Snapshots — COMING SOON -->
+        <div class="agent-card disabled">
+          <div class="agent-panel agent-panel-disabled">
+            <div class="coming-soon-badge">Coming soon</div>
+            <svg width="72" height="72" viewBox="0 0 100 100" fill="none">
+              <rect x="20" y="30" width="60" height="44" rx="3" stroke="#C0C0C0" stroke-width="4"/>
+              <circle cx="50" cy="52" r="10" stroke="#C0C0C0" stroke-width="3"/>
+              <path d="M38 30 L38 22 L62 22 L62 30" stroke="#C0C0C0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="agent-band agent-band-disabled"></div>
+          <div class="agent-body">
+            <div class="agent-title">Agent Snapshots</div>
+            <p class="agent-desc">Quick-reference summaries of each agent's capabilities, inputs, and best-fit use cases — designed to help your team pick the right agent fast.</p>
+          </div>
+        </div>
+
+        <!-- Jasper Studio — COMING SOON -->
+        <div class="agent-card disabled">
+          <div class="agent-panel agent-panel-disabled">
+            <div class="coming-soon-badge">Coming soon</div>
+            <svg width="72" height="72" viewBox="0 0 100 100" fill="none">
+              <rect x="18" y="18" width="64" height="64" rx="4" stroke="#C0C0C0" stroke-width="4"/>
+              <path d="M34 50 L44 38 L54 50 L64 34" stroke="#C0C0C0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              <rect x="28" y="58" width="12" height="12" rx="2" fill="#C0C0C0"/>
+              <rect x="46" y="58" width="12" height="12" rx="2" fill="#C0C0C0"/>
+            </svg>
+          </div>
+          <div class="agent-band agent-band-disabled"></div>
+          <div class="agent-body">
+            <div class="agent-title">Jasper Studio</div>
+            <p class="agent-desc">Build, customize, and deploy your own agents in Jasper Studio — no code required. Design workflows tailored to your team's specific content needs.</p>
+          </div>
+        </div>
 
       </div>
     </div>
@@ -336,7 +409,7 @@
           <clipPath id="wm2"><rect width="480.651" height="174.782" fill="white"/></clipPath>
         </defs>
       </svg>
-      <span class="footer-note">Jasper Resource Hub</span>
+      <span class="footer-note">Agents — Jasper Resource Hub</span>
     </div>
   </div>
 
