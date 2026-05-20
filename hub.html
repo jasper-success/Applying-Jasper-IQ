@@ -152,18 +152,15 @@
 
     .tile-panel {
       height: 220px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      position: relative;
+      overflow: hidden;
     }
 
-    .tile-type {
-      font-family: "Feature Headline", sans-serif;
-      font-weight: 400;
-      font-size: 140px;
-      line-height: 1;
-      letter-spacing: -5px;
-      font-variation-settings: "wdth" 75;
+    .tile-panel svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
     }
 
     .tile-accent { height: 4px; width: 100%; }
@@ -335,7 +332,11 @@
            data-keywords="jasper iq brand voice audience knowledge base visual guidelines style guide workspace defaults pillars training brand intelligence"
         >
           <div class="tile-panel" style="background: #FFF133;">
-            <span class="tile-type" style="color: #00063D;">IQ</span>
+            <svg viewBox="0 0 460 220" preserveAspectRatio="xMidYMid slice" fill="none">
+              <circle cx="60" cy="280" r="220" fill="#00063D"/>
+              <circle cx="290" cy="50" r="160" fill="#391E7E" opacity="0.88"/>
+              <circle cx="430" cy="190" r="130" fill="#0011A7" opacity="0.82"/>
+            </svg>
           </div>
           <div class="tile-accent" style="background: #FFF133;"></div>
           <div class="tile-body">
@@ -354,7 +355,13 @@
            data-keywords="agents agent library research agent agent snapshots jasper studio automation workflows marketing applications"
         >
           <div class="tile-panel" style="background: #00063D;">
-            <span class="tile-type" style="color: #FFFFFF;">AI</span>
+            <svg viewBox="0 0 460 220" preserveAspectRatio="xMidYMid slice" fill="none">
+              <g transform="rotate(-14 230 110)">
+                <rect x="-60" y="-80" width="210" height="380" fill="#FA4028"/>
+                <rect x="170" y="-80" width="175" height="380" fill="#FF66CC"/>
+                <rect x="365" y="-80" width="175" height="380" fill="#FFF133"/>
+              </g>
+            </svg>
           </div>
           <div class="tile-accent" style="background: #00063D;"></div>
           <div class="tile-body">
