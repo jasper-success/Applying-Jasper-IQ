@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Agents — Jasper Resource Hub</title>
+  <title>Personalization Agent — Jasper Agents</title>
   <style>
     @font-face {
       font-family: "Feature Headline";
@@ -35,17 +35,16 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: #00063D;
+      background: #FFFFFF;
       font-family: "ABC ROM", sans-serif;
       font-weight: 400;
       color: #262627;
-      min-height: 100vh;
     }
 
     /* ── HEADER ── */
     .header {
       background: #00063D;
-      padding: 56px 64px 80px;
+      padding: 56px 64px 72px;
       position: relative;
       overflow: hidden;
     }
@@ -71,16 +70,19 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 72px;
+      margin-bottom: 64px;
     }
 
     .logo { line-height: 0; text-decoration: none; }
 
-    .header-eyebrow {
-      font-family: "ABC ROM Mono", monospace;
-      font-weight: 450;
-      font-size: 12px;
-      color: rgba(255,255,255,0.35);
+    .header-tape {
+      position: absolute;
+      right: -20px;
+      bottom: -10px;
+      width: 320px;
+      transform: rotate(-6deg);
+      opacity: 0.55;
+      z-index: 0;
     }
 
     .breadcrumb {
@@ -117,125 +119,478 @@
       margin-top: 24px;
     }
 
-    .header-tape {
-      position: absolute;
-      right: -20px;
-      bottom: -10px;
-      width: 320px;
-      transform: rotate(-6deg);
-      opacity: 0.55;
-      z-index: 0;
+    .header-top-right { display: flex; align-items: center; gap: 16px; }
+
+    .header-eyebrow {
+      font-family: "ABC ROM Mono", monospace;
+      font-weight: 450;
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
     }
 
-    /* ── RESOURCES ── */
-    .resources-section {
-      background: #F9F9F9;
-      padding: 64px;
+    .download-btn {
+      font-family: "ABC ROM Mono", monospace;
+      font-weight: 450;
+      font-size: 11px;
+      color: rgba(255,255,255,0.65);
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 6px 14px;
+      cursor: pointer;
+      background: transparent;
+      letter-spacing: 0.04em;
+      transition: color 0.15s, border-color 0.15s;
     }
+    .download-btn:hover { color: #FFFFFF; border-color: rgba(255,255,255,0.65); }
 
-    .resources-inner {
-      max-width: 960px;
-      margin: 0 auto;
-    }
-
+    /* ── SECTION EYEBROW ── */
     .section-eyebrow {
       font-family: "ABC ROM Mono", monospace;
       font-weight: 450;
       font-size: 12px;
       color: #9B9B9B;
-      margin-bottom: 24px;
+      margin-bottom: 12px;
     }
 
-    /* ── AGENT GRID ── */
-    .agent-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 20px;
-    }
-
-    .agent-card {
+    /* ── INTRO ── */
+    .intro-section {
       background: #FFFFFF;
+      padding: 64px 64px 56px;
+    }
+
+    .intro-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .intro-label {
+      font-family: "ABC ROM Mono", monospace;
+      font-weight: 450;
+      font-size: 11px;
+      color: #FA4028;
+      letter-spacing: 0.06em;
+      margin-bottom: 14px;
+    }
+
+    .intro-headline {
+      font-family: "Feature Headline", sans-serif;
+      font-weight: 400;
+      font-size: 40px;
+      line-height: 0.96;
+      letter-spacing: -1.2px;
+      color: #00063D;
+      margin-bottom: 20px;
+    }
+
+    .intro-body {
+      font-size: 15px;
+      font-weight: 450;
+      line-height: 1.65;
+      color: #5E5D5F;
       display: flex;
       flex-direction: column;
-      text-decoration: none;
-      color: inherit;
-      transition: transform 0.18s;
-    }
-    .agent-card:hover { transform: translateY(-4px); }
-    .agent-card.disabled {
-      opacity: 0.55;
-      pointer-events: none;
+      gap: 14px;
     }
 
-    .agent-panel {
-      height: 180px;
+    .intro-photo {
       background: #FA4028;
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
+      aspect-ratio: 1;
     }
 
-    .agent-panel-disabled {
-      background: #E8E8E8;
-    }
-
-    .coming-soon-badge {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      font-family: "ABC ROM Mono", monospace;
-      font-weight: 450;
-      font-size: 10px;
-      letter-spacing: 0.06em;
-      color: #9B9B9B;
+    /* ── DOT DIVIDER ── */
+    .dot-divider {
       background: #FFFFFF;
-      padding: 4px 10px;
+      padding: 0 64px;
     }
 
-    .agent-band {
-      height: 4px;
-      width: 100%;
-      background: #FA4028;
-    }
-    .agent-band-disabled {
-      background: #D0D0D0;
+    .dot-divider-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      overflow: hidden;
     }
 
-    .agent-body {
-      padding: 28px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
+    /* ── HOW IT WORKS ── */
+    .how-section {
+      background: #F9F9F9;
+      padding: 56px 64px;
     }
 
-    .agent-title {
+    .how-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .how-headline {
       font-family: "Feature Headline", sans-serif;
       font-weight: 400;
       font-size: 36px;
       line-height: 0.96;
       letter-spacing: -1px;
       color: #00063D;
-      margin-bottom: 10px;
+      margin-bottom: 32px;
+      margin-top: 10px;
     }
 
-    .agent-desc {
+    .how-steps {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 4px;
+    }
+
+    .how-step {
+      background: #FFFFFF;
+      padding: 32px;
+      position: relative;
+    }
+
+    .how-step-num {
+      font-family: "Feature Headline", sans-serif;
+      font-weight: 400;
+      font-size: 56px;
+      line-height: 1;
+      letter-spacing: -1.5px;
+      color: #FA4028;
+      margin-bottom: 16px;
+    }
+
+    .how-step-title {
+      font-weight: 700;
+      font-size: 14px;
+      color: #00063D;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .how-step-body {
+      font-size: 13px;
+      font-weight: 450;
+      line-height: 1.65;
+      color: #5E5D5F;
+    }
+
+    /* ── KEY BENEFITS ── */
+    .benefits-section {
+      background: #FFFFFF;
+      padding: 56px 64px;
+    }
+
+    .benefits-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .benefits-headline {
+      font-family: "Feature Headline", sans-serif;
+      font-weight: 400;
+      font-size: 36px;
+      line-height: 0.96;
+      letter-spacing: -1px;
+      color: #00063D;
+      margin-bottom: 32px;
+      margin-top: 10px;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .benefit-box {
+      background: #F9F9F9;
+      padding: 32px;
+    }
+
+    .benefit-icon {
+      width: 40px;
+      height: 40px;
+      background: #FA4028;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .benefit-title {
+      font-weight: 700;
+      font-size: 15px;
+      color: #00063D;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .benefit-body {
+      font-size: 13px;
+      font-weight: 450;
+      line-height: 1.65;
+      color: #5E5D5F;
+    }
+
+    /* ── USE CASES ── */
+    .usecases-section {
+      background: #F9F9F9;
+      padding: 56px 64px;
+    }
+
+    .usecases-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .usecases-headline {
+      font-family: "Feature Headline", sans-serif;
+      font-weight: 400;
+      font-size: 36px;
+      line-height: 0.96;
+      letter-spacing: -1px;
+      color: #00063D;
+      margin-bottom: 32px;
+      margin-top: 10px;
+    }
+
+    .usecases-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+    }
+
+    .usecase-card {
+      background: #FFFFFF;
+      padding: 28px;
+    }
+
+    .usecase-tag {
+      font-family: "ABC ROM Mono", monospace;
+      font-weight: 450;
+      font-size: 10px;
+      color: #FA4028;
+      letter-spacing: 0.06em;
+      margin-bottom: 12px;
+    }
+
+    .usecase-title {
+      font-weight: 700;
+      font-size: 14px;
+      color: #00063D;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .usecase-body {
       font-size: 13px;
       font-weight: 450;
       line-height: 1.6;
       color: #5E5D5F;
-      flex: 1;
-      margin-bottom: 20px;
     }
 
-    .agent-cta {
-      display: inline-flex;
+    /* ── WHO IT'S FOR ── */
+    .roles-section {
+      background: #FFFFFF;
+      padding: 40px 64px;
+      border-top: 1px solid #F2F2F3;
+    }
+
+    .roles-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .roles-label {
+      font-family: "ABC ROM Mono", monospace;
+      font-weight: 450;
+      font-size: 11px;
+      color: #9B9B9B;
+      flex-shrink: 0;
+    }
+
+    .role-tag {
+      font-family: "ABC ROM Mono", monospace;
+      font-weight: 450;
+      font-size: 11px;
+      color: #00063D;
+      background: #F9F9F9;
+      border: 1px solid #CFCFD0;
+      padding: 5px 12px;
+    }
+
+    /* ── AVAILABILITY ── */
+    .avail-section {
+      background: #00063D;
+      padding: 48px 64px;
+    }
+
+    .avail-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .avail-badge {
+      background: #FA4028;
+      color: #00063D;
+      font-family: "ABC ROM Mono", monospace;
+      font-weight: 450;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      padding: 8px 16px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .avail-text {
+      font-size: 15px;
+      font-weight: 450;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .avail-text strong { color: #FFFFFF; font-weight: 700; }
+
+    /* ── LEARN MORE ── */
+    .learn-more {
+      padding: 56px 64px;
+      background: #FFFFFF;
+    }
+
+    .learn-more-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .learn-more-headline {
+      font-family: "Feature Headline", sans-serif;
+      font-weight: 400;
+      font-size: 32px;
+      line-height: 0.96;
+      letter-spacing: -1px;
+      color: #00063D;
+      margin-bottom: 30px;
+      margin-top: 12px;
+    }
+
+    .learn-more-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .lm-card {
+      padding: 28px;
+      background: #F9F9F9;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .lm-eyebrow {
+      font-family: "ABC ROM Mono", monospace;
+      font-size: 11px;
+      color: #9B9B9B;
+      margin-bottom: 10px;
+    }
+
+    .lm-title {
+      font-weight: 700;
+      font-size: 14px;
+      color: #00063D;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .lm-desc {
+      font-size: 13px;
+      line-height: 1.5;
+      color: #5E5D5F;
+      margin-bottom: 22px;
+      flex: 1;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #FA4028;
+      color: #FFFFFF;
       font-family: "ABC ROM", sans-serif;
       font-weight: 700;
-      font-size: 11px;
-      color: #FA4028;
+      font-size: 12px;
+      padding: 10px 18px;
+      text-decoration: none;
+      align-self: flex-start;
+      transition: background 0.15s;
+    }
+    .btn:hover { background: #00063D; }
+
+    .loom-placeholder {
+      border: 2px dashed #CFCFD0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 20px;
+      text-align: center;
+      flex: 1;
+      margin-bottom: 16px;
+    }
+
+    .loom-icon {
+      width: 40px;
+      height: 40px;
+      background: #CFCFD0;
+      border-radius: 50%;
+      margin: 0 auto 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .loom-icon svg { width: 18px; height: 18px; }
+
+    .loom-placeholder p { font-size: 13px; color: #9B9B9B; line-height: 1.4; }
+    .loom-placeholder strong { display: block; font-size: 13px; color: #5E5D5F; font-weight: 700; margin-bottom: 4px; }
+
+    /* ── NAV LINKS ── */
+    .resources-section {
+      background: #F9F9F9;
+      padding: 32px 64px;
+    }
+
+    .resources-inner { max-width: 960px; margin: 0 auto; }
+
+    .resources-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 16px;
+    }
+
+    .resource-link {
+      background: #FFFFFF;
+      padding: 20px 24px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-left: 4px solid #FA4028;
+      transition: transform 0.15s;
+    }
+
+    .resource-link:hover { transform: translateX(3px); }
+
+    .resource-link-text {
+      font-size: 13px;
+      font-weight: 700;
+      color: #00063D;
     }
 
     /* ── FOOTER ── */
@@ -255,7 +610,14 @@
     .footer-note {
       font-family: "ABC ROM Mono", monospace;
       font-size: 11px;
-      color: rgba(255,255,255,0.35);
+      color: rgba(255,255,255,0.4);
+    }
+
+    @media print {
+      .download-btn, .resources-section { display: none !important; }
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .header { overflow: visible; }
+      .header-tape { display: none; }
     }
   </style>
 </head>
@@ -290,164 +652,268 @@
             </defs>
           </svg>
         </a>
-        <div class="header-eyebrow">jasper.ai</div>
+        <div class="header-top-right">
+          <div class="header-eyebrow">Agents</div>
+          <button class="download-btn" onclick="window.print()">&#8595; Download PDF</button>
+        </div>
       </div>
 
-      <a class="breadcrumb" href="hub.html">
+      <a class="breadcrumb" href="agents.html">
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Jasper Resource Hub
+        Agents
       </a>
 
-      <div class="header-headline"><span>Agents</span></div>
-      <p class="header-sub">Purpose-built AI applications designed by Jasper's marketing team — browse the library, run a research agent, review snapshots, and build in Jasper Studio.</p>
+      <div class="header-headline">Personalization <span>Agent</span></div>
+      <p class="header-sub">Connect your CRM and generate tailored messaging for every segment, channel, and persona — automatically, at scale.</p>
     </div>
   </div>
 
-  <!-- ── RESOURCES ── -->
+  <!-- ── INTRO ── -->
+  <div class="intro-section">
+    <div class="intro-inner">
+      <div class="intro-text">
+        <div class="intro-label">What is it?</div>
+        <div class="intro-headline">CRM-powered content, without the manual work</div>
+        <div class="intro-body">
+          <p>The Personalization Agent is a CRM-connected content automation tool that queries customer and account data using natural-language prompts. Instead of building Salesforce reports, exporting contact lists, and re-uploading data into separate tools, the agent handles the entire workflow inside Jasper.</p>
+          <p>It queries your CRM in real time, generates structured contact tables in Jasper Canvas, and enables personalized content creation at scale — without switching between platforms or reformatting data. Built to align with your Jasper Brand Voice, Style Guide, and Audiences, every message it generates stays on brand.</p>
+        </div>
+      </div>
+      <div class="intro-photo">
+        <svg width="96" height="96" viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="32" r="14" stroke="white" stroke-width="4"/>
+          <path d="M20 78 C20 60 80 60 80 78" stroke="white" stroke-width="4" stroke-linecap="round" fill="none"/>
+          <circle cx="22" cy="52" r="7" fill="#FA4028"/>
+          <circle cx="78" cy="52" r="7" fill="#FA4028"/>
+          <line x1="29" y1="52" x2="43" y2="52" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="57" y1="52" x2="71" y2="52" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── DOT DIVIDER ── -->
+  <div class="dot-divider">
+    <div class="dot-divider-inner">
+      <svg width="100%" height="28" viewBox="0 0 960 28" preserveAspectRatio="xMidYMid meet" fill="none">
+        <g>
+          <rect x="0" y="4" width="20" height="20" fill="#FA4028"/><circle cx="10" cy="14" r="6" fill="#00063D"/>
+          <rect x="28" y="4" width="20" height="20" fill="#FA4028"/><circle cx="38" cy="14" r="6" fill="#00063D"/>
+          <rect x="56" y="4" width="20" height="20" fill="#FA4028"/><circle cx="66" cy="14" r="6" fill="#00063D"/>
+          <rect x="84" y="4" width="20" height="20" fill="#FA4028"/><circle cx="94" cy="14" r="6" fill="#00063D"/>
+          <rect x="112" y="4" width="20" height="20" fill="#FA4028"/><circle cx="122" cy="14" r="6" fill="#00063D"/>
+          <rect x="140" y="4" width="20" height="20" fill="#FA4028"/><circle cx="150" cy="14" r="6" fill="#00063D"/>
+          <rect x="168" y="4" width="20" height="20" fill="#FA4028"/><circle cx="178" cy="14" r="6" fill="#00063D"/>
+          <rect x="196" y="4" width="20" height="20" fill="#FA4028"/><circle cx="206" cy="14" r="6" fill="#00063D"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ── HOW IT WORKS ── -->
+  <div class="how-section">
+    <div class="how-inner">
+      <div class="section-eyebrow">Under the hood</div>
+      <div class="how-headline">How the Personalization Agent works</div>
+      <div class="how-steps">
+
+        <div class="how-step">
+          <div class="how-step-num">01</div>
+          <div class="how-step-title">Query your CRM in real time</div>
+          <p class="how-step-body">Use natural-language prompts to filter Salesforce data — by industry, job title, company size, geography, engagement history, or any custom field — without building reports or exporting spreadsheets.</p>
+        </div>
+
+        <div class="how-step">
+          <div class="how-step-num">02</div>
+          <div class="how-step-title">Generate structured contact tables</div>
+          <p class="how-step-body">The agent returns a clean, organized data table inside Jasper Canvas — filtered, formatted, and ready to use as the foundation for your campaign without any manual reformatting.</p>
+        </div>
+
+        <div class="how-step">
+          <div class="how-step-num">03</div>
+          <div class="how-step-title">Create personalized content at scale</div>
+          <p class="how-step-body">Use the generated contact list with Jasper Agents or Studio workflows to produce personalized messaging for every record — emails, social posts, ad copy — tailored to each contact's data.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── KEY BENEFITS ── -->
+  <div class="benefits-section">
+    <div class="benefits-inner">
+      <div class="section-eyebrow">Why it matters</div>
+      <div class="benefits-headline">Key benefits</div>
+      <div class="benefits-grid">
+
+        <div class="benefit-box">
+          <div class="benefit-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M12 3v3M12 18v3M3 12h3M18 12h3" stroke="white" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="12" cy="12" r="4" stroke="white" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="benefit-title">Eliminates manual CRM data handling</div>
+          <p class="benefit-body">Query Salesforce directly using natural-language prompts — no report building, no spreadsheet exports, no reformatting. Marketing teams save hours per campaign by automating data retrieval inside Jasper.</p>
+        </div>
+
+        <div class="benefit-box">
+          <div class="benefit-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="6" width="7" height="5" rx="1" stroke="white" stroke-width="1.8"/>
+              <rect x="14" y="6" width="7" height="5" rx="1" stroke="white" stroke-width="1.8"/>
+              <rect x="3" y="15" width="7" height="5" rx="1" stroke="white" stroke-width="1.8"/>
+              <rect x="14" y="15" width="7" height="5" rx="1" stroke="white" stroke-width="1.8"/>
+            </svg>
+          </div>
+          <div class="benefit-title">Personalization at scale</div>
+          <p class="benefit-body">Once the agent generates a targeted contact list, Jasper Agents and Studio workflows create personalized messaging for every record — relevant content for hundreds of contacts without manual editing.</p>
+        </div>
+
+        <div class="benefit-box">
+          <div class="benefit-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="benefit-title">Brand consistency across every segment</div>
+          <p class="benefit-body">The agent integrates with your Jasper Brand Voice, Style Guide, and Audiences — ensuring every personalized message aligns with brand requirements, regardless of segment, channel, or volume.</p>
+        </div>
+
+        <div class="benefit-box">
+          <div class="benefit-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="3" width="8" height="8" rx="1" stroke="white" stroke-width="2"/>
+              <rect x="13" y="3" width="8" height="8" rx="1" stroke="white" stroke-width="2"/>
+              <rect x="3" y="13" width="8" height="8" rx="1" stroke="white" stroke-width="2"/>
+              <path d="M17 13v8M13 17h8" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="benefit-title">Reduces MarTech complexity</div>
+          <p class="benefit-body">By consolidating CRM querying and content generation in one platform, the agent eliminates toggling between Salesforce, spreadsheets, and content tools — a single source of truth for campaign execution.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── USE CASES ── -->
+  <div class="usecases-section">
+    <div class="usecases-inner">
+      <div class="section-eyebrow">Ways to use it</div>
+      <div class="usecases-headline">Use cases</div>
+      <div class="usecases-grid">
+
+        <div class="usecase-card">
+          <div class="usecase-tag">Account-based marketing</div>
+          <div class="usecase-title">Target enterprise accounts by segment</div>
+          <p class="usecase-body">Query Salesforce for contacts at companies with 500+ employees in a specific sector, generate a structured list, and personalize email sequences for each account based on industry pain points.</p>
+        </div>
+
+        <div class="usecase-card">
+          <div class="usecase-tag">Re-engagement</div>
+          <div class="usecase-title">Win back dormant leads</div>
+          <p class="usecase-body">Filter contact records by purchase date and engagement history, then generate personalized win-back emails tailored to each customer's previous buying behavior and product preferences.</p>
+        </div>
+
+        <div class="usecase-card">
+          <div class="usecase-tag">Product launches</div>
+          <div class="usecase-title">Industry-specific messaging</div>
+          <p class="usecase-body">Query contacts in regulated industries like healthcare or financial services, then create personalized announcement emails highlighting compliance benefits relevant to each sector's requirements.</p>
+        </div>
+
+        <div class="usecase-card">
+          <div class="usecase-tag">Demand generation</div>
+          <div class="usecase-title">Role-based outreach</div>
+          <p class="usecase-body">Filter Salesforce records by job title and company size, then generate personalized email sequences and LinkedIn messages addressing the specific challenges and outcomes of each role.</p>
+        </div>
+
+        <div class="usecase-card">
+          <div class="usecase-tag">Events</div>
+          <div class="usecase-title">Regional event promotion</div>
+          <p class="usecase-body">Query contacts by geographic location and engagement tier, then personalize event invitations with location-specific details and VIP offers based on customer lifetime value.</p>
+        </div>
+
+        <div class="usecase-card">
+          <div class="usecase-tag">Upsell & expansion</div>
+          <div class="usecase-title">Identify underutilized accounts</div>
+          <p class="usecase-body">Query usage data fields in Salesforce, generate a list of accounts using only basic features, and create personalized upsell emails highlighting advanced capabilities aligned to each account's profile.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── WHO IT'S FOR ── -->
+  <div class="roles-section">
+    <div class="roles-inner">
+      <div class="roles-label">Built for</div>
+      <span class="role-tag">Performance marketers</span>
+      <span class="role-tag">Field marketers</span>
+      <span class="role-tag">Lifecycle marketers</span>
+      <span class="role-tag">Email &amp; notifications</span>
+      <span class="role-tag">Retention</span>
+    </div>
+  </div>
+
+  <!-- ── AVAILABILITY ── -->
+  <div class="avail-section">
+    <div class="avail-inner">
+      <div class="avail-badge">Business plan</div>
+      <p class="avail-text"><strong>The Personalization Agent is available to Business plan customers.</strong> Salesforce integration is required for live CRM querying. Additional CRM integrations are in development. Visit your Workspace Settings or contact your Jasper account team to get started.</p>
+    </div>
+  </div>
+
+  <!-- ── LEARN MORE ── -->
+  <div class="learn-more">
+    <div class="learn-more-inner">
+      <div class="section-eyebrow">Resources</div>
+      <div class="learn-more-headline">Learn more &amp; explore</div>
+      <div class="learn-more-grid">
+
+        <div class="lm-card">
+          <div class="lm-eyebrow">Help article</div>
+          <div class="lm-title">Personalization Agent — Jasper Help Center</div>
+          <p class="lm-desc">Full documentation on the Personalization Agent, including Salesforce setup, supported CRM fields, and workflow examples.</p>
+          <a class="btn" href="https://help.jasper.ai/hc/en-us/categories/22503428363291-Jasper-Agents" target="_blank">Read the article →</a>
+        </div>
+
+        <div class="lm-card">
+          <div class="lm-eyebrow">Video walkthrough</div>
+          <div class="lm-title">Watch: Personalization Agent in action</div>
+          <div class="loom-placeholder">
+            <div class="loom-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M8 5.14v14l11-7-11-7z" fill="#9B9B9B"/></svg>
+            </div>
+            <p><strong>Video coming soon</strong>A walkthrough of running the Personalization Agent will be linked here.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── NAV LINKS ── -->
   <div class="resources-section">
     <div class="resources-inner">
-
-      <div class="section-eyebrow">6 resources</div>
-      <div class="agent-grid">
-
-        <!-- Research Agent -->
-        <a class="agent-card" href="research-agent.html">
-          <div class="agent-panel">
-            <svg width="72" height="72" viewBox="0 0 100 100" fill="none">
-              <circle cx="44" cy="44" r="24" stroke="white" stroke-width="4"/>
-              <line x1="62" y1="62" x2="80" y2="80" stroke="white" stroke-width="4" stroke-linecap="round"/>
-              <line x1="38" y1="36" x2="38" y2="52" stroke="#FA4028" stroke-width="3" stroke-linecap="round"/>
-              <line x1="30" y1="44" x2="46" y2="44" stroke="#FA4028" stroke-width="3" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="agent-band"></div>
-          <div class="agent-body">
-            <div class="agent-title">Research Agent</div>
-            <p class="agent-desc">Automate competitive and market research with a purpose-built agent that synthesizes sources, extracts insights, and delivers structured briefs.</p>
-            <div class="agent-cta">
-              Open guide
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#FA4028" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-          </div>
+      <div class="section-eyebrow">More resources</div>
+      <div class="resources-grid">
+        <a class="resource-link" href="agents.html">
+          <span class="resource-link-text">← Back to Agents</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#FA4028" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-
-        <!-- Optimization Agent -->
-        <a class="agent-card" href="optimization-agent.html">
-          <div class="agent-panel">
-            <svg width="72" height="72" viewBox="0 0 100 100" fill="none">
-              <rect x="14" y="58" width="10" height="26" fill="white" opacity="0.45"/>
-              <rect x="30" y="42" width="10" height="42" fill="white" opacity="0.65"/>
-              <rect x="46" y="28" width="10" height="56" fill="white"/>
-              <rect x="62" y="14" width="10" height="70" fill="#FA4028"/>
-              <polyline points="19,57 35,41 51,27 67,13" stroke="#FA4028" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-              <circle cx="67" cy="13" r="4" fill="#FA4028"/>
-            </svg>
-          </div>
-          <div class="agent-band"></div>
-          <div class="agent-body">
-            <div class="agent-title">Optimization Agent</div>
-            <p class="agent-desc">Your AI-powered SEO strategist. Turns hours of research, clustering, and brief creation into structured deliverables — powered by live Semrush data.</p>
-            <div class="agent-cta">
-              Open guide
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#FA4028" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-          </div>
+        <a class="resource-link" href="research-agent.html">
+          <span class="resource-link-text">Research Agent</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#FA4028" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-
-        <!-- Personalization Agent -->
-        <a class="agent-card" href="personalization-agent.html">
-          <div class="agent-panel">
-            <svg width="72" height="72" viewBox="0 0 100 100" fill="none">
-              <circle cx="50" cy="32" r="14" fill="white"/>
-              <path d="M22 74 C22 58 36 50 50 50 C64 50 78 58 78 74" stroke="white" stroke-width="4" stroke-linecap="round" fill="none"/>
-              <circle cx="76" cy="68" r="9" fill="#FA4028"/>
-              <circle cx="86" cy="56" r="6" fill="#FA4028" opacity="0.7"/>
-              <line x1="76" y1="59" x2="82" y2="54" stroke="white" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="agent-band"></div>
-          <div class="agent-body">
-            <div class="agent-title">Personalization Agent</div>
-            <p class="agent-desc">Pull live CRM data and generate hyper-personalized outreach at scale — contact tables, tailored copy, and role-specific messaging without the manual work.</p>
-            <div class="agent-cta">
-              Open guide
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#FA4028" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-          </div>
+        <a class="resource-link" href="optimization-agent.html">
+          <span class="resource-link-text">Optimization Agent</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#FA4028" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-
-        <!-- Agent Library — LIVE -->
-        <a class="agent-card" href="agent-library.html">
-          <div class="agent-panel">
-            <svg width="72" height="72" viewBox="0 0 100 100" fill="none">
-              <rect x="18" y="22" width="42" height="54" rx="3" fill="white" opacity="0.25"/>
-              <rect x="24" y="16" width="42" height="54" rx="3" fill="white" opacity="0.5"/>
-              <rect x="30" y="10" width="42" height="54" rx="3" fill="white"/>
-              <line x1="42" y1="30" x2="60" y2="30" stroke="#FA4028" stroke-width="3" stroke-linecap="round"/>
-              <line x1="42" y1="39" x2="60" y2="39" stroke="#FA4028" stroke-width="3" stroke-linecap="round"/>
-              <line x1="42" y1="48" x2="54" y2="48" stroke="#FA4028" stroke-width="3" stroke-linecap="round"/>
-              <circle cx="74" cy="74" r="16" fill="white"/>
-              <line x1="74" y1="66" x2="74" y2="82" stroke="#FA4028" stroke-width="3.5" stroke-linecap="round"/>
-              <line x1="66" y1="74" x2="82" y2="74" stroke="#FA4028" stroke-width="3.5" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="agent-band"></div>
-          <div class="agent-body">
-            <div class="agent-title">Agent Library</div>
-            <p class="agent-desc">Browse 100+ pre-built AI agents organized by marketing function, content type, funnel stage, and content process. Find your use case and get to work.</p>
-            <div class="agent-cta">
-              Open guide
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#FA4028" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-          </div>
+        <a class="resource-link" href="agent-library.html">
+          <span class="resource-link-text">Agent Library</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#FA4028" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-
-        <!-- Agent Snapshots -->
-        <a class="agent-card" href="agent-snapshots.html">
-          <div class="agent-panel">
-            <svg width="72" height="72" viewBox="0 0 100 100" fill="none">
-              <rect x="20" y="30" width="60" height="44" rx="3" stroke="white" stroke-width="4"/>
-              <circle cx="50" cy="52" r="10" stroke="white" stroke-width="3"/>
-              <circle cx="50" cy="52" r="4" fill="#FA4028"/>
-              <path d="M38 30 L38 22 L62 22 L62 30" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-              <rect x="67" y="34" width="7" height="5" rx="1" fill="white"/>
-            </svg>
-          </div>
-          <div class="agent-band"></div>
-          <div class="agent-body">
-            <div class="agent-title">Agent Snapshots</div>
-            <p class="agent-desc">See exactly how any piece of content was made — and regenerate it with updated inputs in seconds. Full visibility into every generation.</p>
-            <div class="agent-cta">
-              Open guide
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#FA4028" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-          </div>
-        </a>
-
-        <!-- Jasper Studio -->
-        <a class="agent-card" href="jasper-studio.html">
-          <div class="agent-panel">
-            <svg width="72" height="72" viewBox="0 0 100 100" fill="none">
-              <rect x="16" y="20" width="50" height="62" rx="3" stroke="white" stroke-width="4"/>
-              <line x1="28" y1="36" x2="54" y2="36" stroke="#FA4028" stroke-width="3" stroke-linecap="round"/>
-              <line x1="28" y1="46" x2="54" y2="46" stroke="#FA4028" stroke-width="3" stroke-linecap="round"/>
-              <line x1="28" y1="56" x2="44" y2="56" stroke="#FA4028" stroke-width="3" stroke-linecap="round"/>
-              <circle cx="72" cy="70" r="16" fill="#FA4028"/>
-              <line x1="72" y1="63" x2="72" y2="77" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
-              <line x1="65" y1="70" x2="79" y2="70" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="agent-band"></div>
-          <div class="agent-body">
-            <div class="agent-title">Jasper Studio</div>
-            <p class="agent-desc">Build, customize, and deploy your own agents — no code required. Design workflows with custom inputs, instructions, and brand guidelines baked in.</p>
-            <div class="agent-cta">
-              Open guide
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#FA4028" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-          </div>
-        </a>
-
       </div>
     </div>
   </div>
@@ -468,7 +934,7 @@
           <clipPath id="wm2"><rect width="480.651" height="174.782" fill="white"/></clipPath>
         </defs>
       </svg>
-      <span class="footer-note">Agents — Jasper Resource Hub</span>
+      <span class="footer-note">Agents — Personalization Agent</span>
     </div>
   </div>
 
