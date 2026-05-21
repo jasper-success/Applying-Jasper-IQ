@@ -258,7 +258,7 @@
     /* ── RESOURCE RESULTS (search deep-links) ── */
     .resource-results {
       display: none;
-      margin-top: 40px;
+      margin-bottom: 32px;
     }
     .resource-results.visible { display: block; }
     .resource-results-label {
@@ -378,7 +378,13 @@
   <!-- ── TOPICS ── -->
   <div class="topics-section">
     <div class="topics-inner">
-      <div class="topics-eyebrow">Browse by topic</div>
+      <!-- Direct resource results — shown only when searching -->
+      <div class="resource-results" id="resourceResults">
+        <div class="resource-results-label">Direct results</div>
+        <div class="resource-result-list" id="resourceResultList"></div>
+      </div>
+
+      <div class="topics-eyebrow" id="browseLabel">Browse by topic</div>
       <div class="topic-grid">
 
         <!-- Jasper IQ -->
@@ -430,12 +436,6 @@
         </a>
 
         <div class="no-results" id="noResults">No resources match "<span id="noResultsTerm"></span>"</div>
-      </div>
-
-      <!-- Direct resource results — shown only when searching -->
-      <div class="resource-results" id="resourceResults">
-        <div class="resource-results-label">Direct results</div>
-        <div class="resource-result-list" id="resourceResultList"></div>
       </div>
 
     </div>
