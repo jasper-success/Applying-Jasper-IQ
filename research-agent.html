@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Agents — Jasper Resource Hub</title>
+  <title>Research Agent — Jasper Agents</title>
   <style>
     @font-face {
       font-family: "Feature Headline";
@@ -35,17 +35,16 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: #00063D;
+      background: #FFFFFF;
       font-family: "ABC ROM", sans-serif;
       font-weight: 400;
       color: #262627;
-      min-height: 100vh;
     }
 
     /* ── HEADER ── */
     .header {
       background: #00063D;
-      padding: 56px 64px 80px;
+      padding: 56px 64px 72px;
       position: relative;
       overflow: hidden;
     }
@@ -71,7 +70,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 72px;
+      margin-bottom: 64px;
     }
 
     .logo { line-height: 0; text-decoration: none; }
@@ -81,6 +80,16 @@
       font-weight: 450;
       font-size: 12px;
       color: rgba(255,255,255,0.35);
+    }
+
+    .header-tape {
+      position: absolute;
+      right: -20px;
+      bottom: -10px;
+      width: 320px;
+      transform: rotate(-6deg);
+      opacity: 0.55;
+      z-index: 0;
     }
 
     .breadcrumb {
@@ -117,20 +126,407 @@
       margin-top: 24px;
     }
 
-    .header-tape {
-      position: absolute;
-      right: -20px;
-      bottom: -10px;
-      width: 320px;
-      transform: rotate(-6deg);
-      opacity: 0.55;
-      z-index: 0;
+    /* ── SECTION EYEBROW ── */
+    .section-eyebrow {
+      font-family: "ABC ROM Mono", monospace;
+      font-weight: 450;
+      font-size: 12px;
+      color: #9B9B9B;
+      margin-bottom: 12px;
     }
 
-    /* ── RESOURCES ── */
+    /* ── INTRO ── */
+    .intro-section {
+      background: #FFFFFF;
+      padding: 64px 64px 56px;
+    }
+
+    .intro-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .intro-label {
+      font-family: "ABC ROM Mono", monospace;
+      font-weight: 450;
+      font-size: 11px;
+      color: #FA4028;
+      letter-spacing: 0.06em;
+      margin-bottom: 14px;
+    }
+
+    .intro-headline {
+      font-family: "Feature Headline", sans-serif;
+      font-weight: 400;
+      font-size: 40px;
+      line-height: 0.96;
+      letter-spacing: -1.2px;
+      color: #00063D;
+      margin-bottom: 20px;
+    }
+
+    .intro-body {
+      font-size: 15px;
+      font-weight: 450;
+      line-height: 1.65;
+      color: #5E5D5F;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .intro-photo {
+      background: #FA4028;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 1;
+    }
+
+    /* ── DOT DIVIDER ── */
+    .dot-divider {
+      background: #FFFFFF;
+      padding: 0 64px;
+    }
+
+    .dot-divider-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    /* ── WHAT'S NEW ── */
+    .whats-new-section {
+      background: #F9F9F9;
+      padding: 56px 64px;
+    }
+
+    .whats-new-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .whats-new-headline {
+      font-family: "Feature Headline", sans-serif;
+      font-weight: 400;
+      font-size: 36px;
+      line-height: 0.96;
+      letter-spacing: -1px;
+      color: #00063D;
+      margin-bottom: 32px;
+      margin-top: 10px;
+    }
+
+    .whats-new-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .new-box {
+      background: #FFFFFF;
+      padding: 32px;
+    }
+
+    .new-num {
+      font-family: "Feature Headline", sans-serif;
+      font-weight: 400;
+      font-size: 48px;
+      line-height: 1;
+      letter-spacing: -1px;
+      color: #FA4028;
+      margin-bottom: 14px;
+    }
+
+    .new-title {
+      font-weight: 700;
+      font-size: 15px;
+      color: #00063D;
+      margin-bottom: 10px;
+    }
+
+    .new-body {
+      font-size: 13px;
+      font-weight: 450;
+      line-height: 1.65;
+      color: #5E5D5F;
+    }
+
+    /* ── STEPS ── */
+    .steps-section {
+      background: #FFFFFF;
+      padding: 56px 64px;
+    }
+
+    .steps-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .steps-headline {
+      font-family: "Feature Headline", sans-serif;
+      font-weight: 400;
+      font-size: 36px;
+      line-height: 0.96;
+      letter-spacing: -1px;
+      color: #00063D;
+      margin-bottom: 32px;
+      margin-top: 10px;
+    }
+
+    .steps-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+
+    .step {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .step-num {
+      width: 36px;
+      height: 36px;
+      background: #FA4028;
+      color: #FFFFFF;
+      font-family: "ABC ROM", sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-title {
+      font-weight: 700;
+      font-size: 13px;
+      color: #00063D;
+      line-height: 1.3;
+    }
+
+    .step-body {
+      font-size: 13px;
+      font-weight: 450;
+      line-height: 1.6;
+      color: #5E5D5F;
+    }
+
+    /* ── TIPS ── */
+    .tips-card {
+      background: #FA4028;
+      padding: 32px 36px;
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .tips-label {
+      font-family: "ABC ROM Mono", monospace;
+      font-weight: 450;
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      color: #FA4028;
+      background: #00063D;
+      padding: 4px 10px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .tips-content { flex: 1; }
+
+    .tips-title {
+      font-weight: 700;
+      font-size: 14px;
+      color: #00063D;
+      margin-bottom: 12px;
+    }
+
+    .tips-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .tips-list li {
+      font-size: 13px;
+      font-weight: 450;
+      line-height: 1.55;
+      color: #00063D;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .tips-list li::before {
+      content: "—";
+      position: absolute;
+      left: 0;
+      color: #00063D;
+      font-weight: 700;
+    }
+
+    /* ── AVAILABILITY ── */
+    .avail-section {
+      background: #00063D;
+      padding: 48px 64px;
+    }
+
+    .avail-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .avail-badge {
+      background: #FA4028;
+      color: #00063D;
+      font-family: "ABC ROM Mono", monospace;
+      font-weight: 450;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      padding: 8px 16px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .avail-text {
+      font-size: 15px;
+      font-weight: 450;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .avail-text strong {
+      color: #FFFFFF;
+      font-weight: 700;
+    }
+
+    /* ── LEARN MORE ── */
+    .learn-more {
+      padding: 56px 64px;
+      background: #FFFFFF;
+    }
+
+    .learn-more-inner {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .learn-more-headline {
+      font-family: "Feature Headline", sans-serif;
+      font-weight: 400;
+      font-size: 32px;
+      line-height: 0.96;
+      letter-spacing: -1px;
+      color: #00063D;
+      margin-bottom: 30px;
+      margin-top: 12px;
+    }
+
+    .learn-more-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .lm-card {
+      padding: 28px;
+      background: #F9F9F9;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .lm-eyebrow {
+      font-family: "ABC ROM Mono", monospace;
+      font-size: 11px;
+      color: #9B9B9B;
+      margin-bottom: 10px;
+    }
+
+    .lm-title {
+      font-weight: 700;
+      font-size: 14px;
+      color: #00063D;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .lm-desc {
+      font-size: 13px;
+      line-height: 1.5;
+      color: #5E5D5F;
+      margin-bottom: 22px;
+      flex: 1;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #FA4028;
+      color: #FFFFFF;
+      font-family: "ABC ROM", sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      padding: 10px 18px;
+      text-decoration: none;
+      align-self: flex-start;
+      transition: background 0.15s;
+    }
+    .btn:hover { background: #00063D; }
+
+    .loom-placeholder {
+      border: 2px dashed #CFCFD0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 20px;
+      text-align: center;
+      flex: 1;
+      margin-bottom: 16px;
+    }
+
+    .loom-icon {
+      width: 40px;
+      height: 40px;
+      background: #CFCFD0;
+      border-radius: 50%;
+      margin: 0 auto 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .loom-icon svg { width: 18px; height: 18px; }
+
+    .loom-placeholder p {
+      font-size: 13px;
+      color: #9B9B9B;
+      line-height: 1.4;
+    }
+
+    .loom-placeholder strong {
+      display: block;
+      font-size: 13px;
+      color: #5E5D5F;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    /* ── NAV LINKS ── */
     .resources-section {
       background: #F9F9F9;
-      padding: 64px;
+      padding: 32px 64px;
     }
 
     .resources-inner {
@@ -138,104 +534,31 @@
       margin: 0 auto;
     }
 
-    .section-eyebrow {
-      font-family: "ABC ROM Mono", monospace;
-      font-weight: 450;
-      font-size: 12px;
-      color: #9B9B9B;
-      margin-bottom: 24px;
-    }
-
-    /* ── AGENT GRID ── */
-    .agent-grid {
+    .resources-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
     }
 
-    .agent-card {
+    .resource-link {
       background: #FFFFFF;
-      display: flex;
-      flex-direction: column;
+      padding: 20px 24px;
       text-decoration: none;
       color: inherit;
-      transition: transform 0.18s;
-    }
-    .agent-card:hover { transform: translateY(-4px); }
-    .agent-card.disabled {
-      opacity: 0.55;
-      pointer-events: none;
-    }
-
-    .agent-panel {
-      height: 180px;
-      background: #FA4028;
       display: flex;
       align-items: center;
-      justify-content: center;
-      position: relative;
+      justify-content: space-between;
+      gap: 12px;
+      border-left: 4px solid #FA4028;
+      transition: transform 0.15s;
     }
 
-    .agent-panel-disabled {
-      background: #E8E8E8;
-    }
+    .resource-link:hover { transform: translateX(3px); }
 
-    .coming-soon-badge {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      font-family: "ABC ROM Mono", monospace;
-      font-weight: 450;
-      font-size: 10px;
-      letter-spacing: 0.06em;
-      color: #9B9B9B;
-      background: #FFFFFF;
-      padding: 4px 10px;
-    }
-
-    .agent-band {
-      height: 4px;
-      width: 100%;
-      background: #FA4028;
-    }
-    .agent-band-disabled {
-      background: #D0D0D0;
-    }
-
-    .agent-body {
-      padding: 28px;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .agent-title {
-      font-family: "Feature Headline", sans-serif;
-      font-weight: 400;
-      font-size: 36px;
-      line-height: 0.96;
-      letter-spacing: -1px;
-      color: #00063D;
-      margin-bottom: 10px;
-    }
-
-    .agent-desc {
+    .resource-link-text {
       font-size: 13px;
-      font-weight: 450;
-      line-height: 1.6;
-      color: #5E5D5F;
-      flex: 1;
-      margin-bottom: 20px;
-    }
-
-    .agent-cta {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: "ABC ROM", sans-serif;
       font-weight: 700;
-      font-size: 11px;
-      color: #FA4028;
+      color: #00063D;
     }
 
     /* ── FOOTER ── */
@@ -255,7 +578,7 @@
     .footer-note {
       font-family: "ABC ROM Mono", monospace;
       font-size: 11px;
-      color: rgba(255,255,255,0.35);
+      color: rgba(255,255,255,0.4);
     }
   </style>
 </head>
@@ -290,108 +613,195 @@
             </defs>
           </svg>
         </a>
-        <div class="header-eyebrow">jasper.ai</div>
+        <div class="header-eyebrow">Agents</div>
       </div>
 
-      <a class="breadcrumb" href="hub.html">
+      <a class="breadcrumb" href="agents.html">
         <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Jasper Resource Hub
+        Agents
       </a>
 
-      <div class="header-headline"><span>Agents</span></div>
-      <p class="header-sub">Purpose-built AI applications designed by Jasper's marketing team — browse the library, run a research agent, review snapshots, and build in Jasper Studio.</p>
+      <div class="header-headline">Research <span>Agent</span></div>
+      <p class="header-sub">Gather, analyze, and organize information fast — competitive briefs, market research, campaign background — without the manual heavy lifting.</p>
     </div>
   </div>
 
-  <!-- ── RESOURCES ── -->
+  <!-- ── INTRO ── -->
+  <div class="intro-section">
+    <div class="intro-inner">
+      <div class="intro-text">
+        <div class="intro-label">What is it?</div>
+        <div class="intro-headline">Research at speed, without the busywork</div>
+        <div class="intro-body">
+          <p>The Research Agent is a Jasper agent that helps you gather, analyze, and organize information quickly. Whether you're building a competitive brief, researching a new market, or pulling together background for a campaign, the Research Agent does the heavy lifting — so you can focus on what to do with the insights.</p>
+          <p>Run it from a Chat window inside a Canvas project. Describe what you want to research, review the output, follow source links to verify claims, and use the content directly or as a foundation for your next piece.</p>
+        </div>
+      </div>
+      <div class="intro-photo">
+        <svg width="96" height="96" viewBox="0 0 100 100" fill="none">
+          <circle cx="42" cy="42" r="26" stroke="white" stroke-width="5"/>
+          <line x1="61" y1="61" x2="84" y2="84" stroke="white" stroke-width="5" stroke-linecap="round"/>
+          <line x1="34" y1="36" x2="34" y2="48" stroke="#FA4028" stroke-width="3.5" stroke-linecap="round"/>
+          <line x1="28" y1="42" x2="40" y2="42" stroke="#FA4028" stroke-width="3.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── DOT DIVIDER ── -->
+  <div class="dot-divider">
+    <div class="dot-divider-inner">
+      <svg width="100%" height="28" viewBox="0 0 960 28" preserveAspectRatio="xMidYMid meet" fill="none">
+        <g>
+          <rect x="0" y="4" width="20" height="20" fill="#FA4028"/><circle cx="10" cy="14" r="6" fill="#00063D"/>
+          <rect x="28" y="4" width="20" height="20" fill="#FA4028"/><circle cx="38" cy="14" r="6" fill="#00063D"/>
+          <rect x="56" y="4" width="20" height="20" fill="#FA4028"/><circle cx="66" cy="14" r="6" fill="#00063D"/>
+          <rect x="84" y="4" width="20" height="20" fill="#FA4028"/><circle cx="94" cy="14" r="6" fill="#00063D"/>
+          <rect x="112" y="4" width="20" height="20" fill="#FA4028"/><circle cx="122" cy="14" r="6" fill="#00063D"/>
+          <rect x="140" y="4" width="20" height="20" fill="#FA4028"/><circle cx="150" cy="14" r="6" fill="#00063D"/>
+          <rect x="168" y="4" width="20" height="20" fill="#FA4028"/><circle cx="178" cy="14" r="6" fill="#00063D"/>
+          <rect x="196" y="4" width="20" height="20" fill="#FA4028"/><circle cx="206" cy="14" r="6" fill="#00063D"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ── WHAT'S NEW ── -->
+  <div class="whats-new-section">
+    <div class="whats-new-inner">
+      <div class="section-eyebrow">Recent updates</div>
+      <div class="whats-new-headline">What's new in the Research Agent</div>
+      <div class="whats-new-grid">
+
+        <div class="new-box">
+          <div class="new-num">01</div>
+          <div class="new-title">More accurate outputs</div>
+          <p class="new-body">The agent now provides higher factual accuracy, reducing the need to double-check every claim. Spend less time verifying and more time acting on the insights.</p>
+        </div>
+
+        <div class="new-box">
+          <div class="new-num">02</div>
+          <div class="new-title">Working source links</div>
+          <p class="new-body">Sources cited in the agent's output now link correctly, so you can follow up on references with confidence. No more dead ends when you need to dig deeper.</p>
+        </div>
+
+        <div class="new-box">
+          <div class="new-num">03</div>
+          <div class="new-title">Flexible report formats</div>
+          <p class="new-body">Reports are no longer locked into a rigid structure. The agent adapts its format to match the nature of your research request — whether that's a brief, a comparison table, or a summary.</p>
+        </div>
+
+        <div class="new-box">
+          <div class="new-num">04</div>
+          <div class="new-title">Deeper analysis</div>
+          <p class="new-body">The agent performs more thorough analysis, surfacing richer insights. Keep in mind: more thorough analysis takes a bit longer to complete — quality over speed.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEPS ── -->
+  <div class="steps-section">
+    <div class="steps-inner">
+      <div class="section-eyebrow">Getting started</div>
+      <div class="steps-headline">How to run the Research Agent</div>
+      <div class="steps-list">
+
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-title">Open a Chat window</div>
+          <p class="step-body">Navigate to a Chat window in Jasper inside a Canvas project.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-title">Select Research Agent</div>
+          <p class="step-body">Find and select Research Agent from the agent selector.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-title">Describe your research</div>
+          <p class="step-body">Describe what you want to research — be as specific as possible for the best results.</p>
+        </div>
+
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-title">Review and use</div>
+          <p class="step-body">Review the output, follow source links to verify claims, and use the content directly or as a foundation for your next piece.</p>
+        </div>
+
+      </div>
+
+      <div class="tips-card">
+        <div class="tips-label">Pro tips</div>
+        <div class="tips-content">
+          <div class="tips-title">Get better results every time</div>
+          <ul class="tips-list">
+            <li>Include context about your audience or goal in your prompt — e.g., "Research the top 5 B2B email marketing trends for a Q3 campaign brief."</li>
+            <li>Ask for a specific output format if you have one in mind — the agent will adapt to your request.</li>
+            <li>For complex research, break it into focused queries rather than one broad request.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── AVAILABILITY ── -->
+  <div class="avail-section">
+    <div class="avail-inner">
+      <div class="avail-badge">Business plan</div>
+      <p class="avail-text"><strong>The Research Agent is available to all Business plan customers.</strong> Make sure your workspace is on a Business plan to access this agent in your Chat window.</p>
+    </div>
+  </div>
+
+  <!-- ── LEARN MORE ── -->
+  <div class="learn-more">
+    <div class="learn-more-inner">
+      <div class="section-eyebrow">Resources</div>
+      <div class="learn-more-headline">Learn more &amp; explore</div>
+      <div class="learn-more-grid">
+
+        <div class="lm-card">
+          <div class="lm-eyebrow">Help article</div>
+          <div class="lm-title">Research Agent — Jasper Help Center</div>
+          <p class="lm-desc">Full documentation on using the Research Agent, including tips for writing effective prompts and getting the most out of your results.</p>
+          <a class="btn" href="https://help.jasper.ai/hc/en-us/categories/22503428363291-Jasper-Agents" target="_blank">Read the article →</a>
+        </div>
+
+        <div class="lm-card">
+          <div class="lm-eyebrow">Video walkthrough</div>
+          <div class="lm-title">Watch: Research Agent in action</div>
+          <div class="loom-placeholder">
+            <div class="loom-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M8 5.14v14l11-7-11-7z" fill="#9B9B9B"/></svg>
+            </div>
+            <p><strong>Video coming soon</strong>A short walkthrough of running the Research Agent will be linked here.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── NAV LINKS ── -->
   <div class="resources-section">
     <div class="resources-inner">
-
-      <div class="section-eyebrow">4 resources</div>
-      <div class="agent-grid">
-
-        <!-- Agent Library — LIVE -->
-        <a class="agent-card" href="agent-library.html">
-          <div class="agent-panel">
-            <svg width="72" height="72" viewBox="0 0 100 100" fill="none">
-              <rect x="18" y="22" width="42" height="54" rx="3" fill="white" opacity="0.25"/>
-              <rect x="24" y="16" width="42" height="54" rx="3" fill="white" opacity="0.5"/>
-              <rect x="30" y="10" width="42" height="54" rx="3" fill="white"/>
-              <line x1="42" y1="30" x2="60" y2="30" stroke="#FA4028" stroke-width="3" stroke-linecap="round"/>
-              <line x1="42" y1="39" x2="60" y2="39" stroke="#FA4028" stroke-width="3" stroke-linecap="round"/>
-              <line x1="42" y1="48" x2="54" y2="48" stroke="#FA4028" stroke-width="3" stroke-linecap="round"/>
-              <circle cx="74" cy="74" r="16" fill="white"/>
-              <line x1="74" y1="66" x2="74" y2="82" stroke="#FA4028" stroke-width="3.5" stroke-linecap="round"/>
-              <line x1="66" y1="74" x2="82" y2="74" stroke="#FA4028" stroke-width="3.5" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="agent-band"></div>
-          <div class="agent-body">
-            <div class="agent-title">Agent Library</div>
-            <p class="agent-desc">Browse 100+ pre-built AI agents organized by marketing function, content type, funnel stage, and content process. Find your use case and get to work.</p>
-            <div class="agent-cta">
-              Open guide
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#FA4028" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-          </div>
+      <div class="section-eyebrow">More resources</div>
+      <div class="resources-grid">
+        <a class="resource-link" href="agents.html">
+          <span class="resource-link-text">← Back to Agents</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#FA4028" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-
-        <!-- Research Agent -->
-        <a class="agent-card" href="research-agent.html">
-          <div class="agent-panel">
-            <svg width="72" height="72" viewBox="0 0 100 100" fill="none">
-              <circle cx="44" cy="44" r="24" stroke="white" stroke-width="4"/>
-              <line x1="62" y1="62" x2="80" y2="80" stroke="white" stroke-width="4" stroke-linecap="round"/>
-              <line x1="38" y1="36" x2="38" y2="52" stroke="#FA4028" stroke-width="3" stroke-linecap="round"/>
-              <line x1="30" y1="44" x2="46" y2="44" stroke="#FA4028" stroke-width="3" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="agent-band"></div>
-          <div class="agent-body">
-            <div class="agent-title">Research Agent</div>
-            <p class="agent-desc">Automate competitive and market research with a purpose-built agent that synthesizes sources, extracts insights, and delivers structured briefs.</p>
-            <div class="agent-cta">
-              Open guide
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#FA4028" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-          </div>
+        <a class="resource-link" href="agent-library.html">
+          <span class="resource-link-text">Agent Library</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#FA4028" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-
-        <!-- Agent Snapshots — COMING SOON -->
-        <div class="agent-card disabled">
-          <div class="agent-panel agent-panel-disabled">
-            <div class="coming-soon-badge">Coming soon</div>
-            <svg width="72" height="72" viewBox="0 0 100 100" fill="none">
-              <rect x="20" y="30" width="60" height="44" rx="3" stroke="#C0C0C0" stroke-width="4"/>
-              <circle cx="50" cy="52" r="10" stroke="#C0C0C0" stroke-width="3"/>
-              <path d="M38 30 L38 22 L62 22 L62 30" stroke="#C0C0C0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </div>
-          <div class="agent-band agent-band-disabled"></div>
-          <div class="agent-body">
-            <div class="agent-title">Agent Snapshots</div>
-            <p class="agent-desc">Quick-reference summaries of each agent's capabilities, inputs, and best-fit use cases — designed to help your team pick the right agent fast.</p>
-          </div>
-        </div>
-
-        <!-- Jasper Studio — COMING SOON -->
-        <div class="agent-card disabled">
-          <div class="agent-panel agent-panel-disabled">
-            <div class="coming-soon-badge">Coming soon</div>
-            <svg width="72" height="72" viewBox="0 0 100 100" fill="none">
-              <rect x="18" y="18" width="64" height="64" rx="4" stroke="#C0C0C0" stroke-width="4"/>
-              <path d="M34 50 L44 38 L54 50 L64 34" stroke="#C0C0C0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-              <rect x="28" y="58" width="12" height="12" rx="2" fill="#C0C0C0"/>
-              <rect x="46" y="58" width="12" height="12" rx="2" fill="#C0C0C0"/>
-            </svg>
-          </div>
-          <div class="agent-band agent-band-disabled"></div>
-          <div class="agent-body">
-            <div class="agent-title">Jasper Studio</div>
-            <p class="agent-desc">Build, customize, and deploy your own agents in Jasper Studio — no code required. Design workflows tailored to your team's specific content needs.</p>
-          </div>
-        </div>
-
+        <a class="resource-link" href="#">
+          <span class="resource-link-text">Agent Snapshots</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#FA4028" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
       </div>
     </div>
   </div>
@@ -412,7 +822,7 @@
           <clipPath id="wm2"><rect width="480.651" height="174.782" fill="white"/></clipPath>
         </defs>
       </svg>
-      <span class="footer-note">Agents — Jasper Resource Hub</span>
+      <span class="footer-note">Agents — Research Agent</span>
     </div>
   </div>
 
