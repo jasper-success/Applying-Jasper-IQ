@@ -255,6 +255,60 @@
 
     .topic-tile.hidden { display: none; }
 
+    /* ── RESOURCE RESULTS (search deep-links) ── */
+    .resource-results {
+      display: none;
+      margin-top: 40px;
+    }
+    .resource-results.visible { display: block; }
+    .resource-results-label {
+      font-family: "ABC ROM Mono", monospace;
+      font-weight: 450;
+      font-size: 11px;
+      color: #9B9B9B;
+      margin-bottom: 12px;
+    }
+    .resource-result-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .resource-result {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      background: #FFFFFF;
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.15s;
+    }
+    .resource-result:hover { background: #F2F2F3; }
+    .resource-result-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .resource-result-section {
+      font-family: "ABC ROM Mono", monospace;
+      font-size: 10px;
+      font-weight: 450;
+      color: #9B9B9B;
+      background: #F2F2F3;
+      padding: 3px 8px;
+      white-space: nowrap;
+    }
+    .resource-result-title {
+      font-family: "ABC ROM", sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #00063D;
+    }
+    .resource-result-arrow {
+      color: #FA4028;
+      flex-shrink: 0;
+    }
+
     /* ── FOOTER ── */
     .footer {
       background: #00063D;
@@ -352,7 +406,7 @@
 
         <!-- Agents -->
         <a class="topic-tile" href="agents.html"
-           data-keywords="agents agent library research agent agent snapshots jasper studio automation workflows marketing applications"
+           data-keywords="agents agent library research agent optimization agent personalization agent agent snapshots jasper studio automation workflows marketing applications crm outreach seo semrush"
         >
           <div class="tile-panel" style="background: #00063D;">
             <svg viewBox="0 0 460 220" fill="none">
@@ -365,9 +419,9 @@
           </div>
           <div class="tile-accent" style="background: #00063D;"></div>
           <div class="tile-body">
-            <div class="tile-count" style="color: #00063D;">4 resources</div>
+            <div class="tile-count" style="color: #00063D;">6 resources</div>
             <div class="tile-title">Agents</div>
-            <p class="tile-desc">Purpose-built AI applications for marketing workflows — Agent Library, Research Agent, Agent Snapshots, and Jasper Studio. Built by Jasper's team, ready to deploy.</p>
+            <p class="tile-desc">Purpose-built AI applications for marketing workflows — Research, Optimization, Personalization, Agent Library, Agent Snapshots, and Jasper Studio. Built by Jasper's team, ready to deploy.</p>
             <div class="tile-cta">
               Explore resources
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#00063D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -377,6 +431,13 @@
 
         <div class="no-results" id="noResults">No resources match "<span id="noResultsTerm"></span>"</div>
       </div>
+
+      <!-- Direct resource results — shown only when searching -->
+      <div class="resource-results" id="resourceResults">
+        <div class="resource-results-label">Direct results</div>
+        <div class="resource-result-list" id="resourceResultList"></div>
+      </div>
+
     </div>
   </div>
 
@@ -405,10 +466,27 @@
     const tiles = document.querySelectorAll('.topic-tile');
     const noResults = document.getElementById('noResults');
     const noResultsTerm = document.getElementById('noResultsTerm');
+    const resourceResults = document.getElementById('resourceResults');
+    const resourceResultList = document.getElementById('resourceResultList');
+
+    const allResources = [
+      { title: 'Brand Voice',           section: 'Jasper IQ', url: 'brand-voice.html',           keywords: 'brand voice tone messaging training pillar jasper iq' },
+      { title: 'Audience',              section: 'Jasper IQ', url: 'audience.html',               keywords: 'audience persona segments target pillar jasper iq' },
+      { title: 'Knowledge Base',        section: 'Jasper IQ', url: 'knowledge-base.html',         keywords: 'knowledge base documents content library pillar jasper iq' },
+      { title: 'Visual Guidelines',     section: 'Jasper IQ', url: 'visual-guidelines.html',      keywords: 'visual guidelines design logo color imagery pillar jasper iq' },
+      { title: 'Style Guide',           section: 'Jasper IQ', url: 'style-guide.html',            keywords: 'style guide writing grammar punctuation pillar jasper iq' },
+      { title: 'Workspace Defaults',    section: 'Jasper IQ', url: 'workspace-defaults.html',     keywords: 'workspace defaults settings language output pillar jasper iq' },
+      { title: 'Agent Library',         section: 'Agents',    url: 'agent-library.html',          keywords: 'agent library browse pre-built agents marketing' },
+      { title: 'Research Agent',        section: 'Agents',    url: 'research-agent.html',         keywords: 'research agent competitive market insights briefs synthesis' },
+      { title: 'Optimization Agent',    section: 'Agents',    url: 'optimization-agent.html',     keywords: 'optimization agent seo semrush keyword clustering brief search' },
+      { title: 'Personalization Agent', section: 'Agents',    url: 'personalization-agent.html',  keywords: 'personalization agent crm outreach abm salesforce contact personalized email lifecycle' },
+      { title: 'Agent Snapshots',       section: 'Agents',    url: 'agent-snapshots.html',        keywords: 'agent snapshots history replay regenerate inputs versions' },
+      { title: 'Jasper Studio',         section: 'Agents',    url: 'jasper-studio.html',          keywords: 'jasper studio build custom agents no code workflow instructions' },
+    ];
 
     input.addEventListener('input', () => {
       const q = input.value.trim().toLowerCase();
-      let visible = 0;
+      let sectionVisible = 0;
 
       tiles.forEach(tile => {
         const text = (
@@ -419,13 +497,38 @@
 
         if (!q || text.includes(q)) {
           tile.classList.remove('hidden');
-          visible++;
+          sectionVisible++;
         } else {
           tile.classList.add('hidden');
         }
       });
 
-      if (q && visible === 0) {
+      // Resource-level deep-link results
+      if (q) {
+        const matches = allResources.filter(r =>
+          (r.title + ' ' + r.keywords).toLowerCase().includes(q)
+        );
+        if (matches.length > 0) {
+          resourceResultList.innerHTML = matches.map(r => `
+            <a class="resource-result" href="${r.url}">
+              <div class="resource-result-left">
+                <span class="resource-result-section">${r.section}</span>
+                <span class="resource-result-title">${r.title}</span>
+              </div>
+              <svg class="resource-result-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="#FA4028" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          `).join('');
+          resourceResults.classList.add('visible');
+        } else {
+          resourceResults.classList.remove('visible');
+        }
+      } else {
+        resourceResults.classList.remove('visible');
+      }
+
+      if (q && sectionVisible === 0 && !resourceResults.classList.contains('visible')) {
         noResultsTerm.textContent = input.value.trim();
         noResults.style.display = 'block';
       } else {
