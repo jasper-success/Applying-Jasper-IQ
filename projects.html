@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jasper Resource Hub</title>
+  <title>Projects — Jasper Resource Hub</title>
   <style>
     @font-face {
       font-family: "Feature Headline";
@@ -44,7 +44,7 @@
 
     /* ── HEADER ── */
     .header {
-      background: #FA4028;
+      background: #00063D;
       padding: 56px 64px 80px;
       position: relative;
       overflow: hidden;
@@ -83,6 +83,20 @@
       color: rgba(255,255,255,0.35);
     }
 
+    .breadcrumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: "ABC ROM Mono", monospace;
+      font-weight: 450;
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      margin-bottom: 28px;
+      transition: color 0.15s;
+    }
+    .breadcrumb:hover { color: #207A00; }
+
     .header-headline {
       font-family: "Feature Headline", sans-serif;
       font-weight: 400;
@@ -92,7 +106,7 @@
       color: #FFFFFF;
     }
 
-    .header-headline span { color: #FFFFFF; }
+    .header-headline span { color: #4CAF50; }
 
     .header-sub {
       font-size: 16px;
@@ -109,37 +123,37 @@
       bottom: -10px;
       width: 320px;
       transform: rotate(-6deg);
-      opacity: 0.55;
+      opacity: 0.45;
       z-index: 0;
     }
 
-    /* ── TOPICS ── */
-    .topics-section {
+    /* ── RESOURCES ── */
+    .resources-section {
       background: #F9F9F9;
       padding: 64px;
     }
 
-    .topics-inner {
+    .resources-inner {
       max-width: 960px;
       margin: 0 auto;
     }
 
-    .topics-eyebrow {
+    .section-eyebrow {
       font-family: "ABC ROM Mono", monospace;
       font-weight: 450;
       font-size: 12px;
       color: #9B9B9B;
-      margin-bottom: 32px;
+      margin-bottom: 24px;
     }
 
-    .topic-grid {
+    /* ── CARD GRID ── */
+    .agent-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
     }
 
-    /* ── TOPIC TILE ── */
-    .topic-tile {
+    .agent-card {
       background: #FFFFFF;
       display: flex;
       flex-direction: column;
@@ -147,166 +161,57 @@
       color: inherit;
       transition: transform 0.18s;
     }
+    .agent-card:hover { transform: translateY(-4px); }
 
-    .topic-tile:hover { transform: translateY(-4px); }
-
-    .tile-panel {
-      height: 220px;
+    .agent-panel {
+      height: 180px;
+      background: #207A00;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       position: relative;
-      overflow: hidden;
     }
 
-    .tile-panel svg {
-      position: absolute;
-      inset: 0;
+    .agent-band {
+      height: 4px;
       width: 100%;
-      height: 100%;
+      background: #207A00;
     }
 
-    .tile-accent { height: 4px; width: 100%; }
-
-    .tile-body {
-      padding: 32px;
+    .agent-body {
+      padding: 28px;
       flex: 1;
       display: flex;
       flex-direction: column;
     }
 
-    .tile-count {
-      font-family: "ABC ROM Mono", monospace;
-      font-weight: 450;
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      margin-bottom: 12px;
-    }
-
-    .tile-title {
+    .agent-title {
       font-family: "Feature Headline", sans-serif;
       font-weight: 400;
-      font-size: 48px;
+      font-size: 36px;
       line-height: 0.96;
-      letter-spacing: -1.5px;
+      letter-spacing: -1px;
       color: #00063D;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
     }
 
-    .tile-desc {
-      font-size: 14px;
+    .agent-desc {
+      font-size: 13px;
       font-weight: 450;
       line-height: 1.6;
       color: #5E5D5F;
       flex: 1;
-      margin-bottom: 28px;
+      margin-bottom: 20px;
     }
 
-    .tile-cta {
+    .agent-cta {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       font-family: "ABC ROM", sans-serif;
       font-weight: 700;
-      font-size: 12px;
-      color: #00063D;
-    }
-
-    /* ── SEARCH ── */
-    .search-wrap {
-      position: relative;
-    }
-
-    .search-input {
-      font-family: "ABC ROM Mono", monospace;
-      font-weight: 450;
-      font-size: 12px;
-      color: rgba(255,255,255,0.8);
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.18);
-      padding: 8px 36px 8px 14px;
-      width: 220px;
-      outline: none;
-      transition: border-color 0.15s, background 0.15s, width 0.2s;
-    }
-    .search-input::placeholder { color: rgba(255,255,255,0.35); }
-    .search-input:focus {
-      border-color: rgba(255,255,255,0.5);
-      background: rgba(255,255,255,0.12);
-      width: 260px;
-    }
-
-    .search-icon {
-      position: absolute;
-      right: 11px;
-      top: 50%;
-      transform: translateY(-50%);
-      pointer-events: none;
-      opacity: 0.4;
-    }
-
-    /* ── NO RESULTS ── */
-    .no-results {
-      display: none;
-      grid-column: 1 / -1;
-      padding: 48px 0;
-      text-align: center;
-      font-family: "ABC ROM Mono", monospace;
-      font-size: 13px;
-      color: #9B9B9B;
-    }
-
-    .topic-tile.hidden { display: none; }
-
-    /* ── RESOURCE RESULTS (search deep-links) ── */
-    .resource-results {
-      display: none;
-      margin-bottom: 32px;
-    }
-    .resource-results.visible { display: block; }
-    .resource-results-label {
-      font-family: "ABC ROM Mono", monospace;
-      font-weight: 450;
       font-size: 11px;
-      color: #9B9B9B;
-      margin-bottom: 12px;
-    }
-    .resource-result-list {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .resource-result {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 20px;
-      background: #FFFFFF;
-      text-decoration: none;
-      color: inherit;
-      transition: background 0.15s;
-    }
-    .resource-result:hover { background: #F2F2F3; }
-    .resource-result-left {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .resource-result-section {
-      font-family: "ABC ROM Mono", monospace;
-      font-size: 10px;
-      font-weight: 450;
-      color: #9B9B9B;
-      background: #F2F2F3;
-      padding: 3px 8px;
-      white-space: nowrap;
-    }
-    .resource-result-title {
-      font-family: "ABC ROM", sans-serif;
-      font-weight: 700;
-      font-size: 14px;
-      color: #00063D;
-    }
-    .resource-result-arrow {
-      color: #FA4028;
-      flex-shrink: 0;
+      color: #207A00;
     }
 
     /* ── FOOTER ── */
@@ -338,9 +243,9 @@
     <div class="header-tape">
       <svg width="559" height="200" viewBox="0 0 559 200" fill="none">
         <rect width="559" height="200" fill="#00063D"/>
-        <rect x="10" y="10" width="539" height="36" fill="#FFFFFF"/>
-        <rect x="10" y="82" width="539" height="36" fill="#FFFFFF"/>
-        <rect x="10" y="154" width="539" height="36" fill="#FFFFFF"/>
+        <rect x="10" y="10" width="539" height="36" fill="#207A00"/>
+        <rect x="10" y="82" width="539" height="36" fill="#207A00"/>
+        <rect x="10" y="154" width="539" height="36" fill="#207A00"/>
       </svg>
     </div>
 
@@ -361,110 +266,101 @@
             </defs>
           </svg>
         </a>
-        <div class="search-wrap">
-          <input class="search-input" id="hubSearch" type="search" placeholder="Search resources…" autocomplete="off" spellcheck="false">
-          <svg class="search-icon" width="15" height="15" viewBox="0 0 16 16" fill="none">
-            <circle cx="6.5" cy="6.5" r="4.5" stroke="white" stroke-width="1.5"/>
-            <path d="M10 10 L14 14" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-          </svg>
-        </div>
+        <div class="header-eyebrow">jasper.ai</div>
       </div>
 
-      <div class="header-headline"><span>Jasper</span><br>Resource Hub</div>
-      <p class="header-sub">A curated library of Jasper guides and one-sheeters to help your team hit the ground running.</p>
+      <a class="breadcrumb" href="hub.html">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Jasper Resource Hub
+      </a>
+
+      <div class="header-headline"><span>Projects</span></div>
+      <p class="header-sub">Create with Canvas, organize with Grid, and manage everything in one place — your end-to-end workspace for content planning and production.</p>
     </div>
   </div>
 
-  <!-- ── TOPICS ── -->
-  <div class="topics-section">
-    <div class="topics-inner">
-      <!-- Direct resource results — shown only when searching -->
-      <div class="resource-results" id="resourceResults">
-        <div class="resource-results-label">Direct results</div>
-        <div class="resource-result-list" id="resourceResultList"></div>
+  <!-- ── RESOURCES ── -->
+  <div class="resources-section">
+    <div class="resources-inner">
+
+      <div class="section-eyebrow">3 resources</div>
+      <div class="agent-grid">
+
+        <!-- Canvas -->
+        <a class="agent-card" href="canvas.html">
+          <div class="agent-panel">
+            <svg width="72" height="72" viewBox="0 0 100 100" fill="none">
+              <rect x="16" y="16" width="68" height="68" rx="3" stroke="white" stroke-width="4"/>
+              <rect x="26" y="26" width="48" height="48" rx="2" fill="white" opacity="0.15"/>
+              <line x1="26" y1="44" x2="74" y2="44" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+              <line x1="26" y1="56" x2="74" y2="56" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+              <line x1="44" y1="26" x2="44" y2="74" stroke="white" stroke-width="2.5" stroke-linecap="round" opacity="0.6"/>
+              <circle cx="16" cy="16" r="5" fill="#4CAF50"/>
+              <circle cx="84" cy="16" r="5" fill="#4CAF50"/>
+              <circle cx="16" cy="84" r="5" fill="#4CAF50"/>
+              <circle cx="84" cy="84" r="5" fill="#4CAF50"/>
+            </svg>
+          </div>
+          <div class="agent-band"></div>
+          <div class="agent-body">
+            <div class="agent-title">Canvas</div>
+            <p class="agent-desc">Jasper's flexible document editor for long-form content — draft, revise, and publish with AI built directly into your writing workflow.</p>
+            <div class="agent-cta">
+              Open guide
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#207A00" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- Grid -->
+        <a class="agent-card" href="grid.html">
+          <div class="agent-panel">
+            <svg width="72" height="72" viewBox="0 0 100 100" fill="none">
+              <rect x="14" y="14" width="72" height="72" rx="3" stroke="white" stroke-width="4"/>
+              <line x1="14" y1="38" x2="86" y2="38" stroke="white" stroke-width="3" stroke-linecap="round"/>
+              <line x1="42" y1="38" x2="42" y2="86" stroke="white" stroke-width="3" stroke-linecap="round"/>
+              <line x1="66" y1="38" x2="66" y2="86" stroke="white" stroke-width="3" stroke-linecap="round"/>
+              <rect x="20" y="20" width="58" height="12" rx="1" fill="white" opacity="0.2"/>
+              <rect x="48" y="46" width="12" height="8" rx="1" fill="#4CAF50"/>
+              <rect x="72" y="58" width="8" height="8" rx="1" fill="#4CAF50" opacity="0.7"/>
+            </svg>
+          </div>
+          <div class="agent-band"></div>
+          <div class="agent-body">
+            <div class="agent-title">Grid</div>
+            <p class="agent-desc">A structured spreadsheet view for planning, organizing, and generating content at scale — rows, columns, and AI working together.</p>
+            <div class="agent-cta">
+              Open guide
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#207A00" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+        </a>
+
+        <!-- Managing Your Projects -->
+        <a class="agent-card" href="managing-your-projects.html">
+          <div class="agent-panel">
+            <svg width="72" height="72" viewBox="0 0 100 100" fill="none">
+              <rect x="18" y="28" width="50" height="58" rx="3" stroke="white" stroke-width="4"/>
+              <line x1="30" y1="44" x2="56" y2="44" stroke="white" stroke-width="3" stroke-linecap="round"/>
+              <line x1="30" y1="54" x2="56" y2="54" stroke="white" stroke-width="3" stroke-linecap="round"/>
+              <line x1="30" y1="64" x2="46" y2="64" stroke="white" stroke-width="3" stroke-linecap="round"/>
+              <path d="M30 18 L38 18 L38 28" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="72" cy="68" r="14" fill="#4CAF50"/>
+              <path d="M72 62 L72 74 M66 68 L78 68" stroke="white" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="agent-band"></div>
+          <div class="agent-body">
+            <div class="agent-title">Managing Your Projects</div>
+            <p class="agent-desc">Sharing, restoring, organizing, and controlling access — everything you need to keep your projects running smoothly for your whole team.</p>
+            <div class="agent-cta">
+              Open guide
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#207A00" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+        </a>
+
       </div>
-
-      <div class="topics-eyebrow" id="browseLabel">Browse by topic</div>
-      <div class="topic-grid">
-
-        <!-- Jasper IQ -->
-        <a class="topic-tile" href="jasper-iq.html"
-           data-keywords="jasper iq brand voice audience knowledge base visual guidelines style guide workspace defaults pillars training brand intelligence"
-        >
-          <div class="tile-panel" style="background: #FFF133;">
-            <svg viewBox="0 0 460 220" fill="none">
-              <circle cx="170" cy="140" r="70" fill="#00063D"/>
-              <circle cx="255" cy="88" r="55" fill="#391E7E" opacity="0.9"/>
-              <circle cx="328" cy="142" r="44" fill="#0011A7" opacity="0.85"/>
-            </svg>
-          </div>
-          <div class="tile-accent" style="background: #FFF133;"></div>
-          <div class="tile-body">
-            <div class="tile-count" style="color: #00063D;">6 resources</div>
-            <div class="tile-title">Jasper IQ</div>
-            <p class="tile-desc">Train Jasper on your brand — Brand Voice, Audience, Knowledge Base, Visual Guidelines, Style Guide, and Workspace Defaults. The five pillars that make every output smarter.</p>
-            <div class="tile-cta">
-              Explore resources
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#00063D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-          </div>
-        </a>
-
-        <!-- Agents -->
-        <a class="topic-tile" href="agents.html"
-           data-keywords="agents agent library research agent optimization agent personalization agent agent snapshots jasper studio automation workflows marketing applications crm outreach seo semrush"
-        >
-          <div class="tile-panel" style="background: #00063D;">
-            <svg viewBox="0 0 460 220" fill="none">
-              <g transform="rotate(-14 230 110)">
-                <rect x="90" y="30" width="82" height="160" fill="#FA4028"/>
-                <rect x="184" y="30" width="72" height="160" fill="#FF66CC"/>
-                <rect x="268" y="30" width="72" height="160" fill="#FFF133"/>
-              </g>
-            </svg>
-          </div>
-          <div class="tile-accent" style="background: #00063D;"></div>
-          <div class="tile-body">
-            <div class="tile-count" style="color: #00063D;">6 resources</div>
-            <div class="tile-title">Agents</div>
-            <p class="tile-desc">Purpose-built AI applications for marketing workflows — Research, Optimization, Personalization, Agent Library, Agent Snapshots, and Jasper Studio. Built by Jasper's team, ready to deploy.</p>
-            <div class="tile-cta">
-              Explore resources
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#00063D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-          </div>
-        </a>
-
-        <!-- Projects -->
-        <a class="topic-tile" href="projects.html"
-           data-keywords="projects canvas grid managing your projects document editor content planning sharing restoring workspace"
-        >
-          <div class="tile-panel" style="background: #207A00;">
-            <svg viewBox="0 0 460 220" fill="none">
-              <rect x="60" y="44" width="140" height="112" rx="3" fill="white" opacity="0.15" transform="rotate(-6 60 44)"/>
-              <rect x="100" y="36" width="148" height="116" rx="3" fill="white" opacity="0.9"/>
-              <line x1="100" y1="72" x2="248" y2="72" stroke="#207A00" stroke-width="2.5"/>
-              <line x1="100" y1="100" x2="248" y2="100" stroke="#207A00" stroke-width="2.5"/>
-              <line x1="148" y1="36" x2="148" y2="152" stroke="#207A00" stroke-width="2.5"/>
-              <line x1="200" y1="36" x2="200" y2="152" stroke="#207A00" stroke-width="2.5"/>
-              <rect x="270" y="52" width="110" height="86" rx="3" fill="white" opacity="0.2" transform="rotate(5 270 52)"/>
-            </svg>
-          </div>
-          <div class="tile-accent" style="background: #207A00;"></div>
-          <div class="tile-body">
-            <div class="tile-count" style="color: #207A00;">3 resources</div>
-            <div class="tile-title">Projects</div>
-            <p class="tile-desc">Your creative workspace in Jasper — draft long-form content in Canvas, organize at scale with Grid, and manage everything your team creates in one place.</p>
-            <div class="tile-cta">
-              Explore resources
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#207A00" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </div>
-          </div>
-        </a>
-
-        <div class="no-results" id="noResults">No resources match "<span id="noResultsTerm"></span>"</div>
-      </div>
-
     </div>
   </div>
 
@@ -484,87 +380,9 @@
           <clipPath id="wm2"><rect width="480.651" height="174.782" fill="white"/></clipPath>
         </defs>
       </svg>
-      <span class="footer-note">Jasper Resource Hub</span>
+      <span class="footer-note">Projects — Jasper Resource Hub</span>
     </div>
   </div>
 
-  <script>
-    const input = document.getElementById('hubSearch');
-    const tiles = document.querySelectorAll('.topic-tile');
-    const noResults = document.getElementById('noResults');
-    const noResultsTerm = document.getElementById('noResultsTerm');
-    const resourceResults = document.getElementById('resourceResults');
-    const resourceResultList = document.getElementById('resourceResultList');
-
-    const allResources = [
-      { title: 'Brand Voice',           section: 'Jasper IQ', url: 'brand-voice.html',           keywords: 'brand voice tone messaging training pillar jasper iq' },
-      { title: 'Audience',              section: 'Jasper IQ', url: 'audience.html',               keywords: 'audience persona segments target pillar jasper iq' },
-      { title: 'Knowledge Base',        section: 'Jasper IQ', url: 'knowledge-base.html',         keywords: 'knowledge base documents content library pillar jasper iq' },
-      { title: 'Visual Guidelines',     section: 'Jasper IQ', url: 'visual-guidelines.html',      keywords: 'visual guidelines design logo color imagery pillar jasper iq' },
-      { title: 'Style Guide',           section: 'Jasper IQ', url: 'style-guide.html',            keywords: 'style guide writing grammar punctuation pillar jasper iq' },
-      { title: 'Workspace Defaults',    section: 'Jasper IQ', url: 'workspace-defaults.html',     keywords: 'workspace defaults settings language output pillar jasper iq' },
-      { title: 'Agent Library',         section: 'Agents',    url: 'agent-library.html',          keywords: 'agent library browse pre-built agents marketing' },
-      { title: 'Research Agent',        section: 'Agents',    url: 'research-agent.html',         keywords: 'research agent competitive market insights briefs synthesis' },
-      { title: 'Optimization Agent',    section: 'Agents',    url: 'optimization-agent.html',     keywords: 'optimization agent seo semrush keyword clustering brief search' },
-      { title: 'Personalization Agent', section: 'Agents',    url: 'personalization-agent.html',  keywords: 'personalization agent crm outreach abm salesforce contact personalized email lifecycle' },
-      { title: 'Agent Snapshots',       section: 'Agents',    url: 'agent-snapshots.html',        keywords: 'agent snapshots history replay regenerate inputs versions' },
-      { title: 'Jasper Studio',         section: 'Agents',    url: 'jasper-studio.html',          keywords: 'jasper studio build custom agents no code workflow instructions' },
-      { title: 'Canvas',                section: 'Projects',  url: 'canvas.html',                 keywords: 'canvas document editor long-form writing draft revise publish projects' },
-      { title: 'Grid',                  section: 'Projects',  url: 'grid.html',                   keywords: 'grid spreadsheet table rows columns content planning scale projects' },
-      { title: 'Managing Your Projects', section: 'Projects', url: 'managing-your-projects.html', keywords: 'managing projects sharing restoring access permissions organize workspace' },
-    ];
-
-    input.addEventListener('input', () => {
-      const q = input.value.trim().toLowerCase();
-      let sectionVisible = 0;
-
-      tiles.forEach(tile => {
-        const text = (
-          tile.dataset.keywords + ' ' +
-          tile.querySelector('.tile-title').textContent + ' ' +
-          tile.querySelector('.tile-desc').textContent
-        ).toLowerCase();
-
-        if (!q || text.includes(q)) {
-          tile.classList.remove('hidden');
-          sectionVisible++;
-        } else {
-          tile.classList.add('hidden');
-        }
-      });
-
-      // Resource-level deep-link results
-      if (q) {
-        const matches = allResources.filter(r =>
-          (r.title + ' ' + r.keywords).toLowerCase().includes(q)
-        );
-        if (matches.length > 0) {
-          resourceResultList.innerHTML = matches.map(r => `
-            <a class="resource-result" href="${r.url}">
-              <div class="resource-result-left">
-                <span class="resource-result-section">${r.section}</span>
-                <span class="resource-result-title">${r.title}</span>
-              </div>
-              <svg class="resource-result-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M3 8h10M9 4l4 4-4 4" stroke="#FA4028" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          `).join('');
-          resourceResults.classList.add('visible');
-        } else {
-          resourceResults.classList.remove('visible');
-        }
-      } else {
-        resourceResults.classList.remove('visible');
-      }
-
-      if (q && sectionVisible === 0 && !resourceResults.classList.contains('visible')) {
-        noResultsTerm.textContent = input.value.trim();
-        noResults.style.display = 'block';
-      } else {
-        noResults.style.display = 'none';
-      }
-    });
-  </script>
 </body>
 </html>

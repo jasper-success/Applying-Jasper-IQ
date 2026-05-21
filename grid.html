@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grid — Jasper Resource Hub</title>
+  <style>
+    @font-face { font-family: "Feature Headline"; src: url("assets/fonts/FeatureHeadline-Upright-VF_wght_wdth_opsz.ttf") format("truetype"); font-weight: 100 900; font-stretch: 50% 200%; }
+    @font-face { font-family: "ABC ROM"; src: url("assets/fonts/ABCROM-Regular.otf") format("opentype"); font-weight: 400; }
+    @font-face { font-family: "ABC ROM"; src: url("assets/fonts/ABCROM-Book.otf") format("opentype"); font-weight: 450; }
+    @font-face { font-family: "ABC ROM"; src: url("assets/fonts/ABCROM-Bold.otf") format("opentype"); font-weight: 700; }
+    @font-face { font-family: "ABC ROM Mono"; src: url("assets/fonts/ABCROMMono-Book.otf") format("opentype"); font-weight: 450; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #F9F9F9; font-family: "ABC ROM", sans-serif; font-weight: 400; color: #262627; min-height: 100vh; }
+    .header { background: #00063D; padding: 56px 64px 80px; position: relative; overflow: hidden; }
+    .header::after { content: ""; position: absolute; inset: 0; background: url("assets/textures/grain-fine.png") repeat; mix-blend-mode: overlay; opacity: 0.18; pointer-events: none; }
+    .header-inner { max-width: 960px; margin: 0 auto; position: relative; z-index: 1; }
+    .header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 72px; }
+    .header-top-right { display: flex; align-items: center; gap: 16px; }
+    .logo { line-height: 0; text-decoration: none; }
+    .header-eyebrow { font-family: "ABC ROM Mono", monospace; font-weight: 450; font-size: 12px; color: rgba(255,255,255,0.35); }
+    .download-btn { font-family: "ABC ROM Mono", monospace; font-weight: 450; font-size: 11px; color: rgba(255,255,255,0.65); border: 1px solid rgba(255,255,255,0.25); padding: 6px 14px; cursor: pointer; background: transparent; letter-spacing: 0.04em; transition: color 0.15s, border-color 0.15s; }
+    .download-btn:hover { color: #FFFFFF; border-color: rgba(255,255,255,0.65); }
+    .breadcrumb { display: inline-flex; align-items: center; gap: 6px; font-family: "ABC ROM Mono", monospace; font-weight: 450; font-size: 12px; color: rgba(255,255,255,0.45); text-decoration: none; margin-bottom: 28px; transition: color 0.15s; }
+    .breadcrumb:hover { color: #207A00; }
+    .header-headline { font-family: "Feature Headline", sans-serif; font-weight: 400; font-size: 88px; line-height: 0.94; letter-spacing: -2.5px; color: #FFFFFF; }
+    .header-headline span { color: #4CAF50; }
+    .header-sub { font-size: 16px; font-weight: 450; line-height: 1.55; color: rgba(255,255,255,0.55); max-width: 520px; margin-top: 24px; }
+    .header-tape { position: absolute; right: -20px; bottom: -10px; width: 320px; transform: rotate(-6deg); opacity: 0.45; z-index: 0; }
+    .coming-soon-section { background: #F9F9F9; padding: 96px 64px; }
+    .coming-soon-inner { max-width: 960px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 20px; }
+    .coming-soon-label { font-family: "ABC ROM Mono", monospace; font-size: 11px; font-weight: 450; color: #9B9B9B; }
+    .coming-soon-heading { font-family: "Feature Headline", sans-serif; font-weight: 400; font-size: 48px; letter-spacing: -1px; line-height: 0.96; color: #00063D; }
+    .coming-soon-body { font-size: 15px; font-weight: 450; line-height: 1.6; color: #5E5D5F; max-width: 440px; }
+    .nav-section { background: #00063D; padding: 40px 64px; }
+    .nav-inner { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; }
+    .nav-link { display: flex; flex-direction: column; gap: 6px; padding: 24px 28px; background: rgba(255,255,255,0.04); text-decoration: none; transition: background 0.15s; }
+    .nav-link:hover { background: rgba(255,255,255,0.08); }
+    .nav-link-label { font-family: "ABC ROM Mono", monospace; font-size: 10px; font-weight: 450; color: rgba(255,255,255,0.3); }
+    .nav-link-title { font-family: "ABC ROM", sans-serif; font-weight: 700; font-size: 13px; color: rgba(255,255,255,0.75); }
+    .footer { background: #00063D; padding: 28px 64px; border-top: 1px solid rgba(255,255,255,0.06); }
+    .footer-inner { max-width: 960px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+    .footer-note { font-family: "ABC ROM Mono", monospace; font-size: 11px; color: rgba(255,255,255,0.35); }
+    @media print { .download-btn, .nav-section { display: none !important; } * { -webkit-print-color-adjust: exact; print-color-adjust: exact; } .header { overflow: visible; } .header-tape { display: none; } }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-tape">
+      <svg width="559" height="200" viewBox="0 0 559 200" fill="none">
+        <rect width="559" height="200" fill="#00063D"/>
+        <rect x="10" y="10" width="539" height="36" fill="#207A00"/>
+        <rect x="10" y="82" width="539" height="36" fill="#207A00"/>
+        <rect x="10" y="154" width="539" height="36" fill="#207A00"/>
+      </svg>
+    </div>
+    <div class="header-inner">
+      <div class="header-top">
+        <a class="logo" href="hub.html">
+          <svg height="26" viewBox="0 0 481 175" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#wm)"><path d="M46.3276 136.7C46.3276 146.161 45.0562 153.675 42.5135 159.244C39.9707 164.812 36.5907 168.794 32.3735 171.189C28.1562 173.584 23.6909 174.782 18.9776 174.782C15.1324 174.782 11.7835 174.183 8.93062 172.986C6.07778 171.788 3.87614 170.142 2.32568 168.046C0.775227 165.95 0 163.525 0 160.771C0 158.016 0.806236 156.01 2.41871 154.394C4.03118 152.777 6.26383 151.969 9.11667 151.969C11.4734 151.969 13.3649 152.538 14.7913 153.675C16.2178 154.813 17.4891 156.699 18.6054 159.334C19.9698 161.729 21.0862 163.435 21.9544 164.453C22.8227 165.471 23.877 165.98 25.1174 165.98C26.9779 165.98 28.3733 165.291 29.3036 163.914C30.2339 162.537 30.699 160.711 30.699 158.436C30.699 156.04 30.2959 153.735 29.4896 151.52C28.6834 149.304 27.6601 146.759 26.4197 143.885C25.1794 141.011 24.1561 137.598 23.3498 133.646C22.5436 129.694 22.1405 124.904 22.1405 119.276V66.4639C22.1405 62.3922 21.9544 59.3684 21.5823 57.3925C21.2102 55.4165 20.342 54.2489 18.9776 53.8896C17.6132 53.5304 15.3805 53.8297 12.2796 54.7878V49.5785L46.3276 35.7468V136.7ZM44.281 23.2624C46.7617 20.6876 48.0021 17.4842 48.0021 13.652C48.0021 9.81989 46.7617 6.58651 44.281 3.95191C41.8002 1.3173 38.4513 0 34.234 0C30.0168 0 26.5748 1.3173 23.908 3.95191C21.2412 6.58651 19.9078 9.81989 19.9078 13.652C19.9078 17.4842 21.2412 20.6876 23.908 23.2624C26.5748 25.8371 30.0168 27.1244 34.234 27.1244C38.4513 27.1244 41.8002 25.8371 44.281 23.2624Z" fill="white"/><path d="M198.479 118.468C198.479 116.313 198.045 114.277 197.176 112.361C196.308 110.445 194.82 108.499 192.711 106.523C190.602 104.547 187.688 102.541 183.966 100.505L169.454 91.8829C163.997 88.5298 159.531 84.5779 156.058 80.0272C152.585 75.4765 150.849 69.8481 150.849 63.1418C150.849 57.7528 152.182 53.0824 154.849 49.1305C157.516 45.1786 161.144 42.1548 165.733 40.0591C170.322 37.9634 175.532 36.9155 181.362 36.9155C185.331 36.9155 188.618 37.3347 191.223 38.173C193.827 39.0112 196.029 39.8495 197.828 40.6878C199.626 41.5261 201.021 41.9452 202.014 41.9452C203.13 41.9452 203.967 41.6159 204.525 40.9573C205.084 40.2986 205.425 39.4304 205.549 38.3526H212.433V66.1956H204.805C204.06 62.0041 202.634 58.3516 200.525 55.238C198.417 52.1244 195.688 49.7592 192.339 48.1425C188.99 46.5258 185.083 45.7175 180.617 45.7175C177.517 45.7175 174.943 46.5857 172.896 48.3222C170.85 50.0586 169.826 52.4836 169.826 55.5973C169.826 59.1899 170.943 62.1538 173.175 64.4891C175.408 66.8243 178.881 69.4289 183.594 72.303L198.107 80.9254C202.324 83.3205 206.014 86.0449 209.177 89.0986C212.34 92.1524 214.789 95.5055 216.526 99.158C218.263 102.811 219.131 106.852 219.131 111.283C219.131 116.313 217.766 120.983 215.038 125.295C212.309 129.606 208.371 133.049 203.223 135.623C198.076 138.198 191.967 139.485 184.897 139.485C180.307 139.485 176.369 138.947 173.082 137.869C169.795 136.791 167.16 135.683 165.175 134.546C163.19 133.408 161.702 132.839 160.71 132.839C159.221 132.839 158.198 133.468 157.64 134.725C157.082 135.983 156.74 137.15 156.616 138.228H149.732V105.355H157.361C157.733 110.625 159.19 115.115 161.733 118.828C164.276 122.54 167.439 125.444 171.222 127.54C175.005 129.636 179.129 130.683 183.594 130.683C188.432 130.683 192.122 129.695 194.665 127.72C197.207 125.744 198.479 122.66 198.479 118.468Z" fill="white"/></g><defs><clipPath id="wm"><rect width="480.651" height="174.782" fill="white"/></clipPath></defs></svg>
+        </a>
+        <div class="header-top-right">
+          <div class="header-eyebrow">Projects</div>
+          <button class="download-btn" onclick="window.print()">&#8595; Download PDF</button>
+        </div>
+      </div>
+      <a class="breadcrumb" href="projects.html">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Projects
+      </a>
+      <div class="header-headline"><span>Grid</span></div>
+      <p class="header-sub">Content coming soon — drop the KB article below and this page will be built out.</p>
+    </div>
+  </div>
+
+  <div class="coming-soon-section">
+    <div class="coming-soon-inner">
+      <div class="coming-soon-label">In progress</div>
+      <div class="coming-soon-heading">Content coming soon</div>
+      <p class="coming-soon-body">This one-sheeter is ready to be filled in. Share the help article or knowledge base content and it'll be built out to match the rest of the hub.</p>
+    </div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-inner">
+      <a class="nav-link" href="projects.html">
+        <span class="nav-link-label">← Back to</span>
+        <span class="nav-link-title">Projects</span>
+      </a>
+      <a class="nav-link" href="canvas.html">
+        <span class="nav-link-label">Also in Projects</span>
+        <span class="nav-link-title">Canvas</span>
+      </a>
+      <a class="nav-link" href="managing-your-projects.html">
+        <span class="nav-link-label">Also in Projects</span>
+        <span class="nav-link-title">Managing Your Projects</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-inner">
+      <svg height="20" viewBox="0 0 481 175" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#wm2)"><path d="M46.3276 136.7C46.3276 146.161 45.0562 153.675 42.5135 159.244C39.9707 164.812 36.5907 168.794 32.3735 171.189C28.1562 173.584 23.6909 174.782 18.9776 174.782C15.1324 174.782 11.7835 174.183 8.93062 172.986C6.07778 171.788 3.87614 170.142 2.32568 168.046C0.775227 165.95 0 163.525 0 160.771C0 158.016 0.806236 156.01 2.41871 154.394C4.03118 152.777 6.26383 151.969 9.11667 151.969C11.4734 151.969 13.3649 152.538 14.7913 153.675C16.2178 154.813 17.4891 156.699 18.6054 159.334C19.9698 161.729 21.0862 163.435 21.9544 164.453C22.8227 165.471 23.877 165.98 25.1174 165.98C26.9779 165.98 28.3733 165.291 29.3036 163.914C30.2339 162.537 30.699 160.711 30.699 158.436C30.699 156.04 30.2959 153.735 29.4896 151.52C28.6834 149.304 27.6601 146.759 26.4197 143.885C25.1794 141.011 24.1561 137.598 23.3498 133.646C22.5436 129.694 22.1405 124.904 22.1405 119.276V66.4639C22.1405 62.3922 21.9544 59.3684 21.5823 57.3925C21.2102 55.4165 20.342 54.2489 18.9776 53.8896C17.6132 53.5304 15.3805 53.8297 12.2796 54.7878V49.5785L46.3276 35.7468V136.7Z" fill="white"/></g><defs><clipPath id="wm2"><rect width="480.651" height="174.782" fill="white"/></clipPath></defs></svg>
+      <span class="footer-note">Projects — Grid</span>
+    </div>
+  </div>
+
+</body>
+</html>
