@@ -122,7 +122,7 @@
     /* ── INTRO ── */
     .intro {
       display: grid;
-      grid-template-columns: 1fr 320px;
+      grid-template-columns: 1fr 360px;
       gap: 0;
       position: relative;
       overflow: hidden;
@@ -135,15 +135,44 @@
     }
 
     .intro-photo {
+      background: #00063D;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 16 / 9;
+      gap: 14px;
+      padding: 28px 24px;
       position: relative;
       overflow: hidden;
     }
 
-    .intro-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
+    .intro-video-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.07);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .intro-video-eyebrow {
+      font-family: "ABC ROM Mono", monospace;
+      font-size: 10px;
+      font-weight: 450;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.08em;
+    }
+
+    .intro-video-title {
+      font-family: "ABC ROM", sans-serif;
+      font-size: 13px;
+      font-weight: 450;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      line-height: 1.4;
     }
 
     .section-eyebrow {
@@ -556,19 +585,15 @@
       <div class="intro-headline">Your company's expertise, built into every output.</div>
       <p class="intro-body">Knowledge Base is a Jasper IQ pillar that feeds Jasper your company's actual information — products, messaging, FAQs, case studies, competitive context. Instead of generating plausible-sounding content, Jasper generates accurate content, grounded in what you know and how you talk about it.</p>
     </div>
-    <div class="intro-photo" style="background:#0011A7;display:flex;align-items:center;justify-content:center;">
-      <svg width="96" height="96" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M50 24 L13 33 L13 76 L50 68 Z" fill="white"/>
-        <path d="M50 24 L87 33 L87 76 L50 68 Z" fill="white"/>
-        <path d="M13 76 Q50 85 87 76" stroke="white" stroke-width="4" fill="none" stroke-linecap="round"/>
-        <line x1="21" y1="43" x2="43" y2="39" stroke="#0011A7" stroke-width="2.5" stroke-linecap="round" opacity="0.4"/>
-        <line x1="21" y1="51" x2="43" y2="47" stroke="#0011A7" stroke-width="2.5" stroke-linecap="round" opacity="0.4"/>
-        <line x1="21" y1="59" x2="43" y2="55" stroke="#0011A7" stroke-width="2.5" stroke-linecap="round" opacity="0.4"/>
-        <line x1="57" y1="39" x2="79" y2="43" stroke="#0011A7" stroke-width="2.5" stroke-linecap="round" opacity="0.4"/>
-        <line x1="57" y1="47" x2="79" y2="51" stroke="#0011A7" stroke-width="2.5" stroke-linecap="round" opacity="0.4"/>
-        <line x1="57" y1="55" x2="79" y2="59" stroke="#0011A7" stroke-width="2.5" stroke-linecap="round" opacity="0.4"/>
-      </svg>
-    </div>
+      <div class="intro-photo">
+        <div class="intro-video-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M9 6.5l9 5.5-9 5.5V6.5z" fill="rgba(255,255,255,0.6)"/>
+          </svg>
+        </div>
+        <div class="intro-video-eyebrow">Watch walkthrough</div>
+        <div class="intro-video-title">Video coming soon</div>
+      </div>
   </div>
 
   <!-- ── DOT DIVIDER ── -->

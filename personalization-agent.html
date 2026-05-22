@@ -161,9 +161,9 @@
       max-width: 960px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 1fr 320px;
+      grid-template-columns: 1fr 360px;
       gap: 64px;
-      align-items: center;
+      align-items: start;
     }
 
     .intro-label {
@@ -196,11 +196,44 @@
     }
 
     .intro-photo {
-      background: #FA4028;
+      background: #00063D;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 16 / 9;
+      gap: 14px;
+      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .intro-video-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.07);
       display: flex;
       align-items: center;
       justify-content: center;
-      aspect-ratio: 1;
+    }
+
+    .intro-video-eyebrow {
+      font-family: "ABC ROM Mono", monospace;
+      font-size: 10px;
+      font-weight: 450;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 0.08em;
+    }
+
+    .intro-video-title {
+      font-family: "ABC ROM", sans-serif;
+      font-size: 13px;
+      font-weight: 450;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      line-height: 1.4;
     }
 
     /* ── DOT DIVIDER ── */
@@ -482,7 +515,8 @@
 
     .learn-more-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
+      max-width: 480px;
       gap: 20px;
     }
 
@@ -679,17 +713,15 @@
           <p>It queries your CRM in real time, generates structured contact tables in Jasper Canvas, and enables personalized content creation at scale — without switching between platforms or reformatting data. Built to align with your Jasper Brand Voice, Style Guide, and Audiences, every message it generates stays on brand.</p>
         </div>
       </div>
-      <div class="intro-photo">
-        <svg width="96" height="96" viewBox="0 0 100 100" fill="none">
-          <circle cx="50" cy="32" r="14" stroke="white" stroke-width="4"/>
-          <path d="M20 78 C20 60 80 60 80 78" stroke="white" stroke-width="4" stroke-linecap="round" fill="none"/>
-          <circle cx="22" cy="52" r="7" fill="#FA4028"/>
-          <circle cx="78" cy="52" r="7" fill="#FA4028"/>
-          <line x1="29" y1="52" x2="43" y2="52" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-          <line x1="57" y1="52" x2="71" y2="52" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-        </svg>
+        <div class="intro-photo">
+        <div class="intro-video-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M9 6.5l9 5.5-9 5.5V6.5z" fill="rgba(255,255,255,0.6)"/>
+          </svg>
+        </div>
+        <div class="intro-video-eyebrow">Watch walkthrough</div>
+        <div class="intro-video-title">Video coming soon</div>
       </div>
-    </div>
   </div>
 
   <!-- ── DOT DIVIDER ── -->
@@ -876,17 +908,6 @@
           <div class="lm-title">Personalization Agent — Jasper Help Center</div>
           <p class="lm-desc">Full documentation on the Personalization Agent, including Salesforce setup, supported CRM fields, and workflow examples.</p>
           <a class="btn" href="https://help.jasper.ai/hc/en-us/categories/22503428363291-Jasper-Agents" target="_blank">Read the article →</a>
-        </div>
-
-        <div class="lm-card">
-          <div class="lm-eyebrow">Video walkthrough</div>
-          <div class="lm-title">Watch: Personalization Agent in action</div>
-          <div class="loom-placeholder">
-            <div class="loom-icon">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M8 5.14v14l11-7-11-7z" fill="#9B9B9B"/></svg>
-            </div>
-            <p><strong>Video coming soon</strong>A walkthrough of running the Personalization Agent will be linked here.</p>
-          </div>
         </div>
 
       </div>
