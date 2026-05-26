@@ -36,26 +36,20 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: #E8E8E9;
+      background: #FFFFFF;
       font-family: "ABC ROM", sans-serif;
       font-weight: 400;
       color: #262627;
     }
 
-    .page {
-      width: 850px;
-      margin: 48px auto;
-      background: #FFFFFF;
-      overflow: hidden;
-    }
 
     /* ── HEADER ── */
     .header {
       background: #00063D;
-      padding: 44px 56px 60px;
+      padding: 56px 64px 72px;
       position: relative;
       overflow: hidden;
-      min-height: 290px;
+
     }
 
     .header::after {
@@ -66,39 +60,54 @@
       mix-blend-mode: overlay;
       opacity: 0.18;
       pointer-events: none;
-      z-index: 3;
     }
 
     .header-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 44px;
+      margin-bottom: 64px;
       position: relative;
       z-index: 2;
     }
 
     .logo { line-height: 0; text-decoration: none; }
-
-    .header-label {
-      font-family: "Feature Headline", sans-serif;
-      font-variation-settings: "wdth" 75;
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 0.28em;
-      color: #FA4028;
+    .header-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
-    .header-content { position: relative; z-index: 2; }
+    .breadcrumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: "ABC ROM Mono", monospace;
+      font-weight: 450;
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      margin-bottom: 28px;
+      transition: color 0.15s;
+    }
+    .breadcrumb:hover { color: #FFF133; }
 
-    .header h1 {
+    .header-eyebrow {
+      font-family: "ABC ROM Mono", monospace;
+      font-weight: 450;
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+    }
+
+
+.header-headline {
       font-family: "Feature Headline", sans-serif;
       font-weight: 400;
-      font-size: 96px;
-      line-height: 0.96;
-      letter-spacing: -2px;
+      font-size: 88px;
+      line-height: 0.94;
+      letter-spacing: -2.5px;
       color: #FFFFFF;
-      margin-bottom: 22px;
     }
 
     .header-sub {
@@ -119,14 +128,18 @@
       z-index: 1;
     }
 
-    /* ── INTRO ── */
-    .intro {
+/* ── INTRO ── */
+    .intro-section {
+      background: #FFFFFF;
+    }
+
+    .intro-inner {
       display: grid;
       grid-template-columns: 1fr 360px;
+      align-items: start;
       gap: 0;
       position: relative;
       overflow: hidden;
-      background: #FFFFFF;
     }
 
     .intro-text {
@@ -204,14 +217,14 @@
 
     /* ── DOT DIVIDER ── */
     .dot-divider {
-      padding: 0 56px;
+      padding: 0 64px;
       overflow: hidden;
     }
     .dot-divider svg { display: block; width: 100%; height: auto; }
 
     /* ── FEATURES ── */
     .features {
-      padding: 48px 56px 56px;
+      padding: 48px 64px 56px;
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       gap: 36px;
@@ -244,7 +257,7 @@
     /* ── STEPS ── */
     .steps-section {
       background: #F9F9F9;
-      padding: 56px 56px;
+      padding: 64px 64px;
     }
 
     .steps-headline {
@@ -292,7 +305,7 @@
 
     /* ── RESOURCES ── */
     .resources {
-      padding: 56px 56px;
+      padding: 64px 64px;
       background: #FFFFFF;
     }
 
@@ -452,9 +465,7 @@
   </style>
 </head>
 <body>
-<div class="page">
-
-  <!-- ── HEADER ── -->
+<!-- ── HEADER ── -->
   <div class="header">
 
     <!-- Tape: navy background, flame stripes, rotated, bleeding off right -->
@@ -467,7 +478,8 @@
       </svg>
     </div>
 
-    <div class="header-top">
+    <div class="header-inner">
+      <div class="header-top">
       <!-- Jasper wordmark — white, inlined -->
       <a class="logo" href="hub.html">
         <svg height="26" viewBox="0 0 481 175" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -485,19 +497,24 @@
         </svg>
       </a>
               <div class="header-top-right">
-          <div class="header-label">Jasper IQ</div>
+          <div class="header-eyebrow">Jasper IQ</div>
           <button class="download-btn" onclick="window.print()">&#8595; Download PDF</button>
         </div>
     </div>
 
-    <div class="header-content">
-      <h1>Brand<br>Voice</h1>
+      <a class="breadcrumb" href="jasper-iq.html">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Jasper IQ
+      </a>
+
+      <div class="header-headline">Brand<br>Voice</div>
       <p class="header-sub">Define how Jasper writes for your brand — and keep every piece of content unmistakably yours.</p>
     </div>
   </div>
 
   <!-- ── INTRO ── -->
-  <div class="intro">
+  <div class="intro-section">
+    <div class="intro-inner">
     <div class="intro-text">
       <div class="section-eyebrow">What it is</div>
       <div class="intro-headline">Your brand's voice,<br>trained into every output.</div>
@@ -512,6 +529,7 @@
         <div class="intro-video-eyebrow">Watch walkthrough</div>
         <div class="intro-video-title">Video coming soon</div>
       </div>
+    </div>
   </div>
 
   <!-- ── DOT DIVIDER ── -->
@@ -589,7 +607,6 @@
           <p class="step-desc">Set your voice as the workspace default or let writers choose the right profile per project. Jasper will apply it to every output going forward.</p>
         </div>
       </div>
-    </div>
   </div>
 
   <!-- ── RESOURCES ── -->
@@ -639,6 +656,5 @@
     <span class="footer-note">Jasper IQ — Brand Voice</span>
   </div>
 
-</div>
 </body>
 </html>

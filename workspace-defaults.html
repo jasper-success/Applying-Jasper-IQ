@@ -36,26 +36,20 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      background: #E8E8E9;
+      background: #FFFFFF;
       font-family: "ABC ROM", sans-serif;
       font-weight: 400;
       color: #262627;
     }
 
-    .page {
-      width: 850px;
-      margin: 48px auto;
-      background: #FFFFFF;
-      overflow: hidden;
-    }
 
     /* ── HEADER ── */
     .header {
       background: #00063D;
-      padding: 44px 56px 60px;
+      padding: 56px 64px 72px;
       position: relative;
       overflow: hidden;
-      min-height: 290px;
+
     }
 
     .header::after {
@@ -66,39 +60,54 @@
       mix-blend-mode: overlay;
       opacity: 0.18;
       pointer-events: none;
-      z-index: 3;
     }
 
     .header-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 44px;
+      margin-bottom: 64px;
       position: relative;
       z-index: 2;
     }
 
     .logo { line-height: 0; text-decoration: none; }
-
-    .header-label {
-      font-family: "Feature Headline", sans-serif;
-      font-variation-settings: "wdth" 75;
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 0.28em;
-      color: #FFF133;
+    .header-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
-    .header-content { position: relative; z-index: 2; }
+    .breadcrumb {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: "ABC ROM Mono", monospace;
+      font-weight: 450;
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      margin-bottom: 28px;
+      transition: color 0.15s;
+    }
+    .breadcrumb:hover { color: #FFF133; }
 
-    .header h1 {
+    .header-eyebrow {
+      font-family: "ABC ROM Mono", monospace;
+      font-weight: 450;
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+    }
+
+
+.header-headline {
       font-family: "Feature Headline", sans-serif;
       font-weight: 400;
-      font-size: 72px;
-      line-height: 0.96;
-      letter-spacing: -2px;
+      font-size: 88px;
+      line-height: 0.94;
+      letter-spacing: -2.5px;
       color: #FFFFFF;
-      margin-bottom: 22px;
     }
 
     .header-sub {
@@ -119,13 +128,18 @@
       z-index: 1;
     }
 
-    /* ── INTRO ── */
-    .intro {
+/* ── INTRO ── */
+    .intro-section {
+      background: #FFFFFF;
+    }
+
+    .intro-inner {
       display: grid;
       grid-template-columns: 1fr 360px;
+      align-items: start;
       gap: 0;
+      position: relative;
       overflow: hidden;
-      background: #FFFFFF;
     }
 
     .intro-text {
@@ -133,44 +147,10 @@
     }
 
     .intro-photo {
-      background: #00063D;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      aspect-ratio: 16 / 9;
-      gap: 14px;
-      padding: 28px 24px;
       position: relative;
+      aspect-ratio: 16 / 9;
       overflow: hidden;
-    }
-
-    .intro-video-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 50%;
-      border: 2px solid rgba(255,255,255,0.22);
-      background: rgba(255,255,255,0.07);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .intro-video-eyebrow {
-      font-family: "ABC ROM Mono", monospace;
-      font-size: 10px;
-      font-weight: 450;
-      color: rgba(255,255,255,0.35);
-      letter-spacing: 0.08em;
-    }
-
-    .intro-video-title {
-      font-family: "ABC ROM", sans-serif;
-      font-size: 13px;
-      font-weight: 450;
-      color: rgba(255,255,255,0.5);
-      text-align: center;
-      line-height: 1.4;
+      background: #00063D;
     }
 
     .section-eyebrow {
@@ -202,14 +182,14 @@
 
     /* ── DOT DIVIDER ── */
     .dot-divider {
-      padding: 0 56px;
+      padding: 0 64px;
       overflow: hidden;
     }
     .dot-divider svg { display: block; width: 100%; height: auto; }
 
     /* ── FEATURES ── */
     .features {
-      padding: 48px 56px 56px;
+      padding: 48px 64px 56px;
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       gap: 36px;
@@ -242,7 +222,7 @@
     /* ── FIVE DEFAULTS ── */
     .defaults-section {
       background: #FFFDE7;
-      padding: 48px 56px;
+      padding: 48px 64px;
     }
 
     .defaults-headline {
@@ -305,7 +285,7 @@
     /* ── STEPS ── */
     .steps-section {
       background: #F9F9F9;
-      padding: 56px 56px;
+      padding: 64px 64px;
     }
 
     .steps-headline {
@@ -351,42 +331,10 @@
       color: #5E5D5F;
     }
 
-    /* ── VIDEO ── */
-    .video-section {
-      background: #FFFFFF;
-      padding: 56px 56px;
-    }
-
-    .video-headline {
-      font-family: "Feature Headline", sans-serif;
-      font-weight: 400;
-      font-size: 32px;
-      line-height: 0.96;
-      letter-spacing: -1px;
-      color: #00063D;
-      margin-bottom: 28px;
-      margin-top: 12px;
-    }
-
-    .video-container {
-      position: relative;
-      width: 100%;
-      padding-top: 56.25%;
-      background: #000;
-      overflow: hidden;
-    }
-
-    .video-container iframe {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      border: none;
-    }
-
     /* ── CRITERIA ── */
     .criteria-section {
       background: #F9F9F9;
-      padding: 48px 56px;
+      padding: 48px 64px;
     }
 
     .criteria-headline {
@@ -436,7 +384,7 @@
     /* ── PRO TIP ── */
     .pro-tip {
       background: #FFF133;
-      padding: 32px 56px;
+      padding: 32px 64px;
       display: flex;
       gap: 20px;
       align-items: flex-start;
@@ -500,9 +448,7 @@
   </style>
 </head>
 <body>
-<div class="page">
-
-  <!-- ── HEADER ── -->
+<!-- ── HEADER ── -->
   <div class="header">
 
     <!-- Tape: yellow stripes on navy -->
@@ -515,7 +461,8 @@
       </svg>
     </div>
 
-    <div class="header-top">
+    <div class="header-inner">
+      <div class="header-top">
       <a class="logo" href="hub.html">
         <svg height="26" viewBox="0 0 481 175" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g clip-path="url(#wm)">
@@ -532,33 +479,38 @@
         </svg>
       </a>
               <div class="header-top-right">
-          <div class="header-label">Jasper IQ</div>
+          <div class="header-eyebrow">Jasper IQ</div>
           <button class="download-btn" onclick="window.print()">&#8595; Download PDF</button>
         </div>
     </div>
 
-    <div class="header-content">
-      <h1>Set Your Workspace<br>Defaults</h1>
+      <a class="breadcrumb" href="jasper-iq.html">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 12l-4-4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Jasper IQ
+      </a>
+
+      <div class="header-headline">Set Your Workspace<br>Defaults</div>
       <p class="header-sub">Apply everything you've built — once, for your entire team. Every generation, automatically smarter.</p>
     </div>
   </div>
 
   <!-- ── INTRO ── -->
-  <div class="intro">
+  <div class="intro-section">
+    <div class="intro-inner">
     <div class="intro-text">
       <div class="section-eyebrow">Why this matters</div>
       <div class="intro-headline">One setting. Every generation. Automatically on-brand.</div>
       <p class="intro-body">You've built your brand foundation in Jasper — Brand Voice, Audience, Knowledge Base, Visual Guidelines, Style Guide. These are the building blocks that make every output sound like you, speak to the right person, and draw from your real expertise. But they only work if they're applied. Workspace Defaults is the switch that turns them all on — for everyone, all the time.</p>
     </div>
       <div class="intro-photo">
-        <div class="intro-video-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-            <path d="M9 6.5l9 5.5-9 5.5V6.5z" fill="rgba(255,255,255,0.6)"/>
-          </svg>
-        </div>
-        <div class="intro-video-eyebrow">Watch walkthrough</div>
-        <div class="intro-video-title">Video coming soon</div>
+        <iframe
+          src="https://www.loom.com/embed/2153c3d1f1dd425cab28aa3ec75f98d2?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true"
+          frameborder="0"
+          webkitallowfullscreen mozallowfullscreen allowfullscreen
+          style="position:absolute;top:0;left:0;width:100%;height:100%;"
+        ></iframe>
       </div>
+    </div>
   </div>
 
   <!-- ── DOT DIVIDER ── -->
@@ -682,21 +634,6 @@
           <p class="step-desc">Your IQ settings are now applied to every generation across your whole workspace, automatically, for every member of your team.</p>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- ── VIDEO ── -->
-  <div class="video-section">
-    <div class="section-eyebrow">See it in action</div>
-    <div class="video-headline">Watch: setting workspace defaults</div>
-    <div class="video-container">
-      <iframe
-        id="loom-frame"
-        src="https://www.loom.com/embed/2153c3d1f1dd425cab28aa3ec75f98d2?hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true"
-        allowfullscreen
-        allow="autoplay; fullscreen"
-      ></iframe>
-    </div>
   </div>
 
   <!-- ── CRITERIA ── -->
@@ -744,6 +681,5 @@
     <div class="footer-note">Questions? Reach your Jasper Customer Success team.</div>
   </div>
 
-</div>
 </body>
 </html>
