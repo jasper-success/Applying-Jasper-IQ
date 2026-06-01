@@ -763,7 +763,7 @@
       transition: color 0.15s, border-color 0.15s;
     }
     .download-btn:hover { color: #FFFFFF; border-color: rgba(255,255,255,0.65); }
-    @media print {
+    @media print { .intro-photo { display: none !important; } .intro-inner { grid-template-columns: 1fr !important; }
       .download-btn, .resources-section, .resources { display: none !important; }
       * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .header { overflow: visible; }
