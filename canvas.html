@@ -115,7 +115,7 @@
     .footer-inner { max-width: 960px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
     .footer-note { font-family: "ABC ROM Mono", monospace; font-size: 11px; color: rgba(255,255,255,0.35); }
 
-    @media print { .intro-photo { display: none !important; } .intro-inner { grid-template-columns: 1fr !important; }
+    @media print { .feature-card, .faq-card, .step, .view-card, .sharing-option, .role-card, .action-card, .use-step, .access-step, .aiv-step, .aiv-block, .trouble-card, .template-lib, .thread-card, .column-card, .aiv-template-card { page-break-inside: avoid; break-inside: avoid; } .section-eyebrow, .section-headline, .features-section, .steps-section, .faq-section, .views-section, .sharing-section, .avail-section, .roles-section, .columns-section, .templates-section, .aiv-section, .trouble-section, .actions-section, .threads-section, .access-section, .use-section { page-break-before: auto; } .section-headline { page-break-after: avoid; break-after: avoid; } .features-grid, .steps-grid, .faq-grid, .views-grid, .roles-grid, .columns-grid, .aiv-templates, .aiv-steps, .aiv-blocks, .actions-grid, .use-grid { page-break-inside: auto; } .intro-photo { display: none !important; } .intro-inner { grid-template-columns: 1fr !important; }
       .download-btn, .nav-section { display: none !important; }
       * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .header { overflow: visible; }
