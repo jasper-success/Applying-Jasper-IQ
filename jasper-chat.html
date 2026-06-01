@@ -10,12 +10,15 @@
     @font-face { font-family: "ABC ROM"; src: url("assets/fonts/ABCROM-Book.otf") format("opentype"); font-weight: 450; }
     @font-face { font-family: "ABC ROM"; src: url("assets/fonts/ABCROM-Bold.otf") format("opentype"); font-weight: 700; }
     @font-face { font-family: "ABC ROM Mono"; src: url("assets/fonts/ABCROMMono-Book.otf") format("opentype"); font-weight: 450; }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #F9F9F9; font-family: "ABC ROM", sans-serif; font-weight: 400; color: #262627; min-height: 100vh; }
-    .header { background: #00063D; padding: 56px 64px 80px; position: relative; overflow: hidden; }
+    body { background: #FFFFFF; font-family: "ABC ROM", sans-serif; font-weight: 400; color: #262627; }
+
+    /* ── HEADER ── */
+    .header { background: #00063D; padding: 56px 64px 72px; position: relative; overflow: hidden; }
     .header::after { content: ""; position: absolute; inset: 0; background: url("assets/textures/grain-fine.png") repeat; mix-blend-mode: overlay; opacity: 0.18; pointer-events: none; }
     .header-inner { max-width: 960px; margin: 0 auto; position: relative; z-index: 1; }
-    .header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 72px; }
+    .header-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 64px; }
     .header-top-right { display: flex; align-items: center; gap: 16px; }
     .logo { line-height: 0; text-decoration: none; }
     .header-eyebrow { font-family: "ABC ROM Mono", monospace; font-weight: 450; font-size: 12px; color: rgba(255,255,255,0.35); }
@@ -27,25 +30,85 @@
     .header-headline span { color: #4CAF50; }
     .header-sub { font-size: 16px; font-weight: 450; line-height: 1.55; color: rgba(255,255,255,0.55); max-width: 520px; margin-top: 24px; }
     .header-tape { position: absolute; right: -20px; bottom: -10px; width: 320px; transform: rotate(-6deg); opacity: 0.45; z-index: 0; }
-    .coming-soon-section { background: #F9F9F9; padding: 96px 64px; }
-    .coming-soon-inner { max-width: 960px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 20px; }
-    .coming-soon-label { font-family: "ABC ROM Mono", monospace; font-size: 11px; font-weight: 450; color: #9B9B9B; }
-    .coming-soon-heading { font-family: "Feature Headline", sans-serif; font-weight: 400; font-size: 48px; letter-spacing: -1px; line-height: 0.96; color: #00063D; }
-    .coming-soon-body { font-size: 15px; font-weight: 450; line-height: 1.6; color: #5E5D5F; max-width: 440px; }
+
+    /* ── INTRO ── */
+    .intro-section { background: #FFFFFF; }
+    .intro-inner { display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 0; overflow: hidden; }
+    .intro-text { padding: 56px 48px 60px 64px; }
+    .intro-label { font-family: "ABC ROM Mono", monospace; font-weight: 450; font-size: 11px; color: #207A00; letter-spacing: 0.06em; margin-bottom: 14px; }
+    .intro-headline { font-family: "Feature Headline", sans-serif; font-weight: 400; font-size: 40px; line-height: 0.96; letter-spacing: -1.2px; color: #00063D; margin-bottom: 20px; }
+    .intro-body { font-size: 15px; font-weight: 450; line-height: 1.65; color: #5E5D5F; display: flex; flex-direction: column; gap: 14px; }
+    .intro-photo { background: #00063D; display: flex; flex-direction: column; align-items: center; justify-content: center; aspect-ratio: 16 / 9; gap: 14px; padding: 28px 24px; position: relative; overflow: hidden; }
+    .intro-video-icon { width: 52px; height: 52px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.22); background: rgba(255,255,255,0.07); display: flex; align-items: center; justify-content: center; }
+    .intro-video-eyebrow { font-family: "ABC ROM Mono", monospace; font-size: 10px; font-weight: 450; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; }
+    .intro-video-title { font-family: "ABC ROM", sans-serif; font-size: 13px; font-weight: 450; color: rgba(255,255,255,0.5); text-align: center; line-height: 1.4; }
+
+    /* ── SECTION SHARED ── */
+    .section-eyebrow { font-family: "ABC ROM Mono", monospace; font-weight: 450; font-size: 12px; color: #9B9B9B; margin-bottom: 12px; }
+    .section-headline { font-family: "Feature Headline", sans-serif; font-weight: 400; font-size: 36px; line-height: 0.96; letter-spacing: -1px; color: #00063D; margin-bottom: 32px; margin-top: 10px; }
+
+    /* ── ACCESS ── */
+    .access-section { background: #F9F9F9; padding: 56px 64px; }
+    .access-inner { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .access-left .section-headline { margin-bottom: 16px; }
+    .access-body { font-size: 15px; font-weight: 450; line-height: 1.65; color: #5E5D5F; }
+    .access-steps { display: flex; flex-direction: column; gap: 16px; }
+    .access-step { background: #FFFFFF; padding: 20px 24px; display: flex; gap: 16px; align-items: flex-start; }
+    .access-step-num { width: 28px; height: 28px; background: #207A00; color: #FFFFFF; font-family: "ABC ROM", sans-serif; font-weight: 700; font-size: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .access-step-text { font-size: 13px; font-weight: 450; line-height: 1.55; color: #5E5D5F; padding-top: 4px; }
+    .access-step-text strong { color: #00063D; font-weight: 700; }
+
+    /* ── HOW TO USE ── */
+    .use-section { background: #FFFFFF; padding: 56px 64px; }
+    .use-inner { max-width: 960px; margin: 0 auto; }
+    .use-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .use-step { background: #F9F9F9; padding: 24px 28px; display: flex; gap: 16px; align-items: flex-start; }
+    .use-step-num { width: 32px; height: 32px; background: #207A00; color: #FFFFFF; font-family: "ABC ROM", sans-serif; font-weight: 700; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .use-step-content { display: flex; flex-direction: column; gap: 6px; padding-top: 4px; }
+    .use-step-title { font-weight: 700; font-size: 13px; color: #00063D; line-height: 1.3; }
+    .use-step-body { font-size: 13px; font-weight: 450; line-height: 1.6; color: #5E5D5F; }
+
+    /* ── MESSAGE ACTIONS ── */
+    .actions-section { background: #F9F9F9; padding: 56px 64px; }
+    .actions-inner { max-width: 960px; margin: 0 auto; }
+    .actions-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 20px; }
+    .action-card { background: #FFFFFF; padding: 28px; }
+    .action-icon { width: 36px; height: 36px; background: #207A00; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+    .action-title { font-weight: 700; font-size: 14px; color: #00063D; margin-bottom: 10px; line-height: 1.3; }
+    .action-body { font-size: 13px; font-weight: 450; line-height: 1.65; color: #5E5D5F; }
+
+    /* ── THREADS ── */
+    .threads-section { background: #00063D; padding: 56px 64px; }
+    .threads-inner { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    .thread-card { background: rgba(255,255,255,0.06); padding: 32px; }
+    .thread-eyebrow { font-family: "ABC ROM Mono", monospace; font-size: 10px; font-weight: 450; color: rgba(255,255,255,0.35); letter-spacing: 0.08em; margin-bottom: 12px; }
+    .thread-title { font-family: "Feature Headline", sans-serif; font-weight: 400; font-size: 28px; line-height: 0.96; letter-spacing: -0.8px; color: #FFFFFF; margin-bottom: 16px; }
+    .thread-body { font-size: 14px; font-weight: 450; line-height: 1.65; color: rgba(255,255,255,0.6); }
+    .thread-body strong { color: #FFFFFF; font-weight: 700; }
+
+    /* ── NAV ── */
     .nav-section { background: #00063D; padding: 40px 64px; }
     .nav-inner { max-width: 960px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 2px; }
     .nav-link { display: flex; flex-direction: column; gap: 6px; padding: 24px 28px; background: rgba(255,255,255,0.04); text-decoration: none; transition: background 0.15s; }
     .nav-link:hover { background: rgba(255,255,255,0.08); }
     .nav-link-label { font-family: "ABC ROM Mono", monospace; font-size: 10px; font-weight: 450; color: rgba(255,255,255,0.3); }
     .nav-link-title { font-family: "ABC ROM", sans-serif; font-weight: 700; font-size: 13px; color: rgba(255,255,255,0.75); }
+
     .footer { background: #00063D; padding: 28px 64px; border-top: 1px solid rgba(255,255,255,0.06); }
     .footer-inner { max-width: 960px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
     .footer-note { font-family: "ABC ROM Mono", monospace; font-size: 11px; color: rgba(255,255,255,0.35); }
-    @media print { .download-btn, .nav-section { display: none !important; } * { -webkit-print-color-adjust: exact; print-color-adjust: exact; } .header { overflow: visible; } .header-tape { display: none; } }
+
+    @media print {
+      .download-btn, .nav-section { display: none !important; }
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .header { overflow: visible; }
+      .header-tape { display: none; }
+    }
   </style>
 </head>
 <body>
 
+  <!-- ── HEADER ── -->
   <div class="header">
     <div class="header-tape">
       <svg width="559" height="200" viewBox="0 0 559 200" fill="none">
@@ -70,18 +133,196 @@
         Projects
       </a>
       <div class="header-headline">Jasper <span>Chat</span></div>
-      <p class="header-sub">Content coming soon — drop the KB article below and this page will be built out.</p>
+      <p class="header-sub">Writing as natural as a conversation — share what you need and let Jasper do the work.</p>
     </div>
   </div>
 
-  <div class="coming-soon-section">
-    <div class="coming-soon-inner">
-      <div class="coming-soon-label">In progress</div>
-      <div class="coming-soon-heading">Content coming soon</div>
-      <p class="coming-soon-body">This one-sheeter is ready to be filled in. Share the help article or knowledge base content and it'll be built out to match the rest of the hub.</p>
+  <!-- ── INTRO ── -->
+  <div class="intro-section">
+    <div class="intro-inner">
+      <div class="intro-text">
+        <div class="intro-label">What is it?</div>
+        <div class="intro-headline">Your AI collaborator, right inside every project.</div>
+        <div class="intro-body">
+          <p>Jasper Chat is a conversational interface built into every Project. Instead of filling out a form or configuring a template, you just describe what you need — and Jasper writes it, guided by your Brand Voice, Audience, and project context automatically.</p>
+          <p>Chat lives in the left panel of any Project. It's always one click away, and every thread you start stays organized so you can pick up right where you left off.</p>
+        </div>
+      </div>
+      <div class="intro-photo">
+        <div class="intro-video-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M9 6.5l9 5.5-9 5.5V6.5z" fill="rgba(255,255,255,0.6)"/>
+          </svg>
+        </div>
+        <div class="intro-video-eyebrow">Watch walkthrough</div>
+        <div class="intro-video-title">Video coming soon</div>
+      </div>
     </div>
   </div>
 
+  <!-- ── HOW TO ACCESS ── -->
+  <div class="access-section">
+    <div class="access-inner">
+      <div class="access-left">
+        <div class="section-eyebrow">Getting to Chat</div>
+        <div class="section-headline">Three steps to open it</div>
+        <p class="access-body">Chat is available inside any Project — existing or new. It doesn't require any setup and is ready to use the moment a Project is created.</p>
+      </div>
+      <div class="access-steps">
+        <div class="access-step">
+          <div class="access-step-num">1</div>
+          <p class="access-step-text">Open an existing Project or create a new one from your Jasper dashboard.</p>
+        </div>
+        <div class="access-step">
+          <div class="access-step-num">2</div>
+          <p class="access-step-text">Chat appears automatically in the <strong>left panel</strong> of your Project.</p>
+        </div>
+        <div class="access-step">
+          <div class="access-step-num">3</div>
+          <p class="access-step-text">Click the <strong>Chat icon</strong> at the bottom of the Project to open or close the Chat panel anytime.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── HOW TO USE ── -->
+  <div class="use-section">
+    <div class="use-inner">
+      <div class="section-eyebrow">Sending a message</div>
+      <div class="section-headline">How to get the most from every prompt</div>
+      <div class="use-grid">
+
+        <div class="use-step">
+          <div class="use-step-num">1</div>
+          <div class="use-step-content">
+            <div class="use-step-title">Open Chat</div>
+            <p class="use-step-body">Click the Chat icon in the bottom left of your Project to open the Chat panel.</p>
+          </div>
+        </div>
+
+        <div class="use-step">
+          <div class="use-step-num">2</div>
+          <div class="use-step-content">
+            <div class="use-step-title">Type your prompt</div>
+            <p class="use-step-body">Describe what you need in plain language — no special syntax required. Be as specific or as open-ended as you like.</p>
+          </div>
+        </div>
+
+        <div class="use-step">
+          <div class="use-step-num">3</div>
+          <div class="use-step-content">
+            <div class="use-step-title">Provide context</div>
+            <p class="use-step-body">Add any relevant details — target audience, format, tone, key messages — directly in your message to get a more precise output on the first try.</p>
+          </div>
+        </div>
+
+        <div class="use-step">
+          <div class="use-step-num">4</div>
+          <div class="use-step-content">
+            <div class="use-step-title">Enhance your prompt</div>
+            <p class="use-step-body">Click the <strong>Enhance prompt</strong> button below the text box to let Jasper refine and expand your prompt before sending — useful when you're not sure how to phrase the request.</p>
+          </div>
+        </div>
+
+        <div class="use-step">
+          <div class="use-step-num">5</div>
+          <div class="use-step-content">
+            <div class="use-step-title">Add a file or knowledge asset</div>
+            <p class="use-step-body">Click <strong>+</strong> below the text box to attach a knowledge base asset or upload a one-time-use file — giving Jasper source material to work from.</p>
+          </div>
+        </div>
+
+        <div class="use-step">
+          <div class="use-step-num">6</div>
+          <div class="use-step-content">
+            <div class="use-step-title">Apply a Brand Voice</div>
+            <p class="use-step-body">Click <strong>Select a Brand Voice</strong> to apply one of your saved Brand Voices to all outputs in this Chat session.</p>
+          </div>
+        </div>
+
+        <div class="use-step">
+          <div class="use-step-num">7</div>
+          <div class="use-step-content">
+            <div class="use-step-title">Select an Audience</div>
+            <p class="use-step-body">Click <strong>Select an Audience</strong> to apply a saved Audience profile — so Jasper tailors tone, vocabulary, and framing to that reader automatically.</p>
+          </div>
+        </div>
+
+        <div class="use-step">
+          <div class="use-step-num">8</div>
+          <div class="use-step-content">
+            <div class="use-step-title">Send it</div>
+            <p class="use-step-body">Hit the blue arrow to send. Jasper generates a response using your prompt, any attached context, and your project's Jasper IQ settings.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MESSAGE CONTEXT BUTTONS ── -->
+  <div class="actions-section">
+    <div class="actions-inner">
+      <div class="section-eyebrow">Message context buttons</div>
+      <div class="section-headline">What you can do with any response</div>
+      <div class="actions-grid">
+
+        <div class="action-card">
+          <div class="action-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="9" y="9" width="11" height="11" rx="1" stroke="white" stroke-width="1.5"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1" stroke="white" stroke-width="1.5"/></svg>
+          </div>
+          <div class="action-title">Copy to clipboard</div>
+          <p class="action-body">Copy any Chat output directly to your clipboard and paste it anywhere — a doc, email, CMS, or anywhere else you need it.</p>
+        </div>
+
+        <div class="action-card">
+          <div class="action-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M1 4v6h6M23 20v-6h-6" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10M23 14l-4.64 4.36A9 9 0 0 1 3.51 15" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="action-title">Rerun the prompt</div>
+          <p class="action-body">Not quite right? Rerun the same prompt to generate a fresh alternative without typing anything again — useful for getting a different angle on the same brief.</p>
+        </div>
+
+        <div class="action-card">
+          <div class="action-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="action-title">Vote up or down</div>
+          <p class="action-body">Upvote or downvote any response from Jasper to flag quality. This helps Jasper learn your preferences and produce more accurate outputs over time.</p>
+        </div>
+
+        <div class="action-card">
+          <div class="action-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <div class="action-title">Add as a project asset</div>
+          <p class="action-body">Save any Chat output directly as a new Asset within your Project — so it's organized alongside your other content and available to your whole team.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MANAGING THREADS ── -->
+  <div class="threads-section">
+    <div class="threads-inner">
+
+      <div class="thread-card">
+        <div class="thread-eyebrow">Starting a new thread</div>
+        <div class="thread-title">Keep topics separate for better results</div>
+        <p class="thread-body">Each Chat thread maintains its own conversation history. Jasper uses that context to give more focused, relevant responses — so mixing unrelated topics in one thread can dilute quality. Start a fresh thread for each new brief or task.<br><br>Click <strong>New Chat</strong> in the top left corner of the Chat panel to start a new thread at any time.</p>
+      </div>
+
+      <div class="thread-card">
+        <div class="thread-eyebrow">Past threads</div>
+        <div class="thread-title">Review and manage your history</div>
+        <p class="thread-body">All your previous Chat threads are saved and accessible within the Project. You can return to any thread to continue the conversation, reference prior outputs, or pick up work you started earlier.<br><br>Click <strong>Past Chat</strong> in the top left corner of the Chat panel to view your thread history. From there you can also <strong>delete</strong> any threads you no longer need.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── NAV ── -->
   <div class="nav-section">
     <div class="nav-inner">
       <a class="nav-link" href="projects.html">
