@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jasper — Everything You Need to Know</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+      background: #F5F5F5;
+      color: #111111;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 36px 16px;
+    }
+
+    .page {
+      background: #ffffff;
+      width: 100%;
+      max-width: 960px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+    }
+
+    /* ── Header ── */
+    .header {
+      background: #FF4D00;
+      padding: 32px 44px 28px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .header-text { flex: 1; }
+    .header h1 {
+      font-size: 26px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.2;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+    .header p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.85);
+      font-weight: 400;
+      line-height: 1.5;
+      max-width: 520px;
+    }
+    .logo {
+      height: 30px;
+      width: auto;
+      opacity: 0.95;
+      flex-shrink: 0;
+      margin-top: 4px;
+    }
+
+    /* ── Tagline band ── */
+    .tagline-band {
+      background: #111111;
+      padding: 12px 44px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .tagline-band p {
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.75);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+    .tagline-divider {
+      width: 1px;
+      height: 14px;
+      background: rgba(255,255,255,0.2);
+    }
+
+    /* ── Body ── */
+    .body {
+      padding: 32px 44px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    /* ── Section heading ── */
+    .section-head {
+      font-size: 11px;
+      font-weight: 700;
+      color: #111111;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid #FF4D00;
+      margin-bottom: 16px;
+    }
+
+    /* ── Intro callout ── */
+    .intro-callout {
+      background: #FFF6F2;
+      border-radius: 10px;
+      padding: 22px 26px;
+      border-left: 4px solid #FF4D00;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .intro-callout .callout-icon {
+      font-size: 28px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .intro-callout p {
+      font-size: 13.5px;
+      color: #374151;
+      line-height: 1.7;
+    }
+    .intro-callout strong { color: #111111; font-weight: 700; }
+
+    /* ── Feature grid ── */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .feature-card {
+      background: #FAFAFA;
+      border-radius: 10px;
+      padding: 18px 18px 16px;
+      border: 1px solid #F3F4F6;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: box-shadow 0.2s;
+    }
+    .feature-card:hover {
+      box-shadow: 0 4px 18px rgba(255,77,0,0.12);
+    }
+    .feature-card .feat-icon {
+      font-size: 22px;
+      line-height: 1;
+    }
+    .feature-card h3 {
+      font-size: 13px;
+      font-weight: 700;
+      color: #111111;
+    }
+    .feature-card p {
+      font-size: 11.5px;
+      color: #6B7280;
+      line-height: 1.6;
+    }
+    .feat-tag {
+      display: inline-block;
+      margin-top: auto;
+      padding: 2px 8px;
+      background: #FFF6F2;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #FF4D00;
+      letter-spacing: 0.3px;
+      width: fit-content;
+    }
+
+    /* ── Two-col layout ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    /* ── IQ pillars ── */
+    .iq-panel {
+      background: #FFF6F2;
+      border-radius: 10px;
+      padding: 20px 22px;
+    }
+    .iq-pillar {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,77,0,0.12);
+    }
+    .iq-pillar:last-child { border-bottom: none; padding-bottom: 0; }
+    .iq-pillar:first-child { padding-top: 0; }
+    .iq-badge {
+      flex-shrink: 0;
+      width: 34px;
+      height: 34px;
+      background: #FF4D00;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+    .iq-pillar h4 {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #111111;
+      margin-bottom: 3px;
+    }
+    .iq-pillar p {
+      font-size: 11.5px;
+      color: #6B7280;
+      line-height: 1.55;
+    }
+
+    /* ── Use cases ── */
+    .usecases-panel {
+      background: #F9FAFB;
+      border-radius: 10px;
+      padding: 20px 22px;
+      border: 1px solid #F3F4F6;
+    }
+    .usecase {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .usecase:last-child { margin-bottom: 0; }
+    .uc-dot {
+      flex-shrink: 0;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #FF4D00;
+      margin-top: 5px;
+    }
+    .usecase h4 {
+      font-size: 12px;
+      font-weight: 700;
+      color: #111111;
+      margin-bottom: 2px;
+    }
+    .usecase p {
+      font-size: 11px;
+      color: #6B7280;
+      line-height: 1.5;
+    }
+
+    /* ── Plans row ── */
+    .plans-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .plan-card {
+      border-radius: 10px;
+      padding: 16px 16px 14px;
+      border: 1.5px solid #F3F4F6;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .plan-card.highlight {
+      border-color: #FF4D00;
+      background: #FFF6F2;
+    }
+    .plan-card .plan-name {
+      font-size: 12px;
+      font-weight: 800;
+      color: #111111;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .plan-card.highlight .plan-name { color: #FF4D00; }
+    .plan-card .plan-desc {
+      font-size: 11px;
+      color: #6B7280;
+      line-height: 1.55;
+    }
+    .plan-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-top: 4px;
+    }
+    .plan-card ul li {
+      font-size: 10.5px;
+      color: #374151;
+      display: flex;
+      align-items: flex-start;
+      gap: 5px;
+    }
+    .plan-card ul li::before {
+      content: '✓';
+      color: #FF4D00;
+      font-weight: 700;
+      font-size: 10px;
+      margin-top: 1px;
+      flex-shrink: 0;
+    }
+
+    /* ── Metrics band ── */
+    .metrics-band {
+      background: #111111;
+      border-radius: 10px;
+      padding: 20px 24px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .metric-item {
+      text-align: center;
+      padding: 0 10px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .metric-item:last-child { border-right: none; }
+    .metric-value {
+      font-size: 22px;
+      font-weight: 800;
+      color: #FF4D00;
+      line-height: 1;
+      margin-bottom: 5px;
+    }
+    .metric-label {
+      font-size: 10.5px;
+      color: rgba(255,255,255,0.65);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    /* ── Integrations ── */
+    .integrations-panel {
+      background: #F9FAFB;
+      border-radius: 10px;
+      padding: 20px 22px;
+      border: 1px solid #F3F4F6;
+    }
+    .integrations-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .integration-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 12px;
+      background: #ffffff;
+      border-radius: 20px;
+      border: 1px solid #E5E7EB;
+      font-size: 11.5px;
+      font-weight: 600;
+      color: #374151;
+    }
+    .integration-chip .chip-icon { font-size: 13px; }
+
+    /* ── Security panel ── */
+    .security-panel {
+      background: #FFF6F2;
+      border-radius: 10px;
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .security-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .security-icon {
+      flex-shrink: 0;
+      font-size: 16px;
+      margin-top: 1px;
+    }
+    .security-item h4 {
+      font-size: 12px;
+      font-weight: 700;
+      color: #111111;
+      margin-bottom: 2px;
+    }
+    .security-item p {
+      font-size: 11px;
+      color: #6B7280;
+      line-height: 1.5;
+    }
+
+    /* ── CTA strip ── */
+    .cta-strip {
+      background: #FFF6F2;
+      border-radius: 10px;
+      padding: 20px 26px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border: 1px solid rgba(255,77,0,0.15);
+    }
+    .cta-strip p {
+      font-size: 13px;
+      color: #374151;
+      line-height: 1.6;
+    }
+    .cta-strip strong { color: #111111; font-weight: 700; }
+    .cta-links {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .cta-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #FF4D00;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,77,0,0.3);
+      white-space: nowrap;
+    }
+    .cta-link:hover { border-color: #FF4D00; }
+
+    /* ── Footer ── */
+    .footer {
+      background: #FF4D00;
+      padding: 16px 44px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer p {
+      font-size: 12px;
+      color: rgba(255,255,255,0.85);
+    }
+    .footer a {
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .footer-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.5);
+    }
+
+    @media print {
+      body { padding: 0; background: #fff; }
+      .page { box-shadow: none; border-radius: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="header-text">
+        <h1>Everything Jasper Has to Offer</h1>
+        <p>Your complete guide to the AI platform built for enterprise marketing teams — from content creation to brand governance, at scale.</p>
+      </div>
+      <img
+        class="logo"
+        src="https://cdn.prod.website-files.com/6807ee8d73c233fb82842313/69b01c3c86cb380964db0daa_Jasper%20Logo%20(2025).png"
+        alt="Jasper"
+        onerror="this.style.display='none'"
+      />
+    </div>
+
+    <!-- Tagline band -->
+    <div class="tagline-band">
+      <p>AI-Powered Content</p>
+      <div class="tagline-divider"></div>
+      <p>Brand Consistency</p>
+      <div class="tagline-divider"></div>
+      <p>Team Collaboration</p>
+      <div class="tagline-divider"></div>
+      <p>Enterprise Security</p>
+    </div>
+
+    <div class="body">
+
+      <!-- Intro -->
+      <div class="intro-callout">
+        <div class="callout-icon">🚀</div>
+        <p>
+          <strong>Jasper is the AI platform purpose-built for marketing.</strong> Unlike general-purpose AI tools, Jasper learns your brand, your audience, and your knowledge — then applies that intelligence automatically across every piece of content your team creates. The result is faster output, stronger consistency, and a competitive edge that compounds over time.
+        </p>
+      </div>
+
+      <!-- Core features -->
+      <div>
+        <div class="section-head">Core Platform Features</div>
+        <div class="feature-grid">
+
+          <div class="feature-card">
+            <div class="feat-icon">✍️</div>
+            <h3>AI Content Creation</h3>
+            <p>Generate long-form blogs, social posts, emails, landing pages, ads, and more in seconds — with built-in marketing best practices.</p>
+            <span class="feat-tag">Content</span>
+          </div>
+
+          <div class="feature-card">
+            <div class="feat-icon">🎙</div>
+            <h3>Brand Voice</h3>
+            <p>Define your brand's tone, personality, and style so every generation sounds unmistakably like you — no matter who on the team is writing.</p>
+            <span class="feat-tag">IQ</span>
+          </div>
+
+          <div class="feature-card">
+            <div class="feat-icon">🎯</div>
+            <h3>Audience Profiles</h3>
+            <p>Create detailed audience segments so Jasper tailors every message to the people who matter most — automatically, at scale.</p>
+            <span class="feat-tag">IQ</span>
+          </div>
+
+          <div class="feature-card">
+            <div class="feat-icon">📚</div>
+            <h3>Knowledge Base</h3>
+            <p>Upload your own documents, style guides, product specs, and FAQs — Jasper draws from them so content is always accurate and on-brand.</p>
+            <span class="feat-tag">IQ</span>
+          </div>
+
+          <div class="feature-card">
+            <div class="feat-icon">🖼</div>
+            <h3>AI Image Generation</h3>
+            <p>Create original visuals, marketing imagery, and on-brand graphics alongside your copy — no design tool required.</p>
+            <span class="feat-tag">Creative</span>
+          </div>
+
+          <div class="feature-card">
+            <div class="feat-icon">🌍</div>
+            <h3>Multi-Language Support</h3>
+            <p>Write and translate content in 30+ languages while preserving brand voice and nuance for every market you serve.</p>
+            <span class="feat-tag">Global</span>
+          </div>
+
+          <div class="feature-card">
+            <div class="feat-icon">⚡</div>
+            <h3>Campaigns</h3>
+            <p>Plan, brief, and execute full marketing campaigns from a single workspace — keeping all assets, copy, and context in one place.</p>
+            <span class="feat-tag">Workflow</span>
+          </div>
+
+          <div class="feature-card">
+            <div class="feat-icon">🔁</div>
+            <h3>Content Remix & Repurpose</h3>
+            <p>Turn one piece of content into many — repurpose a blog into social posts, a webinar into an email series, and more in clicks.</p>
+            <span class="feat-tag">Efficiency</span>
+          </div>
+
+          <div class="feature-card">
+            <div class="feat-icon">📊</div>
+            <h3>Analytics & Insights</h3>
+            <p>Track what your team is creating, measure adoption of brand standards, and identify content performance trends across the workspace.</p>
+            <span class="feat-tag">Intelligence</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- IQ + Use cases -->
+      <div class="two-col">
+
+        <!-- Jasper IQ pillars -->
+        <div class="iq-panel">
+          <div class="section-head">Jasper IQ — Your Brand's Intelligence Layer</div>
+
+          <div class="iq-pillar">
+            <div class="iq-badge">🎙</div>
+            <div>
+              <h4>Brand Voice</h4>
+              <p>Captures your unique tone and style. Applied across every generation so content always sounds like your brand, not generic AI.</p>
+            </div>
+          </div>
+
+          <div class="iq-pillar">
+            <div class="iq-badge">🎯</div>
+            <div>
+              <h4>Audience</h4>
+              <p>Defines who you're speaking to. Jasper tailors messaging automatically based on the segment — no manual prompting needed.</p>
+            </div>
+          </div>
+
+          <div class="iq-pillar">
+            <div class="iq-badge">📚</div>
+            <div>
+              <h4>Knowledge Base</h4>
+              <p>Injects your proprietary context into every output — product details, FAQs, compliance copy, and more are always at Jasper's fingertips.</p>
+            </div>
+          </div>
+
+          <div class="iq-pillar">
+            <div class="iq-badge">⚙️</div>
+            <div>
+              <h4>Workspace Defaults</h4>
+              <p>Set Brand Voice, Audience, and Knowledge Base as workspace defaults so IQ is applied automatically — zero extra effort from your team.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Use cases -->
+        <div class="usecases-panel">
+          <div class="section-head">What Teams Use Jasper For</div>
+
+          <div class="usecase">
+            <div class="uc-dot"></div>
+            <div>
+              <h4>Demand Generation</h4>
+              <p>Spin up campaign copy, landing pages, and nurture emails fast — without sacrificing quality or brand alignment.</p>
+            </div>
+          </div>
+
+          <div class="usecase">
+            <div class="uc-dot"></div>
+            <div>
+              <h4>SEO & Organic Content</h4>
+              <p>Produce high-volume, keyword-optimized blog posts and pillar pages that rank — guided by your brand voice.</p>
+            </div>
+          </div>
+
+          <div class="usecase">
+            <div class="uc-dot"></div>
+            <div>
+              <h4>Social Media</h4>
+              <p>Keep every channel active with on-brand captions, threads, and ads tailored for each platform and audience.</p>
+            </div>
+          </div>
+
+          <div class="usecase">
+            <div class="uc-dot"></div>
+            <div>
+              <h4>Sales Enablement</h4>
+              <p>Create battlecards, one-pagers, and outreach sequences that rep teams can personalize in seconds.</p>
+            </div>
+          </div>
+
+          <div class="usecase">
+            <div class="uc-dot"></div>
+            <div>
+              <h4>Product Marketing</h4>
+              <p>Launch faster with launch briefs, feature announcements, and messaging frameworks built in Jasper.</p>
+            </div>
+          </div>
+
+          <div class="usecase">
+            <div class="uc-dot"></div>
+            <div>
+              <h4>Localization</h4>
+              <p>Adapt and translate campaigns for global markets while preserving brand tone across every language.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Impact metrics -->
+      <div class="metrics-band">
+        <div class="metric-item">
+          <div class="metric-value">10x</div>
+          <div class="metric-label">Faster content<br>production</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-value">80%</div>
+          <div class="metric-label">Reduction in time<br>to first draft</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-value">30+</div>
+          <div class="metric-label">Languages<br>supported</div>
+        </div>
+        <div class="metric-item">
+          <div class="metric-value">100K+</div>
+          <div class="metric-label">Marketing teams<br>worldwide</div>
+        </div>
+      </div>
+
+      <!-- Plans -->
+      <div>
+        <div class="section-head">Plans for Every Team</div>
+        <div class="plans-row">
+
+          <div class="plan-card">
+            <div class="plan-name">Creator</div>
+            <div class="plan-desc">For individual marketers getting started with AI content.</div>
+            <ul>
+              <li>1 seat</li>
+              <li>50+ templates</li>
+              <li>Brand Voice</li>
+              <li>AI chat</li>
+            </ul>
+          </div>
+
+          <div class="plan-card">
+            <div class="plan-name">Pro</div>
+            <div class="plan-desc">For small teams that need collaboration and brand control.</div>
+            <ul>
+              <li>Up to 5 seats</li>
+              <li>Audience profiles</li>
+              <li>3 Brand Voices</li>
+              <li>Campaigns</li>
+            </ul>
+          </div>
+
+          <div class="plan-card highlight">
+            <div class="plan-name">Business</div>
+            <div class="plan-desc">For growing teams that need IQ, security, and scale.</div>
+            <ul>
+              <li>Unlimited seats</li>
+              <li>Full Jasper IQ</li>
+              <li>Knowledge Base</li>
+              <li>SSO + permissions</li>
+              <li>Analytics</li>
+            </ul>
+          </div>
+
+          <div class="plan-card">
+            <div class="plan-name">Enterprise</div>
+            <div class="plan-desc">For organizations that need custom controls and compliance.</div>
+            <ul>
+              <li>Custom contracts</li>
+              <li>API access</li>
+              <li>Advanced security</li>
+              <li>Dedicated CSM</li>
+              <li>Custom training</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Integrations + Security -->
+      <div class="two-col">
+
+        <div class="integrations-panel">
+          <div class="section-head">Integrations</div>
+          <div class="integrations-grid">
+            <div class="integration-chip"><span class="chip-icon">📝</span> Google Docs</div>
+            <div class="integration-chip"><span class="chip-icon">🌐</span> Chrome Extension</div>
+            <div class="integration-chip"><span class="chip-icon">📘</span> WordPress</div>
+            <div class="integration-chip"><span class="chip-icon">🛒</span> Shopify</div>
+            <div class="integration-chip"><span class="chip-icon">💼</span> HubSpot</div>
+            <div class="integration-chip"><span class="chip-icon">📣</span> Webflow</div>
+            <div class="integration-chip"><span class="chip-icon">🔗</span> Zapier</div>
+            <div class="integration-chip"><span class="chip-icon">⚙️</span> API Access</div>
+            <div class="integration-chip"><span class="chip-icon">📐</span> Figma</div>
+            <div class="integration-chip"><span class="chip-icon">📊</span> Salesforce</div>
+          </div>
+        </div>
+
+        <div class="security-panel">
+          <div class="section-head">Security & Compliance</div>
+
+          <div class="security-item">
+            <div class="security-icon">🔒</div>
+            <div>
+              <h4>SOC 2 Type II Certified</h4>
+              <p>Enterprise-grade security standards audited and certified annually.</p>
+            </div>
+          </div>
+
+          <div class="security-item">
+            <div class="security-icon">🛡</div>
+            <div>
+              <h4>Data Privacy Guaranteed</h4>
+              <p>Your content is never used to train AI models. GDPR and CCPA compliant.</p>
+            </div>
+          </div>
+
+          <div class="security-item">
+            <div class="security-icon">👥</div>
+            <div>
+              <h4>Role-Based Permissions</h4>
+              <p>Granular access controls ensure the right people edit, review, and publish.</p>
+            </div>
+          </div>
+
+          <div class="security-item">
+            <div class="security-icon">🔑</div>
+            <div>
+              <h4>SSO & SCIM Provisioning</h4>
+              <p>Seamless enterprise identity management with Okta, Azure AD, and more.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- CTA -->
+      <div class="cta-strip">
+        <p>
+          <strong>Ready to go deeper?</strong> Your Customer Success team can walk you through advanced features, run a workspace audit, and help you unlock the full power of Jasper IQ — from setting workspace defaults to measuring content ROI.
+        </p>
+        <div class="cta-links">
+          <a class="cta-link" href="https://help.jasper.ai" target="_blank">📖 Help Center →</a>
+          <a class="cta-link" href="https://jasper.ai" target="_blank">🌐 jasper.ai →</a>
+          <a class="cta-link" href="https://academy.jasper.ai" target="_blank">🎓 Jasper Academy →</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>Questions? Contact your <strong>Jasper Customer Success</strong> team — we're here to help you get the most out of the platform.</p>
+      <div class="footer-dot"></div>
+      <p><a href="https://jasper.ai" target="_blank">jasper.ai</a></p>
+    </div>
+
+  </div>
+</body>
+</html>
