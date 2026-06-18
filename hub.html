@@ -136,6 +136,72 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    /* ── FEATURE DEMOS BANNER ── */
+    .feature-banner {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+      background: #FFFFFF;
+      border-top: 4px solid #0011A7;
+      transition: transform 0.18s;
+    }
+
+    .feature-banner:hover { transform: translateY(-3px); }
+
+    .feature-banner-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 32px 40px;
+      gap: 32px;
+    }
+
+    .feature-banner-left {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      flex: 1;
+    }
+
+    .feature-banner-count {
+      font-family: "ABC ROM Mono", monospace;
+      font-weight: 450;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: #0011A7;
+      white-space: nowrap;
+    }
+
+    .feature-banner-title {
+      font-family: "Feature Headline", sans-serif;
+      font-weight: 400;
+      font-size: 40px;
+      line-height: 0.96;
+      letter-spacing: -1px;
+      color: #00063D;
+    }
+
+    .feature-banner-desc {
+      font-size: 14px;
+      font-weight: 450;
+      line-height: 1.6;
+      color: #5E5D5F;
+      max-width: 420px;
+    }
+
+    .feature-banner-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: "ABC ROM", sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      color: #0011A7;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     /* ── TOPIC TILE ── */
@@ -462,35 +528,52 @@
           </div>
         </a>
 
-        <!-- Feature Demos -->
-        <a class="topic-tile" href="feature-demos.html"
-           data-keywords="feature demos video guide step by step capabilities new user onboarding learning walkthrough tutorial jasper features"
+        <!-- GEO Hub -->
+        <a class="topic-tile" href="geo-hub.html"
+           data-keywords="geo hub ai visibility search brand presence citation rate share of voice sentiment chatgpt gemini claude recommendations optimize originate content gaps"
         >
-          <div class="tile-panel" style="background: #0011A7;">
+          <div class="tile-panel" style="background: #391E7E;">
             <svg viewBox="0 0 460 220" fill="none">
-              <circle cx="160" cy="110" r="80" fill="#FFFFFF" opacity="0.08"/>
-              <circle cx="160" cy="110" r="50" fill="#FFFFFF" opacity="0.12"/>
-              <path d="M138 110 L155 127 L185 97" stroke="#FFF133" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-              <rect x="280" y="60" width="110" height="16" rx="3" fill="#FFFFFF" opacity="0.18"/>
-              <rect x="280" y="88" width="84" height="16" rx="3" fill="#FFFFFF" opacity="0.12"/>
-              <rect x="280" y="116" width="96" height="16" rx="3" fill="#FFFFFF" opacity="0.12"/>
-              <rect x="280" y="144" width="68" height="16" rx="3" fill="#FFF133" opacity="0.4"/>
+              <circle cx="230" cy="110" r="72" stroke="#FFFFFF" stroke-width="1.5" opacity="0.15"/>
+              <circle cx="230" cy="110" r="48" stroke="#FFFFFF" stroke-width="1.5" opacity="0.2"/>
+              <circle cx="230" cy="110" r="24" fill="#FF66CC" opacity="0.9"/>
+              <path d="M80 150 L140 90 L190 120 L250 60 L320 100 L390 70" stroke="#FFF133" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="140" cy="90" r="4" fill="#FFF133"/>
+              <circle cx="250" cy="60" r="4" fill="#FFF133"/>
+              <circle cx="390" cy="70" r="4" fill="#FFF133"/>
             </svg>
           </div>
-          <div class="tile-accent" style="background: #0011A7;"></div>
+          <div class="tile-accent" style="background: #391E7E;"></div>
           <div class="tile-body">
-            <div class="tile-count" style="color: #0011A7;">Video guides</div>
-            <div class="tile-title">Feature Demos</div>
-            <p class="tile-desc">Step-by-step video guides of Jasper's feature capabilities — whether you're a new user getting started or brushing up on what's possible.</p>
+            <div class="tile-count" style="color: #391E7E;">AI Visibility</div>
+            <div class="tile-title">GEO Hub</div>
+            <p class="tile-desc">See how your brand appears in AI-generated search across ChatGPT, Gemini, and Claude — and get prioritized content recommendations to close the gaps.</p>
             <div class="tile-cta">
               Explore resources
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#00063D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#391E7E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
           </div>
         </a>
 
         <div class="no-results" id="noResults">No resources match "<span id="noResultsTerm"></span>"</div>
       </div>
+
+      <!-- Feature Demos banner -->
+      <a class="feature-banner" href="feature-demos.html">
+        <div class="feature-banner-inner">
+          <div class="feature-banner-left">
+            <div>
+              <div class="feature-banner-count">Video guides</div>
+              <div class="feature-banner-title">Feature Demos</div>
+            </div>
+            <p class="feature-banner-desc">Step-by-step video guides of Jasper's feature capabilities — for new users getting started and anyone brushing up on what's possible.</p>
+          </div>
+          <div class="feature-banner-cta">
+            Explore resources
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#0011A7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+      </a>
 
     </div>
   </div>
@@ -540,6 +623,7 @@
       { title: 'Grid',                  section: 'Projects',  url: 'grid.html',                   keywords: 'grid spreadsheet table rows columns content planning scale projects' },
       { title: 'Jasper Chat',             section: 'Projects',  url: 'jasper-chat.html',            keywords: 'jasper chat conversation brainstorm draft iterate ask ai projects' },
       { title: 'Managing Your Projects', section: 'Projects',  url: 'managing-your-projects.html', keywords: 'managing projects sharing restoring access permissions organize workspace' },
+      { title: 'GEO Hub',                  section: 'GEO Hub',       url: 'geo-hub.html',             keywords: 'geo hub ai visibility search brand presence citation rate share of voice sentiment chatgpt gemini claude recommendations optimize originate content gaps' },
       { title: 'Feature Demos',           section: 'Feature Demos', url: 'feature-demos.html',       keywords: 'feature demos video guide step by step capabilities new user onboarding learning walkthrough tutorial' },
     ];
 
