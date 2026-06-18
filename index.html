@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jasper IQ: Set Your Workspace Defaults</title>
+  <title>Jasper Resource Hub</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -21,7 +21,7 @@
     .page {
       background: #ffffff;
       width: 100%;
-      max-width: 880px;
+      max-width: 960px;
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 8px 40px rgba(0,0,0,0.12);
@@ -38,17 +38,16 @@
     }
     .header-text { flex: 1; }
     .header h1 {
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 800;
       color: #ffffff;
-      line-height: 1.25;
+      line-height: 1.2;
       margin-bottom: 7px;
-      letter-spacing: -0.3px;
+      letter-spacing: -0.4px;
     }
-    .header h1 span { color: #ffffff; }
     .header p {
       font-size: 13px;
-      color: rgba(255,255,255,0.8);
+      color: rgba(255,255,255,0.82);
       font-style: italic;
       font-weight: 400;
     }
@@ -60,49 +59,15 @@
       margin-top: 2px;
     }
 
-    /* ── Orange accent bar ── */
-    .accent-bar { display: none; }
-
     /* ── Body ── */
     .body {
-      padding: 28px 40px;
+      padding: 32px 40px;
       display: flex;
       flex-direction: column;
-      gap: 22px;
+      gap: 28px;
     }
 
-    /* ── Why section ── */
-    .why {
-      background: #FFF6F2;
-      border-radius: 8px;
-      padding: 20px 24px;
-      border-left: 4px solid #FF4D00;
-    }
-    .why h2 {
-      font-size: 13.5px;
-      font-weight: 700;
-      color: #FF4D00;
-      margin-bottom: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .why p {
-      font-size: 13px;
-      color: #374151;
-      line-height: 1.7;
-      margin-bottom: 8px;
-    }
-    .why p:last-child { margin-bottom: 0; }
-    .why strong { color: #111111; font-weight: 700; }
-
-    /* ── Two-column layout ── */
-    .two-col {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-    }
-
-    /* ── Section heading shared style ── */
+    /* ── Section heading ── */
     .section-head {
       font-size: 12px;
       font-weight: 700;
@@ -111,131 +76,142 @@
       letter-spacing: 0.6px;
       padding-bottom: 8px;
       border-bottom: 2px solid #FF4D00;
-      margin-bottom: 14px;
+      margin-bottom: 18px;
     }
 
-    /* ── Video column ── */
-    .video-wrap { display: flex; flex-direction: column; }
-    .video-container {
-      position: relative;
-      width: 100%;
-      padding-top: 56.25%;
-      border-radius: 8px;
-      overflow: hidden;
-      background: #000;
-      box-shadow: 0 4px 16px rgba(255,77,0,0.15);
-    }
-    .video-container iframe {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      border: none;
-    }
-
-    /* ── Steps column ── */
-    .steps-wrap { display: flex; flex-direction: column; }
-    .step {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      background: #FAFAFA;
-      border-radius: 8px;
-      padding: 12px 14px;
-      margin-bottom: 8px;
-      border: 1px solid #F3F4F6;
-    }
-    .step:last-child { margin-bottom: 0; }
-    .step-num {
-      flex-shrink: 0;
-      width: 28px;
-      height: 28px;
-      background: #FF4D00;
-      color: #fff;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      font-weight: 800;
-      flex-shrink: 0;
-    }
-    .step-text strong {
-      display: block;
-      font-size: 12.5px;
-      font-weight: 700;
-      color: #111111;
-      margin-bottom: 3px;
-    }
-    .step-text span {
-      font-size: 11.5px;
-      color: #6B7280;
-      line-height: 1.55;
-    }
-
-    /* ── Bottom two-col ── */
-    .bottom-row {
+    /* ── Tile grid ── */
+    .tile-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
     }
 
-    .links-panel {
-      background: #FFF6F2;
-      border-radius: 8px;
-      padding: 18px 20px;
-    }
-    .criteria-panel {
-      background: #F9FAFB;
-      border-radius: 8px;
-      padding: 18px 20px;
-      border: 1px solid #F3F4F6;
-    }
-
-    .links-panel ul {
-      list-style: none;
+    .tile {
+      background: #FAFAFA;
+      border: 1.5px solid #F3F4F6;
+      border-radius: 10px;
+      padding: 22px 18px 20px;
       display: flex;
       flex-direction: column;
       gap: 10px;
-    }
-    .links-panel ul li {
-      font-size: 12.5px;
-      color: #374151;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .links-panel ul li a {
-      color: #FF4D00;
-      font-weight: 700;
       text-decoration: none;
-      border-bottom: 1px solid rgba(255,77,0,0.3);
-      transition: border-color 0.2s;
+      color: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+      cursor: pointer;
     }
-    .links-panel ul li a:hover { border-color: #FF4D00; }
+    .tile:hover {
+      border-color: #FF4D00;
+      box-shadow: 0 4px 18px rgba(255,77,0,0.12);
+      transform: translateY(-2px);
+    }
+    .tile.coming-soon {
+      opacity: 0.6;
+      cursor: default;
+      pointer-events: none;
+    }
 
-    .criteria-note {
+    .tile-icon {
+      font-size: 26px;
+      line-height: 1;
+    }
+    .tile-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #111111;
+      letter-spacing: -0.2px;
+    }
+    .tile-desc {
       font-size: 11.5px;
       color: #6B7280;
-      font-style: italic;
-      margin-bottom: 10px;
+      line-height: 1.6;
+      flex: 1;
     }
-    .criterion {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      margin-bottom: 9px;
-      padding-bottom: 9px;
-      border-bottom: 1px solid #F3F4F6;
-    }
-    .criterion:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
-    .criterion .label {
-      font-size: 12px;
+    .tile-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11.5px;
       font-weight: 700;
-      color: #111111;
+      color: #FF4D00;
+      margin-top: 4px;
     }
-    .criterion .detail {
+    .tile-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      background: #F3F4F6;
+      color: #9CA3AF;
+      border-radius: 4px;
+      padding: 2px 7px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin-top: 4px;
+    }
+
+    /* ── Feature Demos banner ── */
+    .demos-banner {
+      background: linear-gradient(135deg, #111111 0%, #2D2D2D 100%);
+      border-radius: 10px;
+      padding: 24px 28px;
+    }
+    .demos-banner .section-head {
+      color: #ffffff;
+      border-bottom-color: #FF4D00;
+      margin-bottom: 16px;
+    }
+    .demos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .demo-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      text-decoration: none;
+      transition: background 0.2s, border-color 0.2s;
+      cursor: default;
+    }
+    .demo-card.has-link {
+      cursor: pointer;
+    }
+    .demo-card.has-link:hover {
+      background: rgba(255,77,0,0.15);
+      border-color: rgba(255,77,0,0.4);
+    }
+    .demo-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+      line-height: 1;
+      margin-top: 1px;
+    }
+    .demo-info {}
+    .demo-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 3px;
+    }
+    .demo-desc {
       font-size: 11px;
-      color: #6B7280;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.5;
+    }
+    .demo-badge {
+      display: inline-block;
+      font-size: 9.5px;
+      font-weight: 700;
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.45);
+      border-radius: 4px;
+      padding: 2px 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin-top: 5px;
     }
 
     /* ── Footer ── */
@@ -264,8 +240,8 @@
     <!-- Header -->
     <div class="header">
       <div class="header-text">
-        <h1>Jasper <span>IQ</span>: Set Your Workspace Defaults 🎯</h1>
-        <p>Make every generation smarter — automatically.</p>
+        <h1>Jasper Resource Hub 🚀</h1>
+        <p>Everything your team needs to get the most out of Jasper — in one place.</p>
       </div>
       <img
         class="logo"
@@ -274,103 +250,109 @@
         onerror="this.style.display='none'"
       />
     </div>
-    <div class="accent-bar"></div>
 
     <div class="body">
 
-      <!-- Why section -->
-      <div class="why">
-        <h2>Why this matters 🎉</h2>
-        <p>
-          You've set up your brand foundation inside Jasper — Brand Voices, Audiences and a Knowledge Base.
-          That puts you ahead of most teams. These are the building blocks that make Jasper generate content
-          that reflects who you are, speaks to the right people and draws from your unique expertise.
-        </p>
-        <p>
-          These components don't work in isolation. When Brand Voice, Audience and Knowledge Base are all applied
-          together, that's when Jasper generates content that sounds like you — consistently across every piece
-          your whole team produces. <strong>Without all three, you're leaving competitive advantage on the table.</strong>
-        </p>
+      <!-- Tile Row -->
+      <div>
+        <div class="section-head">Explore by Product</div>
+        <div class="tile-grid">
+
+          <!-- Jasper IQ -->
+          <a class="tile" href="jasper-iq.html">
+            <div class="tile-icon">🧠</div>
+            <div class="tile-title">Jasper IQ</div>
+            <div class="tile-desc">Set your workspace defaults — Brand Voice, Audience, and Knowledge Base — so every generation is on-brand automatically.</div>
+            <div class="tile-cta">Open guide →</div>
+          </a>
+
+          <!-- Agents -->
+          <a class="tile coming-soon" href="#">
+            <div class="tile-icon">🤖</div>
+            <div class="tile-title">Agents</div>
+            <div class="tile-desc">Automate multi-step marketing workflows with AI agents built for your team's most common tasks.</div>
+            <div class="tile-badge">Coming soon</div>
+          </a>
+
+          <!-- Projects -->
+          <a class="tile coming-soon" href="#">
+            <div class="tile-icon">📁</div>
+            <div class="tile-title">Projects</div>
+            <div class="tile-desc">Organize campaigns, briefs, and content in one place — keeping context and collaborators aligned.</div>
+            <div class="tile-badge">Coming soon</div>
+          </a>
+
+          <!-- GEO Hub -->
+          <a class="tile" href="geo-hub.html">
+            <div class="tile-icon">🔍</div>
+            <div class="tile-title">GEO Hub</div>
+            <div class="tile-desc">Monitor how your brand appears across ChatGPT, Gemini, and Claude — and act on prioritized visibility recommendations.</div>
+            <div class="tile-cta">Open guide →</div>
+          </a>
+
+        </div>
       </div>
 
-      <!-- Video + Steps -->
-      <div class="two-col">
+      <!-- Feature Demos Banner -->
+      <div class="demos-banner">
+        <div class="section-head">Feature Demos 🎬</div>
+        <div class="demos-grid">
 
-        <!-- Video -->
-        <div class="video-wrap">
-          <div class="section-head">See it in action ▶</div>
-          <div class="video-container">
-            <iframe
-              id="loom-frame"
-              src="https://www.loom.com/embed/2153c3d1f1dd425cab28aa3ec75f98d2?autoplay=1&hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true"
-              allowfullscreen
-              allow="autoplay; fullscreen"
-            ></iframe>
-          </div>
-        </div>
-
-        <!-- Steps -->
-        <div class="steps-wrap">
-          <div class="section-head">How to apply IQ to every generation</div>
-
-          <div class="step">
-            <div class="step-num">1</div>
-            <div class="step-text">
-              <strong>Go to Settings</strong>
-              <span>Navigate to Settings → Workspace Defaults in the top navigation bar.</span>
+          <div class="demo-card">
+            <div class="demo-icon">🎙</div>
+            <div class="demo-info">
+              <div class="demo-title">Brand Voice</div>
+              <div class="demo-desc">Train Jasper on your tone and style so every output sounds like you.</div>
+              <div class="demo-badge">Coming soon</div>
             </div>
           </div>
 
-          <div class="step">
-            <div class="step-num">2</div>
-            <div class="step-text">
-              <strong>Choose Your Defaults</strong>
-              <span>Select your Brand Voice, Audience, and Knowledge Base as your workspace defaults.</span>
+          <div class="demo-card">
+            <div class="demo-icon">🎯</div>
+            <div class="demo-info">
+              <div class="demo-title">Audience Targeting</div>
+              <div class="demo-desc">Define personas so Jasper adapts messaging for the right reader every time.</div>
+              <div class="demo-badge">Coming soon</div>
             </div>
           </div>
 
-          <div class="step">
-            <div class="step-num">3</div>
-            <div class="step-text">
-              <strong>Hit Save — that's it!</strong>
-              <span>Your IQ settings are applied to every generation across your whole workspace automatically.</span>
+          <div class="demo-card">
+            <div class="demo-icon">📚</div>
+            <div class="demo-info">
+              <div class="demo-title">Knowledge Base</div>
+              <div class="demo-desc">Upload your docs and let Jasper pull from your expertise in every generation.</div>
+              <div class="demo-badge">Coming soon</div>
             </div>
           </div>
-        </div>
 
-      </div>
-
-      <!-- Links + Criteria -->
-      <div class="bottom-row">
-
-        <!-- Links -->
-        <div class="links-panel">
-          <div class="section-head">Need to revisit your IQ foundations?</div>
-          <ul>
-            <li>🎙 Brand Voice &rarr; <a href="https://help.jasper.ai/hc/en-us/articles/18618693085339-Brand-Voice" target="_blank">Set up now</a></li>
-            <li>🎯 Audience &rarr; <a href="https://help.jasper.ai/hc/en-us/articles/36829917506203-Audiences" target="_blank">Set up now</a></li>
-            <li>📚 Knowledge Base &rarr; <a href="https://help.jasper.ai/hc/en-us/articles/18618707176347-Knowledge-Base" target="_blank">Set up now</a></li>
-          </ul>
-        </div>
-
-        <!-- Criteria -->
-        <div class="criteria-panel">
-          <div class="section-head">What a workspace firing on all cylinders looks like ✅</div>
-          <p class="criteria-note">Our strongest accounts hit all three:</p>
-          <div class="criterion">
-            <span class="label">🗣 Voice</span>
-            <span class="detail">≥ 3 created &nbsp;+&nbsp; ≥ 10 generations with voice applied</span>
+          <div class="demo-card">
+            <div class="demo-icon">⚡</div>
+            <div class="demo-info">
+              <div class="demo-title">Jasper Grid</div>
+              <div class="demo-desc">Run agents at scale — process hundreds of pages or content tasks in parallel.</div>
+              <div class="demo-badge">Coming soon</div>
+            </div>
           </div>
-          <div class="criterion">
-            <span class="label">🎯 Audience</span>
-            <span class="detail">≥ 2 created &nbsp;+&nbsp; ≥ 10 generations with audience applied</span>
-          </div>
-          <div class="criterion">
-            <span class="label">📚 Knowledge</span>
-            <span class="detail">≥ 5 uploads &nbsp;+&nbsp; ≥ 10 generations with KB attached</span>
-          </div>
-        </div>
 
+          <div class="demo-card">
+            <div class="demo-icon">🌐</div>
+            <div class="demo-info">
+              <div class="demo-title">GEO Recommendations</div>
+              <div class="demo-desc">Turn AI visibility gaps into published content fixes with one click.</div>
+              <div class="demo-badge">Coming soon</div>
+            </div>
+          </div>
+
+          <div class="demo-card">
+            <div class="demo-icon">🔗</div>
+            <div class="demo-info">
+              <div class="demo-title">Integrations</div>
+              <div class="demo-desc">Connect Jasper to your CMS, CRM, and existing marketing stack.</div>
+              <div class="demo-badge">Coming soon</div>
+            </div>
+          </div>
+
+        </div>
       </div>
 
     </div>
@@ -382,21 +364,5 @@
     </div>
 
   </div>
-
-  <script>
-    const frame = document.getElementById('loom-frame');
-    const src = frame.src;
-    window.addEventListener('message', function(e) {
-      if (e.origin !== 'https://www.loom.com') return;
-      try {
-        const data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
-        if (data && (data.type === 'loom:video-ended' || data.event === 'ended')) {
-          frame.src = '';
-          setTimeout(() => { frame.src = src; }, 300);
-        }
-      } catch(_) {}
-    });
-  </script>
-
 </body>
 </html>

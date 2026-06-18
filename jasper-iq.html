@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jasper IQ: Set Your Workspace Defaults</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+      background: #F5F5F5;
+      color: #111111;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 36px 16px;
+    }
+
+    .page {
+      background: #ffffff;
+      width: 100%;
+      max-width: 880px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+    }
+
+    /* ── Header ── */
+    .header {
+      background: #FF4D00;
+      padding: 30px 40px 24px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .header-text { flex: 1; }
+    .header h1 {
+      font-size: 22px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.25;
+      margin-bottom: 7px;
+      letter-spacing: -0.3px;
+    }
+    .header h1 span { color: #ffffff; }
+    .header p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+      font-style: italic;
+      font-weight: 400;
+    }
+    .logo {
+      height: 28px;
+      width: auto;
+      opacity: 0.95;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ── Orange accent bar ── */
+    .accent-bar { display: none; }
+
+    /* ── Body ── */
+    .body {
+      padding: 28px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    /* ── Why section ── */
+    .why {
+      background: #FFF6F2;
+      border-radius: 8px;
+      padding: 20px 24px;
+      border-left: 4px solid #FF4D00;
+    }
+    .why h2 {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #FF4D00;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .why p {
+      font-size: 13px;
+      color: #374151;
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+    .why p:last-child { margin-bottom: 0; }
+    .why strong { color: #111111; font-weight: 700; }
+
+    /* ── Two-column layout ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    /* ── Section heading shared style ── */
+    .section-head {
+      font-size: 12px;
+      font-weight: 700;
+      color: #111111;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #FF4D00;
+      margin-bottom: 14px;
+    }
+
+    /* ── Video column ── */
+    .video-wrap { display: flex; flex-direction: column; }
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 4px 16px rgba(255,77,0,0.15);
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    /* ── Steps column ── */
+    .steps-wrap { display: flex; flex-direction: column; }
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: #FAFAFA;
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-bottom: 8px;
+      border: 1px solid #F3F4F6;
+    }
+    .step:last-child { margin-bottom: 0; }
+    .step-num {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      background: #FF4D00;
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+    .step-text strong {
+      display: block;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #111111;
+      margin-bottom: 3px;
+    }
+    .step-text span {
+      font-size: 11.5px;
+      color: #6B7280;
+      line-height: 1.55;
+    }
+
+    /* ── Bottom two-col ── */
+    .bottom-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .links-panel {
+      background: #FFF6F2;
+      border-radius: 8px;
+      padding: 18px 20px;
+    }
+    .criteria-panel {
+      background: #F9FAFB;
+      border-radius: 8px;
+      padding: 18px 20px;
+      border: 1px solid #F3F4F6;
+    }
+
+    .links-panel ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .links-panel ul li {
+      font-size: 12.5px;
+      color: #374151;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .links-panel ul li a {
+      color: #FF4D00;
+      font-weight: 700;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,77,0,0.3);
+      transition: border-color 0.2s;
+    }
+    .links-panel ul li a:hover { border-color: #FF4D00; }
+
+    .criteria-note {
+      font-size: 11.5px;
+      color: #6B7280;
+      font-style: italic;
+      margin-bottom: 10px;
+    }
+    .criterion {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-bottom: 9px;
+      padding-bottom: 9px;
+      border-bottom: 1px solid #F3F4F6;
+    }
+    .criterion:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .criterion .label {
+      font-size: 12px;
+      font-weight: 700;
+      color: #111111;
+    }
+    .criterion .detail {
+      font-size: 11px;
+      color: #6B7280;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      background: #FF4D00;
+      padding: 14px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer p {
+      font-size: 11.5px;
+      color: rgba(255,255,255,0.85);
+    }
+    .footer-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.6);
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="header-text">
+        <h1>Jasper <span>IQ</span>: Set Your Workspace Defaults 🎯</h1>
+        <p>Make every generation smarter — automatically.</p>
+      </div>
+      <img
+        class="logo"
+        src="https://cdn.prod.website-files.com/6807ee8d73c233fb82842313/69b01c3c86cb380964db0daa_Jasper%20Logo%20(2025).png"
+        alt="Jasper"
+        onerror="this.style.display='none'"
+      />
+    </div>
+    <div class="accent-bar"></div>
+
+    <div class="body">
+
+      <!-- Why section -->
+      <div class="why">
+        <h2>Why this matters 🎉</h2>
+        <p>
+          You've set up your brand foundation inside Jasper — Brand Voices, Audiences and a Knowledge Base.
+          That puts you ahead of most teams. These are the building blocks that make Jasper generate content
+          that reflects who you are, speaks to the right people and draws from your unique expertise.
+        </p>
+        <p>
+          These components don't work in isolation. When Brand Voice, Audience and Knowledge Base are all applied
+          together, that's when Jasper generates content that sounds like you — consistently across every piece
+          your whole team produces. <strong>Without all three, you're leaving competitive advantage on the table.</strong>
+        </p>
+      </div>
+
+      <!-- Video + Steps -->
+      <div class="two-col">
+
+        <!-- Video -->
+        <div class="video-wrap">
+          <div class="section-head">See it in action ▶</div>
+          <div class="video-container">
+            <iframe
+              id="loom-frame"
+              src="https://www.loom.com/embed/2153c3d1f1dd425cab28aa3ec75f98d2?autoplay=1&hide_owner=true&hide_share=true&hide_title=true&hideEmbedTopBar=true"
+              allowfullscreen
+              allow="autoplay; fullscreen"
+            ></iframe>
+          </div>
+        </div>
+
+        <!-- Steps -->
+        <div class="steps-wrap">
+          <div class="section-head">How to apply IQ to every generation</div>
+
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-text">
+              <strong>Go to Settings</strong>
+              <span>Navigate to Settings → Workspace Defaults in the top navigation bar.</span>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-text">
+              <strong>Choose Your Defaults</strong>
+              <span>Select your Brand Voice, Audience, and Knowledge Base as your workspace defaults.</span>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-text">
+              <strong>Hit Save — that's it!</strong>
+              <span>Your IQ settings are applied to every generation across your whole workspace automatically.</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Links + Criteria -->
+      <div class="bottom-row">
+
+        <!-- Links -->
+        <div class="links-panel">
+          <div class="section-head">Need to revisit your IQ foundations?</div>
+          <ul>
+            <li>🎙 Brand Voice &rarr; <a href="https://help.jasper.ai/hc/en-us/articles/18618693085339-Brand-Voice" target="_blank">Set up now</a></li>
+            <li>🎯 Audience &rarr; <a href="https://help.jasper.ai/hc/en-us/articles/36829917506203-Audiences" target="_blank">Set up now</a></li>
+            <li>📚 Knowledge Base &rarr; <a href="https://help.jasper.ai/hc/en-us/articles/18618707176347-Knowledge-Base" target="_blank">Set up now</a></li>
+          </ul>
+        </div>
+
+        <!-- Criteria -->
+        <div class="criteria-panel">
+          <div class="section-head">What a workspace firing on all cylinders looks like ✅</div>
+          <p class="criteria-note">Our strongest accounts hit all three:</p>
+          <div class="criterion">
+            <span class="label">🗣 Voice</span>
+            <span class="detail">≥ 3 created &nbsp;+&nbsp; ≥ 10 generations with voice applied</span>
+          </div>
+          <div class="criterion">
+            <span class="label">🎯 Audience</span>
+            <span class="detail">≥ 2 created &nbsp;+&nbsp; ≥ 10 generations with audience applied</span>
+          </div>
+          <div class="criterion">
+            <span class="label">📚 Knowledge</span>
+            <span class="detail">≥ 5 uploads &nbsp;+&nbsp; ≥ 10 generations with KB attached</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <a href="index.html" style="display:inline-flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,0.85);text-decoration:none;font-weight:600;">← Back to Resource Hub</a>
+      <p>Questions? Reach your Jasper Customer Success team.</p>
+      <div class="footer-dot"></div>
+    </div>
+
+  </div>
+
+  <script>
+    const frame = document.getElementById('loom-frame');
+    const src = frame.src;
+    window.addEventListener('message', function(e) {
+      if (e.origin !== 'https://www.loom.com') return;
+      try {
+        const data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
+        if (data && (data.type === 'loom:video-ended' || data.event === 'ended')) {
+          frame.src = '';
+          setTimeout(() => { frame.src = src; }, 300);
+        }
+      } catch(_) {}
+    });
+  </script>
+
+</body>
+</html>
